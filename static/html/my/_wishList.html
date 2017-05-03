@@ -1,0 +1,16 @@
+<ul class="mui-table-view mui-table-view-chevron" v-show="wishList[0].length!=0">
+    <li v-for="productList in wishList">
+        <ul>
+            <product-list v-for="productList in productList"
+                          url="../productDetails/productDetails.html#"
+                          :product-id="productList['productId']"
+                          :description="productList['brandName']+productList['name']"
+                          :img="productList['imgUrl']"
+                          :price="productList['price']"
+                          :origin-price="productList['originPrice']"
+                          :icon="productList"
+                          :stock-status="productList['stockStatus']"
+            ></product-list>
+        </ul>
+    </li>
+</ul>

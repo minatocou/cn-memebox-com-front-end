@@ -1,0 +1,32 @@
+<!--预售订单-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="order.less" rel="stylesheet"/>
+</head>
+<body class="mui-fullscreen">
+<div  id="app" class="mui-views">
+    <div class="mui-view">
+        <div class="mui-navbar">
+        </div>
+        <div style="display: none" v-show="init" class="mui-pages">
+        </div>
+    </div>
+</div>
+<link rel="import" href="_order.html?__inline">
+<link rel="import" href="../../order/_address.html?__inline">
+<link rel="import" href="../../order/_add_address.html?__inline">
+<script src="../../../js/vendor/mui/mui.view.js"></script>
+<script src="../../../js/vendor/mui/mui.picker.js"></script>
+<script src="../../../js/vendor/mui/mui.poppicker.js"></script>
+<script src="../../../js/vendor/city.data-3.js"></script>
+<script src="../../../js/vendor/city.js"></script>
+<script src="../../../js/vendor/underscore.js"></script>
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/presale/order');
+</script>
+</body>
+<link rel="import" href="../../include/ga.html?__inline">
+</html>

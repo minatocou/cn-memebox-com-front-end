@@ -1,0 +1,155 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+
+@main-pink : #ff5072;
+.light-grey{
+  color: #a6a6a6;
+}
+.tab-header-container{
+  position: fixed;
+  top:45*@xem;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  ul{
+    width: 100%;
+    background-color:white;
+    li{
+      height: 45*@xem;
+      line-height: 45*@xem;
+      text-align: center;
+      width: 25%;
+      font-size: 15*@xem;
+      color: #666;
+      float:left;
+      position: relative;
+      div.icon-count{
+        //display: none;
+        width: 16*@xem;
+        height: 16*@xem;
+        text-align: center;
+        line-height:16*@xem;
+        position: absolute;
+        border-radius: 15*@xem;
+        right: 5*@xem;
+        top: 7*@xem;
+        font-size:9*@xem;
+        background-color:@main-pink;
+        margin:0;
+        padding: 0;
+        color: #fff;
+      }
+      div.icon-new{
+        //display: none;
+        width: 6*@xem;
+        height: 6*@xem;
+        position: absolute;
+        border-radius: 12*@xem;
+        right: 12*@xem;
+        top: 10*@xem;
+        background-color:@main-pink;
+        margin:0;
+        padding: 0;
+      }
+    }
+    li.active{
+      color: @main-pink;
+    }
+    li.active:after{
+      position: absolute;
+      left: 8%;
+      bottom:0;
+      content: "";
+      height: 3*@xem;
+      width: 84%;
+      background-color: @main-pink;
+    }
+  }
+}
+.mui-bar-nav~.mui-content .show-orders{
+  top: 90*@xem;
+}
+
+.pro{
+  .mui-table-view-cell>a:not(.mui-btn).order-cell-info{
+    color: #999;
+    font-size: 13*@xem;
+  }
+}
+.item-cell-extra-info{
+  height: 27*@xem;
+}
+.mui-table-view-cell{
+  a.pay-link{
+    float:right;
+    display: inline-block;
+  }
+}
+.button-bar{
+  .gray-button{
+    float: right;
+    border:1*@xem solid #666;
+    width: 88*@xem;
+    height: 29*@xem;
+    line-height: 29*@xem;
+    color: #666;
+    background-color: transparent;
+    border-radius: 5*@xem;
+    text-align: center;
+    margin-left: 10*@xem;
+  }
+  .graybg-button{
+    float: right;
+    width: 90*@xem;
+    height: 30*@xem;
+    line-height: 30*@xem;
+    border: none;
+    background-color: #a6a6a6;
+    color: #fff;
+    border-radius: 5*@xem;
+    text-align: center;
+    margin-left: 10*@xem;
+  }
+  .border-button{
+    float: right;
+    border:1*@xem solid @main-pink;
+    width: 88*@xem;
+    height: 29*@xem;
+    line-height: 29*@xem;
+    color: @main-pink;
+    background-color: transparent;
+    border-radius: 5*@xem;
+    text-align: center;
+    margin-left: 10*@xem;
+  }
+  .pay-timer{
+    float: left;
+    height: 30*@xem;
+    line-height: 30*@xem;
+    color: @main-pink;
+  }
+  .pink-button{
+    float: right;
+    width: 90*@xem;
+    height: 30*@xem;
+    line-height: 30*@xem;
+    border: none;
+    background-color: @main-pink;
+    color: #fff;
+    border-radius: 5*@xem;
+    text-align: center;
+    margin-left: 10*@xem;
+  }
+}
+.order-cell-info{
+ .grey{
+   color: #ccc;
+ }
+}
+.order-cell{
+  margin-top: 10*@xem;
+  &.hid{
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+<li class="product-list" @tap="$parent.go(url+productId)" v-bind:class={stockout:stockStatus=='0'}>
+    <div class="show-img">
+        <span class="icon"  v-show="stockStatus=='1'">
+            <img :src=$parent.getProIcon(icon) v-show=$parent.getProIcon(icon) alt="美美箱">
+        </span>
+        <div class="stockout-mark" v-show="stockStatus=='0'">
+            <span>售&nbsp;&nbsp;罄</span>
+        </div>
+        <img :data-echo="img"
+             src="../../img/memebox-s.png"
+        >
+        <!--<img :data-echo="img">-->
+    </div>
+    <div class="product-information"><h2>{{description}}</h2>
+        <p class="original-price-container">
+            <del class="original-price" v-show="(originPrice-price)>0">原价:{{originPrice}}</del>
+        </p>
+        <div class="current-price">
+            <span class="discount" v-show="((originPrice-price)>0)&&(((price/originPrice)*10).toFixed(1)!=0.0)"><em>{{((price/originPrice)*10).toFixed(1)}}</em> </span>
+            <span class="price"
+                  :style=" ((originPrice-price)<0)||(originPrice==price)||((price/originPrice)*10).toFixed(1)==0.0 ? 'left:0' : ''">{{price}} </span>
+        </div>
+    </div>
+</li>

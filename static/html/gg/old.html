@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+</head>
+<body>
+<div align="center">
+    <input @change="toProduct" v-model="pid" type="text" placeholder="跳转产品(productId)">
+    <input @change="toChannel" type="text" v-model="channelid" placeholder="跳转channel(channel)">
+    <input @change="addCart" type="text" v-model="cpid" placeholder="addCart(productId)">
+    <input @click="toCart" value="去购物车" type="button" placeholder="toCart">
+    <input @click="toMain" value="去主页" type="button" placeholder="toMain">
+    <input @click="h5page" value="去h5首页" type="button" placeholder="h5page(url)">
+</div>
+<script src="../../js/appsdk/app.js"></script>
+<script >
+    require('gg/app');
+</script>
+</body>
+<!--<link rel="import" href="../../include/ga.html?__inline">-->
+</html>

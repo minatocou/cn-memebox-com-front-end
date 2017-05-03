@@ -1,0 +1,24 @@
+<div class="tab" v-show="show" style="display: none;">
+    <nav class="nav-date">
+        <div class="swiper-container nav1">
+            <div class="swiper-wrapper">
+                <span class="swiper-slide"
+                      v-for="(index,date) in tab.date"
+                      index={{index}}
+                >{{date}}</span>
+            </div>
+        </div>
+        <span class="swiper-check"></span>
+    </nav>
+    <nav class="nav-time">
+        <div class=" block"
+             v-for="(index,t) in activeTime"
+             @tap="changeTime(index,$event)"
+             :class="index==activeIndex[1]&&'active'"
+        >
+            <p>{{t[0]}}</p>
+            <p>{{t[1]}}</p>
+        </div>
+    </nav>
+</div>
+<!--@tap="changeDate(index)"-->

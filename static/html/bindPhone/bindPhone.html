@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>关联手机号</title>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="bindPhone.less" rel="stylesheet"/>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a href="../account/login.html" class=" mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">关联手机号</h1>
+    <a href="/" class="mui-icon-home mui-icon go-home"></a>
+</header>
+<div class="mui-content" style="display: none" v-show="init">
+    <img src="include/bind-bg.png" alt="关联手机号" width="100%">
+    <div class="box">
+        <validator name="validation">
+            <form novalidate>
+                <ul>
+                    <li>
+                        <input id='phone' name="phone" type="number" maxlength="11"  v-model="param.phone"
+                               v-validate:phone="['phone']"
+                               placeholder="手机号"
+                        >
+                    </li>
+                    <li>
+                        <input id="imgAuth"  name="imgAuth" type="text" placeholder="图形验证码"  v-model="param.imgAuth"
+                               v-validate:imgAuth="{required:{rule: true,message:'请输入图形验证码'},minlength:{rule:4 , message:'请输入正确的图形验证码'},maxlength: {rule:4 , message:'请输入正确的图形验证码'}}"
+                        >
+                        <img class="img-number s" :src="imgAuth" alt="" @tap="getImgAuth">
+                    </li>
+                    <li>
+                        <input id="authCode" name="authCode" type="number" maxlength="6" v-model="authCode"
+                               v-validate:authCode="{required:{rule: true,message:'请输入验证码'},maxlength: {rule:5 , message:'请输入正确的验证码'}}"
+                               placeholder="短信验证码"
+                        >
+                        <span class="msg-number s" @tap="getAuth" v-if="!showTime.show">
+                            获取验证码
+                        </span>
+                        <span class="msg-number s" v-else>
+                            {{showTime.time}}s
+                        </span>
+                    </li>
+                </ul>
+            </form>
+        </validator>
+    </div>
+    <div align="center" class="btn-box">
+        <button @tap="bind">确定</button>
+        <!--<button @tap="bind" v-if="showBindBtn">确定</button>-->
+        <!--<button style="background-color: #999" v-else>确定</button>-->
+    </div>
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<script>
+    require('bindPhone/bindPhone');
+</script>
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet">
+</head>
+<body>
+<div class="mui-page tele-container" style="display: none" v-show="init">
+    <div class="mui-page-content main-content">
+        <div class="tele-homeBg" v-show="teletextData.cover">
+            <img :src="teletextData.cover" alt="">
+        </div>
+        <div class="tele-content">
+            <div class="tele-title ov2">{{teletextData.title}}</div>
+            <div class="tele-head">
+                <div class="tele-author">{{teletextData.author}}</div>
+                <div class="tele-date">{{teletextData.createDate}}</div>
+            </div>
+            <ul class="tele-label">
+                <li v-for="n in teletextData.tags">{{n}}</li>
+            </ul>
+            <div class="tele-paragraph">
+                <div v-for="item in teletextData.content">
+                    <div v-if="item.parentNode.nodeName == 'DIV'">
+                        <template v-if="item.className == 'teletext-prd'">
+                            <div v-for="ele in prdlist">
+                                <div class="teletext-prd" v-if="item.dataset.val == ele.sku" value="{{item.dataset.val}}" @tap="gotoDetail(ele.productId)">
+                                    <img class="teletext-img" :src="ele.imgUrl">
+                                    <div class="teletext-group">
+                                        <div class="teletext-name ov2">{{ele.name}}</div>
+                                        <div class="teletext-foot">
+                                            <a class="teletext-btn" href="javascript:">去购买</a>
+                                            <div class="teletext-price">
+                                                <span>￥{{ele.price}}</span>
+                                                <span class="teletext-origin">￥{{ele.originPrice}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-if="item.nodeName == 'P'">
+                            <p v-if="item.innerHTML != '' && item.innerHTML != '<br>'" v-html="item.outerHTML"></p>
+                            <p v-if="item.innerHTML != '' && item.innerHTML == '<br>'" class="space"></p>
+                        </template>
+                    </div>
+                </div>
+                <!--{{{teletextData.content}}}-->
+            </div>
+            <div class="tele-row">
+                <span class="tele-views">阅读 {{teletextData.views}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+</body>
+<script src="../../../js/vendor/jquery.js"></script>
+<script>
+    require('special/teletext/teletext');
+</script>
+</html>

@@ -1,0 +1,110 @@
+<div class="cart-box makeFixedTop" :class="getType(w.id).a" v-for="(index,w) in cartData.warehouses" v-show="isShowCart()">
+    <div class="mui-table-view-cell mini mui-left cart-title">
+        <!--单仓商品全选按钮-->
+        <div class="mui-checkbox cart-group">
+            <input class="cart-checkbox" value="{{index}}" type="checkbox" @click.stop="checkedItem" :checked="w.isSelected==1?true:false">
+        </div>
+        <span class="warehouse-logo">{{getType(w.id).b}}</span>{{w.shippingNotice}}
+        <div class="warehouse-discount" v-show="w.promotion.name">
+            <span class="red">满减</span>
+            <p>
+                {{{setAdvertise(w.promotion.advertise,true)}}}
+            </p>
+        </div>
+        <p class="ov warn" v-show="w.promotion.id&&!w.promotion.compatible_preference">注：已享受活动优惠的商品不参与仓减</p>
+    </div>
+    <template v-for="(i,pre) in w.preferences">
+        <div class="discount-item" v-show="pre.id!=''" @tap="goUrl(pre.activity_url,pre.type,pre.id,pre.extra)">
+            <span class="arrow" v-show="pre.activity_url">
+                {{getActivityText(pre.type,pre.condition)}}
+                <a href="javascript:void(0)" ></a>
+            </span>
+            <span class="symbol">{{getWarehosesDiscountType(pre.type)}}</span>
+            <p :class={'Nyuan':getWarehosesDiscountType(pre.type)==='N元任选'}>
+                {{{setAdvertise(pre)}}}
+            </p>
+        </div>
+        <ul class="cart-pro cart-task" :class={'cart-border':!pre.id}>
+            <li class="mui-table-view-cell mui-transitioning" v-for="(pindex,pro) in pre.products">
+                <div class="mui-slider-right mui-disabled" v-show="pro.exbuy!=1&&pro.hallgift!=1">
+                    <a @tap="remove(pro.itemId)" class="mui-btn mui-btn-red"
+                       style="transform: translate(0px, 0px);">删除</a>
+                </div>
+                <div class="mui-slider-handle" style="transform: translate(0px, 0px);" v-show="pro.exbuy!=1&&pro.hallgift!=1">
+                    <div class="mui-checkbox cart-group">
+                        <input class="cart-checkbox proCheckBox" value="{{pro.itemId}}" type="checkbox" @click.stop="checkedItem"
+                               :checked="pro.isSelected==1?true:false"
+                        >
+                    </div>
+                    <div class="mui-input-row mui-checkbox mini mui-left">
+                        <!--商品选择按钮-->
+                        <div class="p15">
+                            <div class="cart-img">
+                                <img class="pro-img" :src="pro.img"/>
+                            </div>
+                            <div class="cart-text">
+                                <div class="title-box">
+                                    <div v-show="showTil">
+                                        <div class="title " @tap="goDetail(pro.productId)">
+                                            <span class="ov2">{{pro.brand}}&nbsp;{{pro.name}}</span>
+                                            <p class="gray ov">{{pro.option}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-show="showBtn" class="mui-numbox cart-numbox">
+                                    <button  class="mui-btn mui-btn-numbox-minus"
+                                            @tap="countNum(index,'reduce',$event)"
+                                            type="button">-
+                                    </button>
+                                    <input readonly
+                                           class="mui-input-numbox"
+                                           type="number"
+                                           :itemId="pro.itemId"
+                                           v-model="pro.qty">
+                                    <button class="mui-btn mui-btn-numbox-plus"
+                                            @tap="countNum(index,'add',$event)"
+                                            type="button">+
+                                    </button>
+                                </div>
+                                <span v-show="showBtn" @tap="remove(pro.itemId)" class="mui-icon delIcon"></span>
+
+                                <div class="red">￥{{pro.price}}<span class="cart-qty">&nbsp;x{{pro.qty}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--商品优惠-->
+                        <div class="discount-pro" v-show="pro.possiblepreferences.length>1">
+                            <div>
+                               <span class="red" @tap="choiceDiscount(pro.possiblepreferences,pro.productId,pre.id)" v-show="pro.possiblepreferences">
+                                其他优惠
+                                </span>
+                                <p class="ov">
+                                   {{pre.name}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--换购 或 赠品-->
+                <div class="pr15 mui-slider-handle" v-show="pro.exbuy==1||pro.hallgift==1">
+                  <div class="changebuy" @tap="goExDetail(pro.productId)">
+                    <img :src=pro.img alt="">
+                    <p class="ov">
+                      [{{getProActivityType(pro)}}] {{pro.brand}}&nbsp;{{pro.name}}
+                    </p>
+                    <span class="price">¥{{pro.price}}</span>
+                    <span class="qty"> x{{pro.qty}}</span>
+                  </div>
+                </div>
+            </li>
+        </ul>
+    </template>
+    <div class="mui-input-group count">
+        <p>
+            活动优惠：<span class="black">－￥{{w.warehouseDiscount}}</span>
+        </p>
+        <p>
+            本仓总计：<span class="red">￥{{w.current}}</span>
+        </p>
+    </div>
+</div>

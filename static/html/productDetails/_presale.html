@@ -1,0 +1,195 @@
+<!--预售详情-->
+<div id="presale" class="mui-page presale">
+    <div :style="headerCss"  :class="{iconGray:iconBg}" class="mui-navbar-inner mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @tap=goBack></a>
+        <h1 v-show="showTitle" class="mui-title">商品详情</h1>
+        <a href="/" class="mui-icon-home mui-icon go-home"></a>
+    </div>
+    <div class="mui-page-content" style="display: none" v-show="init">
+        <div class="mui-scroll-wrapper" id="s-details">
+            <div class="mui-scroll">
+                <div class="details-banner">
+                    <div class="stockout" v-show=canBuySta=='0'>
+                        <span>售&nbsp;&nbsp;罄</span>
+                    </div>
+                    <img class="product-type"
+                         :src=getProIcon(productData)
+                         v-show=getProIcon(productData)&&canBuySta=='1'
+                         alt="美美箱">
+                    <link rel="import" href="./_banner.html?__inline">
+                    <span class="groupon-countdown">
+                        {{result.day}}天{{result.hour}}时{{result.minute}}分{{result.second}}秒后结束
+                    </span>
+                </div>
+                <div class="product-introduce">
+                    <div class="product-title">
+                        <h2 class="ov2">
+                            {{productData.brandName}}{{productData.name}}
+                        </h2>
+                        <div class="sales">
+                            <span>已售{{productData.soldNum}}件</span>
+                            <span v-if="productData.commentRate"><em>{{productData.commentRate}}</em>好评</span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img :src=presaleInfo.festivalImg alt="节日价格">
+                        <span>
+                            ¥{{presaleInfo.specialPrice}}
+                        </span>
+                    </div>
+                    <div class="presale-price-box">
+                        <div class="downpayment">
+                            <span>
+                                预付定金
+                            </span>
+                            <span>
+                                ¥{{toFixed2(presaleInfo.deposit)}}
+                            </span>
+                        </div>
+                        <div class="presale-price">
+                            <span>
+                                预售价
+                            </span>
+                            <span>
+                                ¥{{toFixed2(presaleInfo.prePrice)}}
+                            </span>
+                            <del>
+                                ¥{{productData.originPrice}}
+                            </del>
+                        </div>
+                    </div>
+                    <div class="time">
+                        支付尾款时间：{{presaleFormatTime(presaleInfo.startRetainageTime)}}～{{presaleFormatTime(presaleInfo.endRetainageTime)}}
+                    </div>
+                </div>
+                <div class="product-attach">
+                    <div class="mui-table-view presale-rule" @tap="showPresaleRule">
+                        <p class="mui-table-view-cell">
+                            <a class="mui-navigate-right ov">
+                                预售须知
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mui-table-view explain shipping">
+                        <p class="mui-table-view-cell">
+                            <a class="mui-navigate-right ov" href="#service">
+                                预售商品包邮<!--{{productData.slogan}}-->
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mui-table-view explain fanli" v-if="isFanliApp()&&productData.fanliFlag=='0'">
+
+                        <p class="mui-table-view-cell">
+                            <a class="ov">
+                                此商品不参加返利
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <ul class="mui-table-view" v-if="productData.hasOptions !='0' || productData.hasBundleOption > 0">
+                    <li class="mui-table-view-cell"
+                        @tap="canBuyPro()?presaleBuy():''">
+                        <a class="mui-navigate-right product-text">
+                            <span class="ov" v-if="text">已选择 {{text}}</span>
+                            <span class="ov" v-else>请选择规格</span>
+                            <!--<span class="buy-number" v-show="number"> {{number}}</span>-->
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="product-comment">
+                    <div class="mui-table-view explain">
+                        <p class="mui-table-view-cell">
+                            <template v-if="bestCommentData.total>0">
+                                <a @tap="toComment" class="mui-navigate-right ov" href="#comment">
+                                    购买过的小伙伴都这么说(<span>{{bestCommentData.total}}</span>)
+                                </a>
+                            </template>
+                            <template v-else>
+                                <div class="comment-empty">
+                                    <span>用户评论</span>
+                                    <span class="comment-tips">暂无评论</span>
+                                </div>
+                            </template>
+                        </p>
+                        <!--<div class="comment-wrap" v-if="bestCommentData['data'].length>0">-->
+                        <div class="comment-wrap" v-if="bestCommentLength>0">
+                            <div class="swiper-container">
+                                <div @drag="swiper"  class="swiper-wrapper">
+                                    <div class="comment-group swiper-slide" v-for="option in bestCommentData['data']"  v-if="option.thumbList.length>0">
+                                        <div class="comment-img">
+                                            <img :src="option.thumbList[0].s_thumb" alt="评价图片" @tap="preview(option.thumbList[0].b_thumb)">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <div class="comment-user">
+                                                <div class="comment-avatar">
+                                                    <img :src="option.avatar?option.avatar:'/images/app/my/include/user-logo.png'" alt="个人头像">
+                                                </div>
+                                                <div class="comment-user-info">
+                                                    <h3 class="user-name">{{option.userName}}</h3>
+                                                    <p class="user-stars">
+                                                        <template v-for="index in 5">
+                                                            <i class="star-icon" :class="(index+1) <= option.star?'active':''"></i>
+                                                        </template>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="comment-cnt-text ov4">
+                                                {{option.text}}
+                                            </div>
+                                            <div class="comment-group-time">{{option.date}}</div>
+                                        </div>
+                                    </div>
+                                    <a class="comment-group-more swiper-slide"  @tap="toComment" href="#comment">
+                                        <div>
+                                            <span>更多评论</span> <br>
+                                            See More
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-information">
+                    <p>图文详情</p>
+                    <div id="product-detail">{{{productData.detail}}}</div>
+                </div>
+                <div class="about-memebox">
+                    <p><a href="../home/home.html">关于MEMEBOX</a></p>
+                    <img src="include/aboutMemebox.jpg" alt="Memebox">
+                </div>
+            </div>
+            <img class="add-success" :src=getProIcon(productData) :class="ani==true?'add-success-transition':''">
+            <div class="add-shopping-cart">
+                <div class="show-time">
+                    {{presaleFormatTime(presaleInfo.startRetainageTime)}} 开始支付尾款
+                </div>
+                <div class="add-btn"
+                     @tap="canBuyPro()?presaleBuy():''"
+                     :class="{'not-add-btn':!canBuyPro()}"
+                >
+                    <span :value="canBuyPro()" v-if="canBuyPro()">立即付定金 ¥{{toFixed2(presaleInfo.deposit)}}</span>
+                    <span v-else>已抢光</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="imageTextBtn" :class="{top:toTop}"  style="display:none" v-show="imgTextBtn" @tap="changePosition()"></div>
+
+        <div class="mask-layer tax-layer" v-show="showTaxMask">
+            <div class="mask" @touchstart="takMask"></div>
+            <div class="show-product">
+                <span class="close-tax" @tap="takMask"></span>
+                <div class="show-tax-rate">
+                    <span class="tax-title">税费:</span>
+                    <span class="tax-rate">{{productData.taxFee}}</span>
+                    <p>
+                        根据国家政策规定，本产品适用于“跨境综合税”。税率为:{{productData.taxRate}},实际结算税率请以提交订单时应付总金额明细为准。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

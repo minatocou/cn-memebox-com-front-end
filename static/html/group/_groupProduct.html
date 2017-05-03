@@ -1,0 +1,29 @@
+<li class="product-list" :class="{'stockout':product.stockStatus=='0'}">
+    <a @tap="$parent.goDetail()" :href="$parent.getUrl()">
+        <div class="show-img">
+        <span class="icon">
+            <img :src=$parent.getProIcon(product) v-show=$parent.getProIcon(product) alt="美美箱">
+        </span>
+            <div class="stockout-mark" v-show="product.stockStatus=='0'">
+                <span>售&nbsp;&nbsp;罄</span>
+            </div>
+            <img class="show-img" :src="product.imgUrl || product.img"/>
+        </div>
+        <div class="product-information">
+            <h2><span class="tag pt">{{product.grouponType=='1'?'拼团':'邀新团'}}</span>{{product.brandName}}
+                {{product.name}}</h2>
+            <div class="tags">
+                <div class="tag discoun">{{(product.grouponPrice/product.price*10).toFixed(1)}}折</div>
+                <div class="tag shipping">包邮</div>
+            </div>
+        </div>
+        <div class="bottom-price">
+            <span class="price">{{product.grouponPrice}}</span>
+            <del class="original-price" v-show="(product.price-product.grouponPrice)>0">
+                {{(product.price-0).toFixed(2)}}
+            </del>
+        </div>
+        <img :src="getIcon($parent.groupDetail.grouponStatus)" v-show="getIcon($parent.groupDetail.grouponStatus)"
+             alt="拼团状态" class="status-img">
+    </a>
+</li>

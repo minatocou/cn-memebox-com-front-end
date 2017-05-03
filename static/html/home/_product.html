@@ -1,0 +1,23 @@
+<!--首页的产品列表-->
+<div class="new-user" v-for="productList in homeProductList" v-if="homeProductList.length!=0">
+
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell product-titile" v-if="productList['productList'].length!=0">
+            <a class="mui-navigate-right"
+               href={{page}}/productClassify/productClassify.html#{{productList['category_id']}}>
+                {{productList["title"]}}
+            </a>
+        </li>
+        <product-list v-for="list in productList['productList']"
+                      url=/m/productDetails/productDetails.html#
+                      :product-id="list['productId']"
+                      :description="list['brandName']+' '+list['name']"
+                      :origin-price="list['originPrice']"
+                      :price="list['price']"
+                      :img="list['imgUrl']"
+                      :icon="list"
+                      :stock-status="list['stockStatus']"
+        ></product-list>
+    </ul>
+
+</div>

@@ -1,0 +1,93 @@
+<div class="choice-pro" v-show="move.mask" :class="move.disable==true&&'disable'">
+    <!--:class="move.mask==false&&'disable'"-->
+    <div class="mask" v-show="move.mask" @tap="hideChangePro"></div>
+    <div class="pro-box" :class="move.box==true&&'move'">
+        <p align="center">
+            换购商品
+            <span class="close-btn" @tap="hideChangePro"></span>
+        </p>
+        <p class="top-title">
+            {{extra.tips}}
+            <!--购满90.00元可加价30.00元换购商品-->
+        </p>
+        <ul>
+            <li class="mui-table-view-cell mui-transitioning" v-for="(index,pro) in changeBuyList.products">
+                <div class="mui-slider-handle" style="transform: translate(0px, 0px);">
+                    <!--<div class="mui-checkbox"-->
+                    <!--&gt;-->
+                        <!--<input class="pro-checkbox proCheckBox"-->
+                               <!--type="checkbox"-->
+                               <!--name="pro_id"-->
+                               <!--:true-value="pro.productId"-->
+                               <!--:id=pro.productId-->
+                               <!--v-model="addExProList[index].productId"-->
+                        <!--&gt;-->
+                    <!--</div>-->
+                    <div class="mui-checkbox"
+                         @click="choicePro"
+                    >
+                        <input class="pro-checkbox proCheckBox"
+                               type="checkbox"
+                               name="pro_id"
+                               :value="pro.productId"
+                               :id=pro.productId
+                               :disabled=move.disable
+                        >
+                    </div>
+                    <div class="mui-input-row" @tap="goDetail(pro)">
+                        <div class="pro-info">
+                            <img class="pro-img" :src=pro.img_h5 />
+                            <div class="title">
+                                <span class="ov2">{{pro.brand}} {{pro.name}}</span>
+                            </div>
+                            <div class="price">
+                                <span>¥{{pro.price}}</span>
+                            </div>
+                        </div>
+                        <!--<select v-model="selected">-->
+                            <!--&lt;!&ndash; 内联对象字面量 &ndash;&gt;-->
+                            <!--<option v-bind:value="{ number: 123 }">123</option>-->
+                        <!--</select>-->
+                        <!--<div class="pro-options" v-if="format(pro.options)">-->
+                            <!--<label v-for="option in format(pro.options)"-->
+                                  <!--:key=option.option_id-->
+                                  <!--:value=option.value-->
+                                  <!--class="abled"-->
+                            <!--&gt;{{option.title}}-->
+                                <!--<input type="radio"-->
+                                <!--:data-id=option.option_id-->
+                                <!--:value='{optionKey:option.option_id,optionValue:option.value}'-->
+                                <!--v-model="addExProList[index]"-->
+                                <!--&gt;-->
+                            <!--</label>-->
+                        <!--</div>-->
+
+                        <div class="pro-options" v-if="pro.options">
+                            <span v-for="option in pro.options"
+                                  :key=option.option_id
+                                  :value=option.value
+                                  @tap="choiceOption"
+                                  class="abled"
+                            >{{option.title}}
+                                <!--<input type="radio"-->
+                                <!--:data-id=option.option_id-->
+                                <!--:value=option.value-->
+                                <!--v-model="addExProList[index].optionValue"-->
+                                <!--@tap="choiceOption"-->
+                                <!--&gt;-->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="pro-btn">
+          <span>
+            已换购 {{currentLength}}/{{extra.limit}} 件
+          </span>
+            <span @tap="addCart">
+            确定
+          </span>
+        </div>
+    </div>
+</div>

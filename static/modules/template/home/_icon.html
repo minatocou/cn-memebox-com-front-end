@@ -1,0 +1,11 @@
+<!--<div class="icon" :style="{backgroundImage: 'url(' + iconData.component_bg_url + ')'}">-->
+<div class="icon">
+    <ul>
+        <li v-for="(index,icon) in iconData.items">
+            <a :href="toH5Url(icon.item_action_url)">
+                <div class="icon_img"><img :src="icon.icon_img"></div>
+                <p v-if="icon.icon_title">{{icon.icon_title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

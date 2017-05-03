@@ -1,0 +1,39 @@
+<div class="favor">
+    <div class="title"><img src="../../../img/tuijian_icon.png" alt="为你推荐"></div>
+    <div class="list">
+        <ul>
+            <li v-for="(index,item) in favorData.items" @tap="$parent.$parent.go('/m/productDetails/productDetails.html#'+item.productId)">
+                <div class="product">
+                    <div class="product_img">
+                        <img :src="item.imgUrl">
+                            <span class="tag" v-if="item.warehouse==1||item.warehouse==2" :class="{krTag:item.warehouse==1,localTag:item.warehouse==2}">
+                                <template v-if="item.warehouse==1">
+                                    韩国直邮
+                                </template>
+                                <template v-if="item.warehouse==2">
+                                    极速仓
+                                </template>
+                            </span>
+                        <p class="special_tag ov" v-if="item.extraProductBanner">{{item.extraProductBanner}}</p>
+                    </div>
+                    <div class="product_detail">
+                        <h2 class="ov2">{{item.brandName+item.name}}</h2>
+                        <p class="labels">
+                                <span class="label" v-for="(index,label) in item.productLabels" :style="{color:label.color}" v-if="index<2">
+                                    {{label.text}}
+                                    <span :style="{background:label.color}"></span>
+                                </span>
+                        </p>
+                        <div class="price_box">
+                            <span class="price">¥{{parseInt(item.price)}}.{{getFloat2(item.price)}}</span>
+                            <!--<del class="original-price" v-show="(item.originPrice-item.price)>0">¥{{item.originPrice}}</del>-->
+                            <del class="original-price">¥{{item.originPrice}}</del>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="no-more" v-show="favorData.hasNext==0">已经没有更多了哦</div>
+</div>
+</div>

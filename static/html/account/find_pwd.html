@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+
+    <h1 class="mui-title">找回密码</h1>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <validator name="validation">
+        <form novalidate class="mui-input-group">
+            <div class="mui-input-row">
+                <label>手机号</label>
+                <input id='userName' name="userName" type="number" maxlength="11" class="mui-input-clear mui-input" v-model="param.userName"
+                       v-validate:userName="{required:{rule: true,message:'请输入手机号'},mobile: {rule:true , message:'请输正确手机号'}}" placeholder="请输入手机号">
+            </div>
+            <div class="mui-input-row">
+                <label>验证码</label>
+                <input id="authCode" name="authCode" type="number" maxlength="6" class="mui-input" v-model="param.authCode"
+                       v-validate:authCode="{required:{rule: true,message:'请输入验证码'},maxlength: {rule:5 , message:'验证码格式不正确'}}" placeholder="请输入验证码">
+                <input type="button" @tap="getAuth" class="mui-btn mui-btn-mm mui-btn-send" value="发送验证码"/>
+            </div>
+            <div v-show="showPwd" class="mui-input-row">
+                <label>密码</label>
+                <input id='pwd' name="pwd" type="password" class="mui-input" v-model="pwd"
+                        placeholder="6~18位数字+字母组合">
+            </div>
+
+        </form>
+    </validator>
+    <div class="mui-content-padded">
+        <button @tap="reg" class="mui-btn mui-btn-block mui-btn-mm">确认</button>
+    </div>
+    <!--<div class="mui-content-padded">-->
+        <!--<p>注册真实可用，注册成功后的用户可用于登录，但是示例程序并未和服务端交互，用户相关数据仅存储于本地。</p>-->
+    <!--</div>-->
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<script>
+    require('account/findpwd');
+</script>
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

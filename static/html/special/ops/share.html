@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="share.less" rel="stylesheet">
+</head>
+<body>
+<div class="contanier" v-show="init" style="display: none">
+    <div class="content">
+        {{redirect}}
+    </div>
+    <div>
+        {{call | json}}
+    </div>
+</div>
+{{{html}}}
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/ops/share');
+</script>
+</body>
+<link rel="import" href="../../include/ga.html?__inline">
+</html>

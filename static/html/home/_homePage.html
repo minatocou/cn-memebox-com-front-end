@@ -1,0 +1,14 @@
+<!--主页面-->
+<div id="home-index">
+    <template v-for="component in homeData">
+
+        <home-banner v-if="component.component_type==1" :bannerData="component" v-ref:homeBanner></home-banner>
+        <!--<home-icon v-if="component.component_type==2" :iconData="component"></home-icon>
+        <home-special v-if="component.component_type==3" :specialData="component"></home-special>
+        <home-groupon v-if="component.component_type==4" :grouponData="component"></home-groupon>
+        <home-discount v-if="component.component_type==5" :discountData="component"></home-discount>
+        <home-activity v-if="component.component_type==6" :activityData="component"></home-activity>
+        <home-favor v-if="component.component_type==7" :favorData="component"></home-favor>
+        <home-space v-if="component.component_type==8" :spaceData="component"></home-space>-->
+    </template>
+</div>

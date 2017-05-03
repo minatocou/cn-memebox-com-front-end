@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+    <meta property="wb:webmaster" content="cae0bbcb35831a50" />
+    <meta property="qc:admins" content="24574771725655552706375" />
+</head>
+<body id="app" class="home-page">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a :href="page+'/my/home.html'" class="personage"></a>
+    <h1 class="mui-title">MEMEBOX</h1>
+    <a :href="page+'/search/search.html'" class="search mui-icon mui-icon-search"></a>
+</header>
+
+<div style="display: none" v-show="init" class="mui-content">
+    <div id="home-index">
+        <template v-for="component in homeData">
+            <home-banner v-if="component.component_type==1" :banner-data="component"></home-banner>
+            <home-icon v-if="component.component_type==2" :icon-data="component"></home-icon>
+            <home-special v-if="component.component_type==3" :special-data="component"></home-special>
+            <home-groupon v-if="component.component_type==4" :groupon-data="component"></home-groupon>
+            <home-discount v-if="component.component_type==5" :discount-data="component"></home-discount>
+            <home-activity v-if="component.component_type==6" :activity-data="component"></home-activity>
+            <home-favor v-if="component.component_type==7" :favor-data="favorData"></home-favor>
+            <home-space v-if="component.component_type==8" :space-data="component"></home-space>
+            <home-flashsale v-if="component.component_type==10&&flashData" :flashsale-data="flashData"></home-flashsale>
+        </template>
+    </div>
+
+    <!--底部悬浮和购物车-->
+    <!--购物车-->
+    <div class="bottom-box">
+        <div class="shopping-cart">
+            <a href="{{page}}/cart/cart.html"></a>
+            <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+        </div>
+        <!--底部悬浮-->
+        <div v-show="bottomFix" class="bottom-fix" transition="bottom-fix">
+            <span @touchend="closeBottom" id="close-btn" class="vc"></span>
+            <!--:class="bottomFix==true ? 'show' : 'hide'">-->
+            <img :src="dataBottom['imageUrl']" class="vc">
+            <div class="bottom-text vc ">
+                <h2>美美箱 · 全球知名化妆品平台</h2>
+                <p>注册即获110元</p>
+            </div>
+            <a href="/m/app" target="_blank">立即体验</a>
+        </div>
+    </div>
+</div>
+<div class="come-in" v-show="!init" >
+    <div class="come-ani-box">
+        <img src="include/m.png" id="animation">
+        <span class="ball"></span>
+    </div>
+</div>
+<div v-show="!dMask" style="display: none" class="d-mask">
+  <img v-show="dataLayer" style="display: none" :src="dataLayer" alt="">
+    <div class="d-cd">{{dcd}}s</div>
+    <a @tap.stop.prevent="downloadApp()" class="down-btn">立即下载</a>
+    <a @tap.stop.prevent="hideDMask()" class="see-web">继续浏览网页版</a>
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+
+<script>
+    require('home/home');
+</script>
+</html>

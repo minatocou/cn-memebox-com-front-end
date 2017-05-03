@@ -1,0 +1,68 @@
+@import "../../../css/variables";
+.wx-share-backdrop { 
+	display: none;
+	border: 20*@xem solid transparent;
+	background: rgba(0,0,0,.6) url(include/wxShareTip.png) no-repeat right top;
+	background-size: 33%;
+	text-align: center; 
+	width: 100%;
+	height: 100%;
+	position: fixed;
+    z-index: 1111;
+	top: 0;
+	left: 0;
+	padding-top: 9em;
+	color: #fff;
+	line-height: 1.6;
+	& .wx-share-click {
+		font-size: 18*@xem;
+		padding: 8*@xem 0;
+	}
+	& .close-button { 
+		font-size: 16*@xem;
+		padding: 8*@xem 45*@xem;
+		margin-top: 25*@xem;
+	}
+}
+.circle-icon {
+	border-radius: 50%;
+	background-color: #70d369;
+	display: inline-block;
+	padding: 1.2em;
+}
+.share-icon {
+	display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    color: #ddd;
+    font-size: 20px;
+    font-style: normal;
+    text-align: left;
+    text-indent: -9999px;
+    direction: ltr;
+    box-sizing: border-box;
+	height: 0.45em;
+    width: 0.45em;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1em, 1.1em -0.5em 0 0, 1.1em 0.5em 0 0;
+    margin: 0.55em 1.15em 0.55em -0.05em;
+    &:before,&:after {
+    	position: absolute;
+    	width: 1.2em;
+    	height: 0.1em;
+    	box-shadow: inset 0 0 0 1em;
+    	left: 0;
+	    content: '';
+    	pointer-events: none;
+    	-webkit-transform-origin: left;
+    	        transform-origin: left;
+    }
+    &:before {
+    	-webkit-transform: translate(0.35em, 0.1em) rotate(-25deg);
+    	        transform: translate(0.35em, 0.1em) rotate(-25deg);
+    }
+    &:after {
+    	-webkit-transform: translate(0.25em, 0.2em) rotate(25deg);
+    	        transform: translate(0.25em, 0.2em) rotate(25deg);
+    }
+}

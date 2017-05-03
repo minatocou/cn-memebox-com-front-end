@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Memebox 2周年庆 全场真五折</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="baidu-site-verification" content="0NcBQMiC0n" />
+    <meta name="description" content="美美箱MEMEBOX是全球知名化妆品电商平台,每件商品均由美妆专家严格挑选,海外直采直邮到您家.彩妆、护肤、洗护用品一应俱全，足不出户，买遍全球，化妆品，美美礼盒，pony, NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜, whoo后，雪花秀" />
+    <meta name="keywords" content="美美箱，化妆品，美美礼盒，pony, memebox, MEMEBOX, 礼盒，美美箱官网，美美箱中国官网，化妆品特卖 ：cn.memebox.com, 彩妆，护肤，眼影，眼线，睫毛膏，眉妆，假睫毛，唇膏，唇彩，润唇膏，护唇，粉底，遮瑕，蜜粉，腮红，指甲油，亮肤，卸妆，保湿，修复，MAC，魅可，NARS，Benefit，芭比波朗，BOBBIBROWN，兰蔻，兰芝，爱茉莉，蜜丝佛陀，BB霜，CC霜，飞霞，定妆，妆前隔离，自然肌肤，油性肌肤，干性肌肤，遮瑕刷，粉底刷，蜜粉刷，修饰刷，刷具，眉刷，眼影刷，眼线刷，唇刷，腮红刷，匀脸刷，防晒，眼影盘，丝芙兰，莎莎，香水，磨砂去角质，沐浴香皂，沐浴露，沐浴块，美体仪，乳霜，护理油，香体膏，香体乳，护理膜，颈霜，面膜，免洗面膜，水洗面膜，泡泡面膜，片状面膜，撕拉式面膜，眼霜，眼膜，睫毛滋养液，美容仪，喷雾，乳液，面霜，卸妆液，卸妆乳，卸妆油，卸妆巾，洗发水，精华素，精油，护发素，弹力素，发胶，发蜡，染发，发膜，发霜，剃须泡沫，剃须啫喱，啫喱，剃须液，须后水，须后乳" />
+    <link rel="icon" href="http://cn.m.memebox.com/images/app/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://cn.m.memebox.com/images/app/favicon.png" type="image/x-icon" />
+    <link href="style.less" rel="stylesheet"/>
+    <script defer src="../../../js/config.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <div style="display: none;" v-show="init" class="container" :class="{'d1':d1(),'d6':d6()}">
+        <nav>
+            <ul>
+                <li @touchstart.stop.prevent="changeNav(i,v,$event)" :class="{'cur':v.select}" v-for="(i,v) in nav">{{v.name}}</li>
+            </ul>
+        </nav>
+        <div align="center" class="banner">
+            <img class="banner" src="include/banner.jpg" >
+            <div class="b">
+                <div class="title">距<span>2周年庆</span>{{timer.status}}</div>
+                <div v-show="timer.cd>=0" class="timer">
+                    <span class="t dd">{{timer.dd}}</span>
+                    <span>天</span>
+                    <span class="t hh">{{timer.hh}}</span>
+                    <span>时</span>
+                    <span class="t mm">{{timer.mm}}</span>
+                    <span>分</span>
+                    <span class="t ss">{{timer.ss}}</span>
+                    <span>秒</span>
+
+                </div>
+            </div>
+        </div>
+        <img src="include/title-a.png" class="title-a link" alt="">
+        <ul class="date-tab" :class="{'d1':d1(),'d6':d6()}">
+            <li @touchstart="curTab(0)" :class="{'cur':(d1())}"></li><li @touchstart="curTab(1)" :class="{'cur':(d6())}"></li>
+        </ul>
+        <div v-if="d1()" align="center">
+            <div class="icon-01 icon-title">限时抢购</div>
+        </div>
+        <div v-if="d6()">
+            <div>
+                <a :href="checkTab() ? '/m/special/coupon/index.html' : 'javascript:void(0)'">
+                    <img :src="'<<<uri:include/d6-c1.jpg>>>'" alt=""/>
+                </a>
+                <div @click="openText.a=!openText.a" :class="{'cur':openText.a}" class="change">详细信息</div>
+                <ul v-show="openText.a" class="change-text">
+                    <li>极速仓：满449立减200; 满599立减300</li>
+                    <li>直 &nbsp;  邮：满499立减100; 满699立减200;
+                        <div>
+                            满999立减400( 限1500张，结算时输入兑换码：
+                            <span class="y">ds400</span>)
+                        </div>
+                    </li>
+                    <li>美美妆：满199立减50; 满299立减100; 满399立减200</li>
+                    <li>保税仓：满199立减30</li>
+                    <li>优惠券无需领取，结算时立减（除直邮满999立减400）</li>
+                    <li>仅限9月6日00:00-9月9日23:59使用</li>
+                    <li>订单金额满600再返600优惠券，9月10日12点前绑定至账户</li>
+                </ul>
+                <a :href="checkTab() ? '/m/special/coupon/index.html' : 'javascript:void(0)'">
+                    <img :src="'<<<uri:include/d6-c2.jpg>>>'" alt=""/>
+                </a>
+                <div @click="openText.b=!openText.b" :class="{'cur':openText.b}" class="change">详细信息</div>
+                <b v-show="openText.b"  class="y change-b">--订单金额满600再返600</b>
+                <ul v-show="openText.b" class="change-text">
+                    <li>极速仓：满299立减50; 满399立减80</li>
+                    <li>极速仓面膜：满199立减30
+                    </li>
+                    <li>美美妆：满99立减30; 满149立减60; 满199立减100;
+                        满399立减120</li>
+                    <li>直邮：满299立减30; 满599立减100</li>
+                    <li>以上优惠券仅限9月10日00:00-9月15日23:59使用</li>
+                    <li>优惠券预计在9月10日12点前绑定至账户</li>
+                </ul>
+            </div>
+            <img style="margin-top: 15px" :src="'<<<uri:include/d6-2.jpg>>>'" alt=""/>
+            <div class="z-text">
+                （中奖用户名单，将在9月10日12点前公布在MEMEBOX官网和@MEMEBOX
+                美美箱 官方微博）<br>
+                实付满400再返50蜜豆将于9月10日12点前绑定至账户
+            </div>
+            <div align="center">
+                <div class="icon-04 icon-title">限时抢购</div>
+            </div>
+        </div>
+
+        <ul  v-if="d6()" class="no-tab-1 zero">
+            <li class="one cur enb cur">
+                <div>
+                    9月6日 0点
+                </div>
+            </li>
+        </ul>
+        <ul v-if="d6()" class="no1 zero">
+            <li  v-for="(index,nw) in zeroView" :class="{'dis':stock[nw.id]!=1}">
+                <a :href="goN2(nw)">
+                <img :src="nw.img" class="pro-img" alt="">
+                <div class="pro-info">
+                    <div class="title">{{nw.name}}</div>
+                    <div class="price">{{nw.price}}</div>
+                    <a :href="goN1(nw)" class="go">{{stock[nw.id]!=1 ? '已抢光' : 'GO'}}</a>
+                </div>
+                </a>
+            </li>
+        </ul>
+        <ul v-if="checkTab()" class="no-tab-1">
+
+            <li v-for="(k,n1) in n1Text" @touchstart="changeN1(k)" :class="{'cur':n1.select && checkTab(),'enb':n1.open && checkTab(),'end':n1.timeout}">
+                <div>
+                    {{n1.tt}}<br>{{n1.status}}
+                </div>
+            </li><li @click="tomorrow" :class="tw ? 'cur' : ''" class="one">
+                <div>
+                    明日预告
+                </div>
+            </li>
+        </ul>
+        <ul v-if="checkTab()" class="no1">
+            <li v-for="(index,nw) in n1View" :class="{'dis':stock[nw.id]!=1}">
+                <a :href="goN1(nw)">
+                <img :src="nw.img" class="pro-img" alt="">
+                <div class="pro-info">
+                    <div class="title">{{nw.name}}</div>
+                    <div class="price">{{nw.price}}</div>
+                    <a :href="goN1(nw)" class="go">{{stock[nw.id]!=1 ? '已抢光' : 'GO'}}</a>
+                </div>
+                    </a>
+            </li>
+        </ul>
+        <div v-if="d1()">
+            <div class="icon-text">
+                <img :src="'<<<uri:include/icon-text.jpg>>>'">
+            </div>
+            <!--<img :src="'<<<uri:include/icon-2.png>>>'" class="icon-1 pt0">-->
+        </div>
+        <div v-if="d6()">
+            <div class="icon-text">
+                <img :src="'<<<uri:include/d6-icon-text.jpg>>>'">
+            </div>
+            <!--<img :src="'<<<uri:include/d6-icon-3.png>>>'" class="icon-1">-->
+        </div>
+        <!--<a href="/m/special/group/list.html">-->
+            <!--<img :src="'<<<uri:include/banner-c.png>>>'" width="100%">-->
+        <!--</a>-->
+        <!--<ul class="pt">-->
+            <!--<li @click="goGroup(g.id)" v-for="(index,g) in groupon">-->
+                <!--<div class="tip">{{g.num}}人成团</div>-->
+                <!--<img :src="g.img" width="100%">-->
+                <!--<div class="pro-info">-->
+                    <!--<div class="title ov">{{g.name}}</div>-->
+                    <!--<div class="price">拼团价:<b>{{g.price}}</b></div>-->
+                    <!--<s>原价:{{g.origin_price}}</s>-->
+                    <!--<a class="go">GO</a>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+
+        <div v-if="checkTab()">
+            <div v-if="d1()" align="center">
+                <div class="icon-02 m0 icon-title">PONY推荐</div>
+            </div>
+            <div v-if="d6()" align="center">
+                <div class="icon-05 mt0 icon-title">PONY推荐</div>
+            </div>
+            <a href="http://cn.memebox.com/app82ds"><img src="include/banner-t.jpg" alt=""></a>
+            <ul class="pt">
+                <li v-if="index<4" v-for="(index,nw) in tView" :class="{'dis':stock[nw.id]!=1}">
+                    <a :href="goN2(nw)">
+                        <img :src="nw.img" width="100%">
+                        <div class="pro-info">
+                            <div class="title ov">{{nw.name}}</div>
+                            <div class="price">折后价:<b>{{nw.price}}</b></div>
+                            <!--<s>原价:{{nw.origin_price}}</s>-->
+                            <a :href="goN1(nw)" class="go">{{stock[nw.id]!=1 ? '已抢光' : 'GO'}}</a>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div v-if="d1()">
+            <!--<img :src="'<<<uri:include/icon-3.png>>>'" class="icon-1">-->
+            <img :src="'<<<uri:include/club.jpg>>>'" width="100%">
+            <div  align="center">
+                <div class="icon-04 m0 icon-title">抢红包</div>
+            </div>
+            <a :href="checkTab() && '/m/special/coupon/index.html'" class="banner-d">
+                <img :src="'<<<uri:include/banner-d.png>>>'">
+            </a>
+            <div class="hb-text">
+                - 仅限9月1日00:00-9月5日23:59使用<br/>
+                - 每天10/14/18/20/22点每个整点仅发500张
+            </div>
+            <div  align="center">
+                <div class="icon-05 icon-title">隐藏福利</div>
+            </div>
+        </div>
+        <div v-if="d6()">
+            <img :src="'<<<uri:include/d6-icon-4.png>>>'" class="icon-1">
+        </div>
+
+
+        <ul v-show="n2Text.length>0" class="no-tab-2">
+            <li v-for="(k,n2) in n2Text" class="one" @touchstart="changeN2(n2.key)" :class="{'enb':n2.open,'cur':stN2==n2.key}">
+                <div>
+                    {{getMd(n2.key)}}
+                </div>
+            </li>
+        </ul>
+        <div class="hid" :class="{'o':hid.show}">
+            <div v-show="hid.show"  class="hid-mask">
+                <div @click="hidClick" class="hid-btn">
+                    <img src="include/hide-m.jpg" class="hid-img" alt="">
+                    <div class="text">{{hid.text}}</div>
+                    <img :src="hid.btn" class="hid-b" alt="">
+                </div>
+            </div>
+
+            <ul class="no2">
+                <li v-if="index<14" v-for="(index,nw) in n2View" :class="{'dis':stock[nw.id]!=1}">
+                    <a :href="goN2(nw)">
+                    <img :src="nw.img" class="pro-img" alt="">
+                    <div class="pro-info">
+                        <div class="title ov3">{{nw.name}}</div>
+                        <div class="price"><b>{{nw.price}}</b>元</div>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="coupon">
+                <img src="include/icon-coupon.jpg" alt="">
+                <div class="box">
+                    <div class="price"><b>{{selectCoupon.price}}</b>{{selectCoupon.ext}}</div>
+                    <div class="desc">{{selectCoupon.desc}}</div>
+                </div>
+
+                <div class="code">输入公码：<a style="display: initial">{{selectCoupon.code}}</a></div>
+            </div>
+        </div>
+        <a v-if="d1()" :href="checkTab() && 'http://cn.memebox.com/zgczlh'">
+            <img :src="'<<<uri:include/title-lh.jpg>>>'" class="title-lh link" alt="">
+        </a>
+        <a v-if="d6()" :href="checkTab() && 'http://cn.memebox.com/zgczlh'">
+            <img :src="'<<<uri:include/title-d6-lh.jpg>>>'" class="title-lh link" alt="">
+        </a>
+        <!--<div class="bottom">-->
+            <!--敬请期待更多优惠活动-->
+        <!--</div>-->
+        <div class="link">
+            <link rel="import" href="_china.html?__inline">
+        </div>
+        <div class="link">
+            <link rel="import" href="_ftz.html?__inline">
+        </div>
+        <div class="link">
+            <link rel="import" href="_panda.html?__inline">
+        </div>
+    </div>
+    <script src="../../../js/appsdk/app.js"></script>
+    <script>
+        require('ops/birthday/index');
+    </script>
+</body>
+</html>

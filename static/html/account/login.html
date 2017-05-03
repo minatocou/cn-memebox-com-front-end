@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header" style="display: none" v-show="init&&showAll" >
+    <a href="../home/home.html" class=" mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">登录</h1>
+    <a href="reg.html{{ref()}}" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">注册</a>
+</header>
+<div style="display: none" v-show="init&&showAll" class="mui-content">
+    <div class="changeTab">
+        <span class="aplogin" :class="{'chosen':tab==1}" @click="changeTab(1)">账号密码登录</span>
+        <span class="phlogin" :class="{'chosen':tab==2}"@click="changeTab(2)">手机号快捷登录</span>
+    </div>
+    <validator name="validation">
+        <form v-if="tab==1" novalidate name="loginForm" class="mui-input-group new">
+            <div class="mui-input-row new">
+                <input id="userName" type="text"  v-model="param.userName" name="userName" v-validate:userName="{required:{rule: true,message:'请输入帐号'},maxlength: {rule:50 , message:'请输入正确位数账户'}}"
+                       class="mui-input-clear mui-input" placeholder="账号/手机号">
+            </div>
+            <div class="mui-input-row new">
+                <input id="pwd" v-model="pwd" type="password" name="pwd" v-validate:pwd="{required:{rule: true,message:'请输入密码'},maxlength: {rule:18 , message:'请确认密码长度为6~18位数字+字母组合'}}"
+                       class="mui-input-clear mui-input" placeholder="密码">
+            </div>
+        </form>
+        <form v-else novalidate name="quickLoginForm" class="mui-input-group new">
+            <div class="mui-input-row new">
+                <input id="phone" type="text"  v-model="quickParam.phone" name="phone" v-validate:phone="{required:{rule: true,message:'请输入帐号'},maxlength: {rule:50 , message:'请输入正确位数账户'}}"
+                       class="mui-input-clear mui-input" placeholder="手机号码">
+            </div>
+            <div class="mui-input-row new">
+                <input id="authCode" v-model="authCode" type="password" name="authCode" v-validate:authCode="{required:{rule: true,message:'请输入密码'},maxlength: {rule:18 , message:'请确认密码长度为6~18位数字+字母组合'}}"
+                       class="mui-input-clear mui-input" placeholder="验证码">
+               <input type="button" @tap="getAuth" class="mui-btn mui-btn-mm mui-btn-send" value="发送验证码"/>
+            </div>
+        </form>
+    </validator>
+            <!--<ul class="mui-table-view mui-table-view-chevron">-->
+                <!--<li class="mui-table-view-cell">-->
+                    <!--自动登录-->
+                    <!--<div id="autoLogin" class="mui-switch">-->
+                        <!--<div class="mui-switch-handle"></div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+
+            <div class="mui-content-padded new">
+                <button @click="tab==1?login():quickLogin()" class="mui-btn mui-btn-block mui-btn-mm">即刻登录 坐享花样美妆</button>
+                <div class="link-area">
+                    <a v-if="tab==1"href="find_pwd.html">忘记密码?</a>
+                </div>
+                <div class="link-area-reg">
+                    <p v-if="tab==2">登录即表示您已同意<a href="agreement.html">美美箱用户协议</a></p>
+                </div>
+            </div>
+            <div class="mui-content-padded oauth-area">
+            </div>
+    <div class="other-login" align="center">
+        <p>
+            使用以下帐号登录
+        </p>
+        <ul>
+            <!--<li class="weixin" @tap="otherLogin('wechat')"><a href=""></a>微信</li>-->
+            <li class="weibo" @tap="h5_login('weibo')">微博</li>
+            <li class="qq" @tap="h5_login('qq')"  >QQ</li>
+        </ul>
+    </div>
+
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<script>
+    require('account/login');
+</script>
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="index.less" rel="stylesheet"/>
+</head>
+<body>
+
+<div v-if="showView=='share'" :class="{'show':showView=='share'}" class="m end">
+    <div align="center" class="s">
+        <img v-show="avatar" class="avatar" :src="shareAvatar">
+        <div class="t tt">她的女神值</div>
+        <div class="f">{{shareLv*shareLv}}</div>
+        <div class="d">{{getLvText(shareLv).ta}}</div>
+        <div class="btns">
+            <img @tap="initMain()" src="include/end-btn3.png" class="big" alt="">
+        </div>
+    </div>
+</div>
+<div v-if="showView=='index'" :class="{'show':showView=='index'}" class="m index">
+    <div class="c">
+        <img @tap="linkStart()" class="linkStart" src="include/i-btn.png" />
+    </div>
+</div>
+<div style="display: none">
+    <img src="../../../img/favicon.png" alt="">
+    <img v-for="(i,v) in 7" :src="'/images/app/special/goddess/include/pro'+i+'_c.png'">
+    <img v-for="(i,v) in 7" :src="'/images/app/special/goddess/include/pro'+i+'.png'">
+</div>
+<div align="center" v-show="showView=='main'" :class="{'show':showView=='main'}" class="m main-box">
+    <div align="right" class="top">
+        <span class="cd">{{cd}}”</span>
+        <span class="top-btn gz">女神值 {{nowLv*nowLv}}</span>
+        <span @tap="initMain()" class="top-btn reset-btn">重玩</span>
+    </div>
+    <div class="desc">选出所有产品中色号不相同的一个</div>
+    <div class="img-box">
+        <div class="img-list" v-for="v in mistake" :style="{width:((100/col-0.5).toFixed(1))+'%'}">
+            <img class="c" @touchstart="checkTap(v)" :src="'/images/app/special/goddess/include/pro'+nowImg+'_c.png'" style="-webkit-filter:saturate({{v.n}});filter:saturate({{v.n}})">
+            <img :src="'/images/app/special/goddess/include/pro'+nowImg+'.png'">
+        </div>
+
+    </div>
+    <div align="center" class="fl" v-show="!isLogin" @tap="toLogin">注：隐藏小福利！，戳我领取60s</div>
+</div>
+<div v-if="showView=='end'" :class="{'show':showView=='end'}" class="m end">
+    <div align="center" class="n">
+        <div class="t">我的女神值</div>
+        <div class="f">{{nowLv*nowLv}}</div>
+        <div class="d">{{getLvText().me}}</div>
+        <div @tap="toProduct(imgMap[nowImg].id)" class="pro-box">
+            <div class="pro-img">
+                <img class="c" :src="'/images/app/special/goddess/include/pro'+nowImg+'_c.png'">
+                <img :src="'/images/app/special/goddess/include/pro'+nowImg+'.png'">
+            </div>
+            <div class="title">{{imgMap[nowImg].name}}</div>
+            <div class="desc">{{imgMap[nowImg].desc}}</div>
+            <div class="url">让本宫仔细瞧瞧它</div>
+            <i></i>
+        </div>
+        <div v-show="nowLv<=32" class="c">就是因为<a>这款商品</a>，您的女神值才没能冲破天际</div>
+        <div class="btns">
+            <img @tap="initMain()" src="include/end-btn1.png" alt=""><img @tap="appShare()" src="include/end-btn2.png" alt="">
+        </div>
+    </div>
+</div>
+<div style="display: none" @tap="mask=false" v-show="mask" class="mask">
+    <img src="include/cur.png" class="cur">
+    <div class="text">点这里分享哦！</div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+<script>
+    require('special/goddess/index');
+</script>
+</body>
+</html>

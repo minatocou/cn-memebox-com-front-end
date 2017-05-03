@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header" style="display: none" v-show="init&&showAll" >
+    <a class=" mui-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">拼团列表</h1>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<script>
+    require('group/list');
+</script>
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

@@ -1,0 +1,59 @@
+.swipe, .swipe-items-wrap {
+  overflow: hidden;
+  position: relative
+}
+
+.swipe-items-wrap {
+    position: relative;
+    height: 100%;
+    z-index: 1;
+}
+
+.swipe-items-wrap > div {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+}
+
+.swipe-items-wrap > div.active {
+  display: block;
+  -webkit-transform: none;
+  transform: none;
+  position: relative;
+}
+
+.swipe-indicators {
+  position: absolute;
+  bottom: 10*@xem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.swipe-indicator {
+  width: 8*@xem;
+  height: 8*@xem;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: .5;
+  margin: 0 3*@xem
+}
+
+.swipe-indicator.active {
+  background: #FF5073;
+}
+
+.vue-swipe {
+  color: #fff;
+  font-size: 30*@xem;
+  text-align: center;
+  img {
+    width: 100%;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,168 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+@import "../../css/view";
+
+html,body,#app{
+  height:100%;
+}
+.bw{
+  background: #ffffff;
+}
+.box-title{
+  color: #969696;
+}
+.red{
+  color: @red;
+}
+.pink{
+  color: @mainColor;
+}
+.mui-bar .mui-btn-link{
+  font-size: 14*@xem;
+}
+.mui-bar-nav~.mui-content .show-orders{
+  top: 44*@xem;
+}
+.bt{
+  border-top: 1*@xem rgba(210,210,210,.6) solid;
+}
+
+.liveContainer {
+  position:relative;
+  min-height:100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center center;
+}
+.liveBody{
+  position:relative;
+  padding:40*@xem 36*@xem;
+  top:0;
+  left:0;
+  z-index:2;
+  width: 100%;
+  text-align: center;
+  /*height: 100%;*/
+  .live-header{
+    text-align:center;
+    .avatar{
+      width:65*@xem;
+      height:65*@xem;
+      margin: 0 auto;
+      img{
+        width:100%;
+        height:100%;
+        border-radius:50%;
+      }
+    }
+    .info{
+      margin-top:10*@xem;
+      p{
+        color:#fff;
+        margin-bottom:0;
+        line-height:20*@xem;
+      }
+      .roomTitle{
+        font-size:16*@xem;
+      }
+      .hostName{
+        color:#ddd9d7;
+        font-size:12*@xem;
+      }
+    }
+  }
+  .desc{
+    margin-top:35*@xem;
+    text-align:left;
+    color:#eee;
+    margin-bottom:35*@xem;
+    .descTitle{
+      font-size:16*@xem;
+      padding-bottom:15*@xem;
+      position:relative;
+      margin-bottom:10*@xem;
+      &:after{
+        height:1px;
+        -webkit-transform: scaleY(0.5);
+        -moz-transform: scaleY(0.5);
+        -ms-transform: scaleY(0.5);
+        -o-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        content:'';
+        background:#ddd9d7;
+        position:absolute;
+        left:0;
+        bottom:0;
+        width:100%;
+      }
+    }
+    .descInfo{
+      font-size:13*@xem;
+      line-height:20*@xem;
+    }
+    .ov4{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+  .liveTime{
+    line-height:24*@xem;
+    .status{
+      color:#fff;
+      font-size:16*@xem;
+    }
+    .time{
+      color:#ddd9d7;
+      span{
+        margin-left:10*@xem;
+      }
+    }
+  }
+  .goApp{
+    margin-top:50*@xem;
+    display:block;
+    button{
+      cursor:pointer;
+      width:100%;
+      height:45*@xem;
+      line-height:45*@xem;
+      padding:0;
+      background:#ff5073;
+      color:#fff;
+      border:0;
+      outline:none;
+    }
+  }
+}
+
+.cover{
+  width:100%;
+  height:100%;
+  position:absolute;
+  z-index:1;
+  top:0;
+  left:0;
+  background:#000;
+  opacity:0.2;
+}
+.bg-blur {
+  z-index:0;
+  float: left;
+  width: 100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  filter: blur(8px);
+}

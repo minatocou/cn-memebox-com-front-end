@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title v-text="title || '帮助中心'"></title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="help.less">
+</head>
+<body :class="{isApp: isApp()}">
+	<div class="mui-navbar hide" v-if="!isApp()" :class="{hide:isApp()}">
+        <div class="mui-navbar-inner mui-bar mui-bar-nav mui-navbar-center">
+	        <button type="button" @tap="goBack" class="mui-left  mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+	            <span class="mui-icon mui-icon-left-nav"></span>
+	        </button>
+	        <h1 class="mui-center mui-title" v-text="title || '帮助中心'"></h1>
+	        <a class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right" href="javascript:;" @tap="goHome"></a>
+    	</div>
+    </div>
+    <main class="page-main">
+		<article class="main-article">
+	    	<ul class="mui-table-view mui-table-view-chevron translated" :class="{active: isCreated}">
+	            <li class="mui-table-view-cell list" v-for="(index,item) in list">
+	                <a href="#{{item.hash}}" class="mui-navigate-right" v-text="item.text" @tap='toggleActive(index,item.hash)'></a>
+	            </li>
+	        </ul>
+			<link rel="import" href="./_some-question.html?__inline">
+			<link rel="import" href="./_about-account.html?__inline">
+			<link rel="import" href="./_free-shipping.html?__inline">
+			<link rel="import" href="./_about-pay.html?__inline">
+			<link rel="import" href="./_about-transport.html?__inline">
+			<link rel="import" href="./_about-change.html?__inline">
+		</article>
+    </main>
+
+    <link rel="import" href="../../include/ga.html?__inline">
+</body>
+<script>
+    require('special/help/help');
+</script>
+</html>

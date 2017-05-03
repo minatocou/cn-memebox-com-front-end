@@ -1,0 +1,9 @@
+<img width="100%" :src=thumbnailUrl[0] v-show="thumbnailUrl.length==1" style="vertical-align: top;width: 100%">
+
+<div id="slider" class="swiper-container" v-show="thumbnailUrl.length>1">
+    <swipe class="vue-swipe">
+        <swipe-item v-for="img in thumbnailUrl">
+            <img :src=img>
+        </swipe-item>
+    </swipe>
+</div>

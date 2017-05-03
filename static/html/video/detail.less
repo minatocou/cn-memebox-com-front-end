@@ -1,0 +1,302 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+@import "../../css/view";
+
+html,body,#app{
+  height:100%;
+}
+.bw{
+  background: #ffffff;
+}
+.box-title{
+  color: #969696;
+}
+.red{
+  color: @red;
+}
+.pink{
+  color: @mainColor;
+}
+.mui-bar .mui-btn-link{
+  font-size: 14*@xem;
+}
+.mui-bar-nav~.mui-content .show-orders{
+  top: 44*@xem;
+}
+.bt{
+  border-top: 1*@xem rgba(210,210,210,.6) solid;
+}
+
+.videoContainer {
+  /*position:relative;*/
+  min-height:100%;
+  background: linear-gradient(45deg, #843bbe 0%, #536ec8 100%);
+}
+.videoCon{
+  background:rgba(255,255,255,0.2);
+  .videoBox{
+    position:fixed;
+    width:100%;
+    top:44*@xem;
+    z-index:999;
+    .videoImg{
+      width:100%;
+      height:100%;
+    }
+    video{
+      width:100%;
+      height:100%;
+    }
+    video::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+    .controllerBar{
+      width:100%;
+      height:35*@xem;
+      background:url("../../img/controllerBg.png") center center no-repeat;
+      background-size:cover;
+      position:absolute;
+      bottom:0;
+      left:0;
+      z-index:2;
+      padding:0 30*@xem 0 44*@xem;
+      .controlBtn{
+        width:16*@xem;
+        height:19*@xem;
+        position:absolute;
+        top:7*@xem;
+        left:15*@xem;
+      }
+      .play{
+        background:url("../../img/playIcon.png") center center no-repeat;
+        background-size:cover;
+      }
+      .pause{
+        background:url("../../img/pauseIcon.png") center center no-repeat;
+        background-size:cover;
+      }
+      .progress{
+        padding:0 40*@xem;
+        color:#fff;
+        font-size:6*@xem;
+        position:relative;
+        height:35*@xem;
+        overflow: hidden;
+        .currentTime{
+          position:absolute;
+          left:0;
+          top:0;
+          line-height:35*@xem;
+        }
+        .totalTime{
+          position:absolute;
+          right:0;
+          top:0;
+          line-height:35*@xem;
+        }
+
+        .progressBar{
+          width:100%;
+          height:5*@xem;
+          margin-top:15*@xem;
+          background:rgba(255,255,255,0.4);
+          border-radius:5*@xem;
+          /*overflow:hidden;*/
+          position:relative;
+          .bufferPro{
+            height:100%;
+            background:rgba(255,255,255,0.3);
+            border-radius:5*@xem;
+            overflow:hidden;
+          }
+          .playPro{
+            position:absolute;
+            top:0;
+            left:0;
+            height:100%;
+            background:#ff5073;
+            border-radius:5*@xem;
+            overflow:hidden;
+          }
+          .dragBtn{
+            position:absolute;
+            top:-3*@xem;
+            width:11*@xem;
+            height:11*@xem;
+            background:#fff;
+            border-radius:5*@xem;
+            overflow:hidden;
+          }
+
+        }
+      }
+
+      /*.fullScreen{
+        width:19*@xem;
+        height:20*@xem;
+        position:absolute;
+        top:5*@xem;
+        right:15*@xem;
+      }
+      .full{
+        background:url("../../img/fullIcon.png") center center no-repeat;
+        background-size:cover;
+      }
+      .small{
+        background:url("../../img/smallIcon.png") center center no-repeat;
+        background-size:cover;
+      }*/
+    }
+    .coverController{
+      position:absolute;
+      width:45*@xem;
+      height:45*@xem;
+      left:50%;
+      top:50%;
+      z-index:2;
+      transform: translate(-50%,-50%);
+      background:url("../../img/coverPause.png") center center no-repeat;
+      background-size:cover;
+    }
+  }
+  .videoInfo{
+    overflow:hidden;
+    padding:6*@xem 10*@xem 10*@xem;
+    h2{
+      margin:0;
+      font-size:18*@xem;
+      line-height:22*@xem;
+      color:#fff;
+      font-weight:normal;
+    }
+    p{
+      margin:5*@xem 0 0;
+      color:#fff;
+      line-height:18*@xem;
+      font-size:14*@xem;
+      word-break: break-all;
+    }
+  }
+}
+
+
+.pro-list{
+  padding:10*@xem;
+  h2{
+    font-size:16*@xem;
+    color:#fff;
+    margin-bottom:15*@xem;
+    font-weight: normal;
+  }
+  li{
+    overflow:hidden;
+    border-radius:3*@xem;
+    background:#fff;
+    margin-bottom:10*@xem;
+    height:125*@xem;
+    .proImg{
+      width:125*@xem;
+      height:125*@xem;
+      float:left;
+      img{
+        width:100%;
+        height:100%;
+        border-radius:3*@xem 0 0 3*@xem;
+      }
+    }
+    .proDetail{
+      width:100%;
+      /*width:230*@xem;*/
+      height:100%;
+      padding:15*@xem 12*@xem 15*@xem 140*@xem;
+      /*float:right;*/
+      h3{
+        font-size:13*@xem;
+        font-weight: normal;
+        color:#333;
+        margin:0;
+        line-height:18*@xem;
+        word-break: break-all;
+      }
+      .price{
+        margin-top:10*@xem;
+        font-size:18*@xem;
+        color:@mainColor;
+        del{
+          font-size:12*@xem;
+          color:#bbb;
+        }
+      }
+    }
+    .box {
+      margin-top: 10*@xem;
+      height: 18*@xem;
+      span.label {
+        border: 0;
+        color: inherit;
+        position: relative;
+        display: inline-block;
+        font-size: 11*@xem;
+        padding: 0 5*@xem;
+        height: 18*@xem;
+        line-height: 18*@xem;
+        text-align: center;
+        margin: 0 2*@xem;
+        span {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index: 0;
+          display: inline-block;
+          top: 0;
+          left: 0;
+          opacity: 0.2;
+          border: 0;
+        }
+      }
+    }
+  }
+  li:last-child{
+    margin-bottom:0;
+  }
+
+}
+
+
+//购物车图标
+.shopping-cart {
+  position: fixed;
+  width: 45*@xem;
+  height: 45*@xem;
+  z-index: 100;
+  bottom:50*@xem;
+  right:20*@xem;
+  transition: all .5s;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../../img/shoppingCart.png") center no-repeat;
+    background-size: contain;
+  }
+  .number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24*@xem;
+    height: 24*@xem;
+    border-radius: 50%;
+    background-color: #fff;
+    text-align: center;
+    color: @mainColor;
+    border: 1*@xem solid @mainColor;
+    font-size: 16*@xem;
+    line-height: 24*@xem;
+    -webkit-transform: scale(.5);
+    -moz-transform: scale(.5);
+    -ms-transform: scale(.5);
+    -o-transform: scale(.5);
+    transform: scale(.5);
+  }
+}

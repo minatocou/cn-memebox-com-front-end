@@ -1,0 +1,27 @@
+<div v-show="isShowCart()" class="total mui-input-row mui-checkbox mini mui-left">
+    <!--所有商品全选-->
+    <div class="cart-sum">
+        <div class="mui-checkbox cart-group">
+            <input class="cart-checkbox"
+                   value="all"
+                   type="checkbox"
+                   @click.stop="checkedItem"
+                   :checked="cartData.isSelected==1?true:false">全选
+        </div>
+        <div class="cart-sum-item">总计：<span class="red">￥{{cartData.grandTotal}}</span></div>
+        <div class="cart-sum-item">不含运费</div>
+    </div>
+    <input v-show="showTil"
+           type="button"
+           @tap="checkout"
+           :disabled="!selectOnePro"
+           class="mui-btn mui-btn-mm mui-btn-right"
+           value="去结算"/>
+    <div v-show="showBtn">
+        <input type="button"
+               @tap="delSelectPrd"
+               :disabled="!selectOnePro"
+               class="mui-btn mui-btn-mm mui-btn-right cart-del"
+               value="删除"/>
+    </div>
+</div>

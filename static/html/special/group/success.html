@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body  class="success-page">
+<header v-if="!isApp()" class="mui-bar mui-bar-nav memebox-header">
+    <h1 class="mui-title">支付完成</h1>
+</header>
+<div v-show="init" style="display: none" class="mui-content">
+    <!--<div v-show="grouponId" class="content" align="center" >-->
+        <!--<div v-show="iosVer()>331 || androidVer()>331 ">-->
+            <!--<p v-show="lackNum!=0">亲，参团成功，还差{{lackNum}}人成团，请点击“查看拼团”，</p>-->
+            <!--<p v-show="lackNum==0">亲，参团成功，请点击“查看拼团”，</p>-->
+            <!--<p>待页面打开后，分享新页面至好友。</p>-->
+            <!--<div class="button">-->
+                <!--<a href="details.html?grouponId={{grouponId}}">查看拼团</a>-->
+                <!--<a href="list.html">继续血拼</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div v-show="(iosVer() &&iosVer()<=331) || (androidVer() && androidVer()<=331) ">-->
+            <!--<p>亲，您已参加成功，有2种方式邀请好友参团：</p>-->
+            <!--<p>1. 更新App至最新版本，即可有分享功能。</p>-->
+            <!--<p>2. 复制以下链接地址分享给好友：</p>-->
+            <!--<textarea class="sp" readonly>{{path}}/m/special/group/details.html?grouponId={{grouponId}}</textarea>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div v-show="!grouponId && reCount>=100" class="content" align="center" >
+        <p>亲，拼团失败，客服会在3个工</p>
+        <p>作日内退款，请耐心等待。</p>
+        <div class="button">
+            <a href="list.html">去开新团</a>
+        </div>
+    </div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/group/success');
+</script>
+</body>
+<link rel="import" href="../../include/ga.html?__inline">
+</html>

@@ -1,0 +1,42 @@
+<div id="proDetail" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">商品清单</h1>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <ul class="pro bw" :class="sc.type">
+                    <li class="mui-checkbox mini cart-title mui-table-view-cell ">
+                        <span>{{couponText[sc.type].type}}</span>
+                    </li>
+                    <li v-for="(index,cart) in sc.list" class="mui-table-view-cell">
+                        <div class="cart-img">
+                            <!--<img class="pro-icon" :src="getProIcon(cart)">-->
+                            <img class="pro-img" :src="cart.img_mobile" alt=""/>
+                        </div>
+                        <div class="cart-text">
+                            <div class="title">
+                                <span class="ov2">{{cart.brand}}{{cart.name}}</span>
+                                <p class="gray ov">{{cart.option}}</p>
+                            </div>
+                            <div class="red">￥{{cart.final_price}}
+                                <span class="cart-numbox">
+                                    x{{cart.stock}}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <!--<li class="mui-table-view-cell">
+                        <div align="right" class="count-total">
+                            总价格：<span class="price-text">{{cartTotal[sc.type] | toFixed}}</span>
+                            <div>(含运费¥{{shippingFee[sc.type] | toFixed}})</div>
+                        </div>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

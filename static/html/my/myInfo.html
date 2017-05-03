@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="myInfo.less" rel="stylesheet"/>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">个人信息</h1>
+    <a href="/" class="mui-icon-home mui-icon go-home"></a>
+</header>
+<div class="mui-content" v-show="userData" style="display: none">
+    <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell" @tap="showMask('头像')">
+            <img :src="userData.avatar||'/images/app/my/include/user-logo.png'" alt="个人头像">
+            <div class="fail" v-if="userData.avatarStatus==3">?</div>
+            <div class="fr s">
+                修改头像
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+        </li>
+        <li class="mui-table-view-cell" @tap="showMask('昵称')">
+            昵称
+            <div class="fr">
+                {{userData.username}}
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+
+        </li>
+        <li class="mui-table-view-cell">
+            帐号
+            <div class="fr">
+                {{userData.account || '帐号'}}
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+        </li>
+        <li class="mui-table-view-cell" @tap="go('./vip.html')">
+            我的MEME等级
+            <div class="fr">
+                {{userData.chineseGrade}}
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+        </li>
+        <li class="mui-table-view-cell" @tap="showMask('生日')">
+            生日
+            <div class="fr">
+                {{userData.birthday||'修改生日'}}
+                <span class="mui-icon mui-icon-arrowright"></span>
+            </div>
+        </li>
+    </ul>
+    <p class="text">注:生日是您享受生日礼金的重要标记,设置生日后才会发放生日礼金哦</p>
+</div>
+<script>
+    require('my/myInfo');
+</script>
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

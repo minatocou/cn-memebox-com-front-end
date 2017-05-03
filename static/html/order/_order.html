@@ -1,0 +1,154 @@
+<div id="order" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">订单确认</h1>
+    </div>
+    <div class="mui-page-content ">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll mui-bottom">
+                <div align="center" v-show="!isShowCart()" class="noPro">
+                    购物车没有商品<br>赶快搜索精彩美妆吧<br>
+                    <a href="../home/home.html" class="mui-btn mui-btn-mm mui-btn-outlined">去购物</a>
+                </div>
+
+                <div v-show="isShowCart()">
+                    <div v-show="!orderAddress" class="new-address">
+                        <validator name="order-addrs">
+                            <form novalidate class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <input id="name" v-model="param.name" name="name"
+                                           v-validate:name="{required:{rule: true,message:'请输入收件人姓名'},maxlength: {rule:20 , message:'收件人姓名过长'}}" type="text" placeholder="收件人姓名：（请填写真实姓名）">
+                                </div>
+                                <div class="mui-input-row">
+                                    <input id="phone" v-model="param.phone" name="phone"
+                                           v-validate:phone="['phone']"  type="number" placeholder="手机：">
+                                </div>
+                                <div v-show="isShowID()" class="mui-input-row">
+                                    <input type="text" id="idcard"
+                                           name="idcard"
+                                           v-model="param.idcard"
+                                           v-validate:idcard="['idcard']" placeholder="身份证号：">
+                                    <!--<span class="id-card" v-show="!param.idcard">如需购买跨境商品,海关要求必须填写.</span>-->
+                                </div>
+                                <div class="mui-input-row">
+                                    <a class="mui-navigate-right">
+                                        <input id="addressText" v-model="addressText" name="addressText"
+                                               v-validate:addressText="{required:{rule: true,message:'请选择您的省份'}}" readonly @tap="selectCity" type="text" placeholder="选择地区：">
+                                    </a>
+                                </div>
+                                <div class="mui-input-row">
+                                    <input id="street" v-model="param.street" name="street"
+                                           v-validate:street="{required:{rule: true,message:'请输入街道地址'}}" type="text" placeholder="详细地址">
+                                </div>
+                                <div class="address-btn">
+                                    <button type="button" @tap="saveAddress" class="mui-btn mui-btn-block mui-btn-mm mui-btn-outlined">保存收货地址</button>
+                                </div>
+                            </form>
+                        </validator>
+                    </div>
+                    <div v-show="orderAddress" class="address-box bw">
+                        <div class="tip"></div>
+                        <a href="#address" class="mui-table-view-cell address">
+                            <div class="mui-navigate-right">
+                                <div v-if="orderAddress">
+                                    <div class="title">收货人：{{orderAddress.name}} {{orderAddress.phone}}</div>
+                                    <p class="ov2">{{orderAddress.province}}{{orderAddress.city}}{{orderAddress.district}}{{orderAddress.street}}</p>
+                                    <p class="icon-user">{{orderAddress.idcard | encryption}}</p>
+                                </div>
+                                <div v-else>
+                                    请选择收货地址
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <ul v-for="(k,v) in cartItems" v-show="v.length>0" class="pro bw" :class="k">
+                        <li class="mui-checkbox mini cart-title mui-table-view-cell" >
+                            <span>{{couponText[k].type}}</span>
+                        </li>
+                        <li v-show="v.length>1" class="mui-table-view-cell ">
+                            <a href="#proDetail" @tap="selectCart(k)" class="cart-imgs mui-navigate-right">
+                                <div v-for="(index,cart) in v" v-if="index<3" class="item">
+                                    <img class="pro-img" :src="cart.img_mobile"/>
+                                </div>
+                                <div class="right-text">
+                                    共{{qty(v)}}件
+                                    <!--共{{v.length}}件-->
+                                </div>
+                            </a>
+                        </li>
+
+                        <li v-show="v.length==1" v-for="(index,cart) in v" class="mui-table-view-cell">
+                            <div class="cart-img">
+                                <img class="pro-img" :src="cart.img_mobile" alt=""/>
+                            </div>
+                            <div class="cart-text mui-navigate-right single-item">
+                                <div class="clearfix">
+                                    <div class="title">
+                                        <span class="ov2">{{cart.brand}} {{cart.name}}</span>
+                                            <p class="gray ov">{{cart.option}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="red">￥{{cart.final_price}} x{{cart.stock}}</div>
+                            </div>
+                        </li>
+                        <li v-show="coupon" class="mui-table-view-cell coupon-opt">
+                            <a @tap="getCouponList(k)" href="#discount" class="mui-input-row mui-radio mui-left mui-navigate-right">
+                                选择优惠券/码 ({{couponText[k].couponCount}})
+                                <span class="coupon-text">{{couponText[k].selCoupon}}</span>
+                            </a>
+                            <!--<a v-else>没有可用优惠券</a>-->
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <div class="salelist-box" v-for="(i,m) in checkoutList[k]">
+                                <div class="salelist-left">{{m.title}}</div>
+                                <div class="salelist-right">{{m.mount}}</div>
+                            </div>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <div class="salelist-foot">
+                                <div class="count-reward">蜜豆抵扣：
+                                    <span v-if="is_used_points">¥{{couponText[k].reward}}</span>
+                                    <span v-else>¥{{couponText[k].notReward}}</span>
+                                </div>
+                                <div class="count-total">
+                                    总价格：<span class="price-text">￥{{cartTotal[k] | toFixed}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view pay">
+                        <li v-show="priceData.allowedPoints" class="mui-table-view-cell box-title">
+                            <span>可用{{priceData.allowedPoints}}蜜豆抵扣</span>
+                            <span class="right">￥{{priceData.allowedPoints}}</span>
+                            <div class="get-more" @tap="toggleMBMasek">?</div>
+                            <div v-show="parseInt(priceData.allowedPoints)" @tap="changePoints" class="mui-switch  mui-switch-mini" :class="is_used_points==1 ? 'mui-active' : ''">
+                                <div class="mui-switch-handle" :style="is_used_points==1? 'transform: translate(16px, 0px)' : 'transform: translate(0, 0px)'"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-show="isShowCart()" class="mui-input-group count">
+
+        <div class="sumbar">总计：<span class="red">
+                <span v-if="is_used_points">￥{{priceData.grandTotal}}</span>
+                <span v-else>￥{{priceData.notRewardTotal}}</span>
+            </span>
+            <!--<span class="red" v-else>￥{{priceData.grandTotal.off}}</span>-->
+            <div>
+                <span class="txt">(可返 <span v-if="is_used_points">￥{{priceData.reward}}</span>
+                <span v-else>￥{{priceData.notReward}}</span>蜜豆)</span>
+            </div>
+        </div>
+        <!--<div>共{{priceData.totalQty}}件</div>-->
+        <input @tap="checkout" type="button" class="mui-btn mui-btn-mm mui-btn-right" v-if="successOrders.length==0" value="去支付"/>
+        <input type="button" class="mui-btn mui-btn-mm mui-btn-right" style="background: #ccc" v-else value="去支付"/>
+    </div>
+</div>
+<idcard v-ref:idcard :address="orderAddress"></idcard>
+<select-pay :pay="pay" v-ref:pay></select-pay>

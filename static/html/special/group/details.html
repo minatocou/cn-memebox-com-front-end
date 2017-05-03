@@ -1,0 +1,137 @@
+<!--拼团商品详情页-->
+<!DOCTYPE html>
+<html :class={'stop-scroll':showPlayGroup==1}>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app" class="details-page" :class={'stop-scroll':showPlayGroup==1}>
+<header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+    <a :href="page+'/my/home.html'" class="mui-icon mui-pull-left personage"></a>
+    <h1 class="mui-title">商品详情</h1>
+    <a href="../../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <!--缺货-->
+    <!--<div class="stockout">-->
+        <!--<span>缺&nbsp;货</span>-->
+    <!--</div>-->
+    <div class="details-banner">
+        <img class="groupon-logo" src="./include/groupon.png" alt="Memebox拼团">
+        <link rel="import" href="./_banner.html?__inline">
+    </div>
+    <!--产品介绍-->
+    <div class="product-introduce">
+        <!--名字-->
+        <p class="product-name  ov2">{{dataProductDetails.data.productInfo.name}}</p>
+        <div class="show-price">
+            <!--现价-->
+            <span class="price">
+                &nbsp;{{dataProductDetails.data.productInfo.price}}
+            </span>
+            <!--原价-->
+            <del class="original-price"
+                 v-show="dataProductDetails.data.productInfo.originPrice-dataProductDetails.data.productInfo.price>0">
+                {{dataProductDetails.data.productInfo.originPrice}}
+            </del>
+            <!--去开团 开新团 去参团-->
+            <a v-show="dataProductDetails.data.isGroupon==1" class="play-btn dis">已参团</a>
+            <a v-show="dataProductDetails.data.isGroupon==0&&dataProductDetails.data.statusLabel!='已过期'" class="play-btn" :href="groupUrl()">
+                {{stateText[dataProductDetails.data.statusLabel]}}
+            </a>
+
+        </div>
+        <!--截止日期-->
+        <div class="end-time">
+            <span class="triangle"></span>
+            <p>截止至：{{dataProductDetails.data.productInfo.endAt.slice(0,10)}} <span>{{dataProductDetails.data.productInfo.endAt.slice(11,16)}}</span>
+            </p>
+            <div class="groupon-icon" v-show="dataProductDetails.data.statusLabel=='已过期'">
+                <img src="./include/groupon-overdue.png" alt="拼团已过期">
+            </div>
+            <!--缺货-->
+            <!--<div class="groupon-icon">-->
+                <!--<img src="./include/groupon-fail.png" alt="拼团未成功">-->
+            <!--</div>-->
+        </div>
+        <!--组图人数-->
+        <div class="group-number">
+            <p>{{dataProductDetails.data.totalNum}}人团（{{state}}:<span class="current-number">{{dataProductDetails.data.currentNum}}</span>/{{dataProductDetails.data.totalNum}}）
+            </p>
+            <span class="play-group" @touchend="playGroup">
+                玩转拼团
+                <img src="include/i-icon.png">
+            </span>
+        </div>
+    </div>
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right" href="./list.html">
+                更多拼团好货
+            </a>
+        </li>
+    </ul>
+    <div class="product-information">
+        <p>图文详情</p>
+        <div id="product-detail" v-show="dataProductDetails.data.productInfo.detail!='1'">
+            {{{dataProductDetails.data.productInfo.detail}}}
+        </div>
+    </div>
+    <div class="about-memebox">
+        <p><a href="../../home/home.html">关于MEMEBOX</a></p>
+        <img src="./include/aboutMemebox.jpg" alt="Memebox">
+    </div>
+
+    <!--浮层拼团规则-->
+    <div class="mask-layer" v-show="showPlayGroup">
+        <!--transition="mask-layer" >-->
+        <div class="show-product" v-show="showPlayGroup">
+            <!--transition="show-product">-->
+            <div class="mask-img">
+                <p class="mask-top">玩转拼团<span class="close-btn" @touchend="close"></span></p>
+            </div>
+            <section>
+                <p class="play-title">拼团流程</p>
+                <p>1.选择心仪商品.</p>
+                <p>2.点击“去开团”或“去参团”，支付成功.</p>
+                <p>3.支付后分享拼团链接至微信或微博，邀请好友参团.</p>
+                <p>4.好友点击拼团链接，支付后参团成功</p>
+                <p>5.在截止时间到期前参团人数达到限定人数，拼团成功.</p>
+                <p>6.美美箱闪电发货.</p>
+                <p>7.收到拼团商品，尽享美丽心情.</p>
+                <p class="play-title">贴心提示</p>
+                <p>1.亲，使用浏览器分享拼团时，需使用浏览器的分享功能将拼团链接分享至好友.</p>
+                <p>2.拼团已过截止时间，但人数未达到限定成团人数，该团拼团失败，美美箱客服会在截止时间起3个工作日内退款至亲的支付帐户.</p>
+                <p>3.亲，参与拼团后，可手机登录美美箱移动端官网：<a href="http://cn.m.memebox.com">http://cn.m.memebox.com </a>查看拼团订单的物流信息.
+                </p>
+                <p>4.具体登录方式：</p>
+                <p>&nbsp;&nbsp;用户名：拼团订单收件人手机号</p>
+                <p>&nbsp;&nbsp;密码：输入参团成功后收到的短信中随机密码</p>
+                <p>5.最终活动解释权归美美箱所有.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!--分享浮层-->
+    <div class="share-mask" v-show="showShare" @touchstart="closeShareMask">
+        <div v-if="iosVer()>331 || androidVer()>331 || isQQ() || isWeixin() || isWeibo()">
+            <img class="top" src="include/top.png">
+        </div>
+        <div v-else>
+            <img class="bottom" src="include/bottom.png" v-if="!isOldApp()">
+            <div class="success-join" align="center" v-else>
+                <p class="success-text">亲,拼图参加成功,您可升级app至最新版本邀请好友参团</p>
+                <button class="download-btn" @tap="getAppUrl()">前往升级APP</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/vendor/underscore.js"></script>
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/group/details');
+</script>
+</body>
+<link rel="import" href="../../include/ga.html?__inline">
+</html>

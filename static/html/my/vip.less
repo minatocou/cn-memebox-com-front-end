@@ -1,0 +1,432 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+@import "../../css/view";
+
+.vip-info {
+  padding: 23*@xem 0 12*@xem;
+  background: url("include/css-vip-bg.jpg") top center;
+  background-size: 100% 100%;
+  p {
+    margin: 12*@xem 0 0 0;
+    font-size: 12*@xem;
+    text-align: center;
+    color: #fff;
+    span {
+      color: @mainColor;
+    }
+  }
+}
+
+//等级
+svg {
+
+  width: 100%;
+  path, text {
+    fill: #fff;
+  }
+  text {
+    font-family: 'FZLTZHK--GBK1-0';
+    font-size: 30*@xem;
+  }
+}
+
+//等级样式
+.level-logo {
+  position: relative;
+  width: 25*@xem;
+  height: 25*@xem;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 2*@xem 3*@xem;
+  svg {
+    path, text {
+      fill: @mainColor;
+    }
+  }
+}
+
+//前一等级
+.prev-level {
+  border: 2*@xem solid @mainColor;
+  background: #102c4f;
+}
+
+//当前等级
+.cur-level {
+  background: @mainColor;
+  border: 2*@xem solid @mainColor;
+  svg {
+    path, text {
+      fill: #fff;
+    }
+  }
+}
+
+//下一个等级
+.next-level {
+  border: 2*@xem solid #2a5281;
+  background: #022145;
+  svg {
+    path, text {
+      fill: #2a5281;
+    }
+  }
+}
+
+.left-45 {
+  left: 45*@xem;
+}
+
+.right-45 {
+  right: 45*@xem;
+}
+
+.vip-level {
+  position: relative;
+  height: 78*@xem;
+  padding: 35*@xem 0;
+  .level-logo {
+    position: absolute;
+    top: 50%;
+    margin-top: -12*@xem;
+  }
+
+}
+
+.progress-bar {
+  position: relative;
+  height: 5*@xem;
+  background: #2a5281;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: @mainColor;
+    height: 100%;
+    width: 50%;
+  }
+}
+
+.vip-img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -36*@xem;
+  border: 2*@xem solid @mainColor;
+  border-radius: 50%;
+  height: 72*@xem;
+  width: 72*@xem;
+  img{
+    border-radius: 50%;
+  }
+  .level-logo {
+    left: -17*@xem;
+  }
+}
+
+.vip-img > div {
+  position: absolute;
+  top: -2*@xem;
+  left: -2*@xem;
+  height: 72*@xem;
+  width: 72*@xem;
+  border-radius: 50%;
+  border: 2*@xem solid #fff;
+  background-color: rgba(0, 0, 0, .6);
+  color: #fff;
+  font-size: 30*@xem;
+  padding: 15*@xem;
+  text-align: center;
+}
+
+.vip-level-name {
+  font-size: 0;
+  img {
+    width: 75*@xem;
+  }
+}
+
+.vip-level-introduce {
+  background: url("include/css-main-bg.jpg") no-repeat top;
+  background-size: 100%;
+  padding: 0 10*@xem;
+  p {
+    color: @title;
+    font-size: 13*@xem;
+  }
+}
+
+.vip-level-main {
+  position: relative;
+  padding: 20*@xem 12*@xem 25*@xem;
+  border-radius: 10*@xem;
+  background-color: rgb(255, 255, 255);
+  &:before {
+    position: absolute;
+    top: -7*@xem;
+    left: 50%;
+    margin-left: -3.5*@xem;
+    content: "";
+    width: 15*@xem;
+    height: 7*@xem;
+    background: url("include/css-main-before.png") no-repeat center center;
+    background-size: 100%;
+  }
+  h3 {
+    position: relative;
+    font-size: 18*@xem;
+    color: @title;
+    text-align: center;
+    margin-bottom: 20*@xem;
+    span {
+      position: absolute;
+      top: 50%;
+      margin-top: -1*@xem;
+      height: 1*@xem;
+      width: 75*@xem;
+      background: @gray-c;
+      vertical-align: middle;
+    }
+    span:first-child {
+      left: 5*@xem;
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        content: "";
+        width: 5*@xem;
+        height: 5*@xem;
+        margin-top: -2.5*@xem;
+        border-radius: 50%;
+        background: @gray-c;
+      }
+    }
+    span:last-child {
+      right: 5*@xem;
+      &:after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        content: "";
+        width: 5*@xem;
+        height: 5*@xem;
+        border-radius: 50%;
+        margin-top: -2.5*@xem;
+        background: @gray-c;
+      }
+    }
+  }
+}
+
+.vip-title {
+  padding: 0 0 0 5*@xem;
+  color: @title;
+  .big-vip-level {
+    float: left;
+    margin-right: 15*@xem;
+    width: 45*@xem;
+  }
+  .vip-title-text {
+    padding-left: 60*@xem;
+    div {
+      margin-bottom: 10*@xem;
+      img {
+        width: 14*@xem;
+        vertical-align: middle;
+        margin-left: 10*@xem;
+      }
+    }
+    span {
+      font-size: 12*@xem;
+      color: #a0a0a0;
+    }
+  }
+  h4 {
+    display: inline-block;
+    font-size: 15*@xem;
+    vertical-align: middle;
+    margin: 0;
+  }
+  p {
+    line-height: 18*@xem;
+  }
+}
+
+.vip-rights {
+  div {
+    overflow: hidden;
+    padding: 0 0 10*@xem 18*@xem;
+    img {
+      float: left;
+      width: 25%;
+    }
+  }
+  p {
+    padding-left: 18*@xem;
+    background: url("include/css-vip-icon.jpg") no-repeat left top;
+    background-size: 14*@xem auto;
+    span {
+      color: @mainColor;
+    }
+  }
+}
+
+.s {
+  p {
+    background: url("include/css-vip-icon2.jpg") no-repeat left top;
+    background-size: 14*@xem auto;
+  }
+}
+
+.go-more {
+  a {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    color: @title;
+    font-size: 15*@xem;
+    line-height: 57*@xem;
+    padding-right: 20*@xem;
+  }
+  .mui-navigate-right {
+    &:after {
+      right: 0;
+      color: @title;
+    }
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mask-bg {
+  background-color: rgba(0, 0, 0, .3);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.show-rule {
+  position: relative;
+  z-index: 5;
+  border-radius: 10*@xem;
+  width: 300*@xem;
+  background-color: @white;
+  margin: 130*@xem auto 0;
+}
+
+.rule-title {
+  position: relative;
+  h4 {
+    background-color: #f7f5f5;
+    text-align: center;
+    line-height: 40*@xem;
+    height: 40*@xem;
+    font-size: 18*@xem;
+    border-top-left-radius: 10*@xem;
+    border-top-right-radius: 10*@xem;
+    font-weight: normal;
+  }
+  span {
+    position: absolute;
+    width: 48*@xem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: url("include/css-app-close.png") no-repeat center center;
+    background-size: 16*@xem;
+  }
+}
+
+.text {
+  padding: 15*@xem 15*@xem 20*@xem;
+  p {
+    margin-bottom: 12*@xem;
+    font-size: 13*@xem;
+    line-height: 18*@xem;
+  }
+}
+
+.more-level {
+  padding: 10*@xem 10*@xem 0;
+  .vip-level-main {
+    margin-bottom: 10*@xem;
+    padding: 25*@xem  15*@xem;
+    &:before {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 15*@xem;
+      border-top-left-radius: 10*@xem;
+      border-top-right-radius: 10*@xem;
+      background: #000000;
+      margin: 0;
+    }
+  }
+  h3.next {
+    margin: 30*@xem 0 20*@xem;
+    img {
+      position: absolute;
+      top: -30*@xem;
+      right: -10*@xem;
+      width: 87*@xem;
+      z-index: 5;
+    }
+  }
+}
+
+.vip0.vip-level-main {
+  &:before {
+    background: #ff75c0;
+  }
+}
+
+.vip1.vip-level-main {
+  &:before {
+    background: #cba9a6;
+  }
+}
+
+.vip2.vip-level-main {
+  &:before {
+    background: #a3c1da;
+  }
+}
+
+.vip3.vip-level-main {
+  &:before {
+    background: #f7c552;
+  }
+}
+
+.vip4.vip-level-main {
+  &:before {
+    background: #a1a3e5;
+  }
+}
+
+.vip5.vip-level-main {
+  &:before {
+    background: #6cc9ff;
+
+  }
+}
+
+.vip6.vip-level-main {
+  &:before {
+    background: #63829a;
+  }
+}
+
+.vip7.vip-level-main {
+  &:before {
+    background: #595253;
+  }
+}

@@ -1,0 +1,319 @@
+<!--正常商品详情-->
+<div id="details" class="mui-page">
+    <div  :style="headerCss"  :class="{iconGray:iconBg}" class="mui-navbar-inner mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  @tap=goBack></a>
+        <h1 v-show="showTitle" class="mui-title">商品详情</h1>
+        <a href="/" class="mui-icon-home mui-icon go-home"></a>
+    </div>
+    <div class="mui-page-content" style="display: none" v-show="init">
+        <div class="mui-scroll-wrapper" id="s-details">
+            <div class="mui-scroll" >
+                <div class="details-banner">
+                    <div class="stockout" v-show=canBuySta=='0'>
+                        <span>售&nbsp;&nbsp;罄</span>
+                    </div>
+                    <img class="product-type"
+                         :src=getProIcon(productData)
+                         v-show=getProIcon(productData)&&productData.stockStatus=='1'
+                         alt="美美箱">
+                    <link rel="import" href="./_banner.html?__inline">
+                </div>
+                <!--大促期间展示促销的名称和时间-->
+                <div v-show="activityInfo&&activityInfo.serverTime>activityInfo.startTime && (!newComerPrice || (mbData && mbData.isNewcomer=='0'))" class="promotion-header">
+                    <span class="title">
+                        <em class="ov">
+                            <template v-if="activityInfo.title==''">限时特价</template>
+                            <template v-else>{{activityInfo.title}}</template>
+                        </em>
+                    </span>
+                    <span class="time" v-show="activityInfo.endTime!=0">距离结束<br/>
+                        <span class="groupon-countdown">
+                            <span v-show="result.day>0">{{result.day}}天</span>{{result.hour}}时{{result.minute}}分{{result.second}}秒
+                        </span>
+                    </span>
+                    <span class="time-out ov" v-show="result.day==0">活动中</span>
+                </div>
+                <div class="product-introduce">
+                    <div class="product-title">
+                        <h2 class="ov2">
+                            {{productData.brandName}}{{productData.name}}
+                        </h2>
+                        <div class="sales">
+                            <span>已售{{productData.soldNum}}件</span>
+                            <span v-if="productData.commentRate"><em>{{productData.commentRate}}</em>好评</span>
+                        </div>
+                    </div>
+                    <div class="box" v-if="productData.productLabels.length>0">
+                        <span class="label" v-for="label in productData.productLabels" :style="{color:label.color}">
+                               {{label.text}}
+                                <span :style="{background:label.color}"></span>
+                        </span>
+                    </div>
+                    <!-- <div class="box" v-show="discount">
+                        <span class="discount">
+                            {{discount}}
+                        </span>
+                    </div> -->
+                    <!--<div class="box" >-->
+                        <!--<span class="shipping">-->
+                            <!--包邮-->
+                        <!--</span>-->
+                    <!--</div>-->
+                    <!--大促期间价格展示-->
+                    <div class="brandInfo-wrap">
+                        <img class="brandInfo-logo" :src="productData.brandLogo">
+                        <a class="brandInfo-link" :href="brandIdSta(isPb,productData.brandId)" @tap="enterBrand">
+                            <div class="brandInfo-titel">
+                                <div class="brandInfo-name">{{productData.brandName}}</div>
+                                <label class="brandInfo-label" v-show="productData.isPb">自有品牌</label>
+                            </div>
+                            <i class="mui-icon mui-icon-arrowright"></i>
+                        </a>
+                    </div>
+                    <div class="show-price" v-if="mbData && mbData.isNewcomer==1 && newComerPrice">
+                        <div class="newcomer-price big">¥{{newComerPrice}}</div>
+                        <span class="tax-icon" @tap="takMask" v-show="productData.isFTZProduct=='1'">
+                            <span>含税价</span>
+                        </span>
+                        <span class="n-price">
+                            美美价 ¥{{productData.price}}
+                        </span>
+                        <del v-show="parseFloat(productData.originPrice)>parseFloat(productData.price)">
+                            ¥{{productData.originPrice}}
+                        </del>
+                    </div>
+                    <div v-else>
+                        <p v-if="activityInfo&&activityInfo.serverTime>activityInfo.startTime && (!newComerPrice || (mbData && mbData.isNewcomer==0))" class="show-price promotion-price">
+                            <span class="price"><em>限时抢</em> ¥{{productData.price}}</span>
+                            <del>¥{{productData.originPrice}}</del>
+                            <br>
+                            <span class="meme-price">美美价 ¥{{activityInfo.activityPrice}}</span>
+                            <span class="tax-icon" @tap="takMask" v-show="productData.isFTZProduct=='1'">
+                                <span>含税价</span>
+                            </span>
+                        </p>
+                        <!--普通价格展示-->
+                        <p v-else class="show-price">
+                            <span class="price">¥{{productData.price}}</span>
+                            <del v-show="parseFloat(productData.originPrice)>parseFloat(productData.price)">
+                                ¥{{productData.originPrice}}
+                            </del>
+                            <span class="tax-icon" @tap="takMask" v-show="productData.isFTZProduct=='1'">
+                                <span>含税价</span>
+                            </span>
+                            <span v-show="newComerPrice && (!mbData || mbData.isNewcomer!=0)" class="newcomer-price">
+                                ¥{{newComerPrice}}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="preheat" v-if="activityInfo&&activityInfo.serverTime<activityInfo.startTime&&(activityInfo.startTime - activityInfo.serverTime)<activityInfo.preStartTime">
+                    <span class="title ov">
+                        {{activityInfo.title}} ¥{{productData.specialPrice}}
+                        <!--<em class="ov">{{activityInfo.title}}</em> <span>¥{{productData.specialPrice}}</span>-->
+                    </span>
+                    <span class="time">
+                        <span class="text">距离活动开始</span><br>
+                        <span class="preheat-countdown">
+                            <template v-if="result.day>0">{{result.day}}天</template>{{result.hour}}时{{result.minute}}分{{result.second}}秒
+                        </span>
+                    </span>
+                </div>
+                <div class="product-attach">
+                    <div class="mui-table-view explain reward-bar" v-if="isShowMB()&&!isFanliApp()">
+                        <p class="mui-table-view-cell">
+                            <a class="mui-navigate-right ov">
+                                <template v-if="mbData">
+                                    购买最高可返回{{mbData.rewardAmount}}蜜豆
+                                </template>
+                                <template v-else>
+                                    购买最高可返回 <div @tap="toLogin('4')" class="login-text">登录后查看</div>
+                                </template>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mui-table-view explain newcomer-bar" v-if="newComerPrice && (!mbData || mbData.isNewcomer!='0') && productData.newcomerInfo.ruleDesc">
+                        <p class="mui-table-view-cell">
+                            <a class="mui-navigate-right ov" href="#newComerDesc">
+                                新人专享规则说明
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mui-table-view explain fanli" v-if="isFanliApp()&&productData.fanliFlag=='0'">
+
+                        <p class="mui-table-view-cell">
+                            <a class="ov">
+                                此商品不参加返利
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mui-table-view promotions" v-if="productData.promotion.length>0">
+                        <div class="mui-table-view-cell">
+                            <span class=title>促销({{productData.promotion.length}})</span>
+                            <ul>
+                                <!--<li v-for="(index,item) in promotionInfo.promoteSale.items" :class="{'MJ':item.type==0,'MZ':item.type==1,'NYG':item.type==2,'CJ':item.type==3}">
+                                    <div v-if="index<2">
+                                        <a class="ov" @tap="toPromoteDetail(item.url)"><span class="label"></span>{{item.title}}</a>
+                                    </div>
+                                </li>-->
+                                <li v-for="p in productData.promotion" class="ZP" >      <!--v-if="promotionInfo.promoteSale.items.length<2"-->
+                                    <div>
+                                        <a class="ov"><span class="label">{{p.type}}</span>{{p.rule}}</a>
+                                        <div class="swiper-container" v-if="p.items.length>0">
+                                            <div @drag="swiper"  class="swiper-wrapper">
+                                                <div class="swiper-slide" v-for="(index,item) in p.items">
+                                                    <a @tap="toGiftDetail(item.product_id)"><img :src="item.img_mobile"> X {{item.stock}}</a>
+                                                </div>
+                                            </div>
+                                            <!--<div class="swiper-scrollbar"></div>-->
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a class="mui-navigate-right" @tap="viewPromotion()"></a>
+                        </div>
+                    </div>
+                    <template v-if="mbData && mbData.isNewcomer==1 && newComerPrice">
+                        <div class="mui-table-view explain shipping">
+                            <p class="mui-table-view-cell">
+                                <a class="mui-navigate-right ov">
+                                    本商品单件包邮
+                                </a>
+                            </p>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="mui-table-view explain shipping">
+                            <p class="mui-table-view-cell">
+                                <a class="mui-navigate-right ov" href="#service">
+                                    {{productData.slogan}}
+                                </a>
+                            </p>
+                        </div>
+                    </template>
+
+                </div>
+
+                <ul class="mui-table-view" v-if="productData.hasOptions !='0' || productData.hasBundleOption > 0">
+                    <li class="mui-table-view-cell" @tap="choiceOption()">
+                        <a class="mui-navigate-right product-text">
+                            <span class="ov" v-if="text">已选择 {{text}}</span>
+                            <span class="ov" v-else>请选择规格</span>
+                            <!--<span class="buy-number" v-show="number"> {{number}}</span>-->
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="product-comment">
+                    <div class="mui-table-view explain">
+                        <p class="mui-table-view-cell">
+                            <template v-if="bestCommentData.total>0">
+                                <a @tap="toComment" class="mui-navigate-right ov" href="#comment">
+                                    购买过的小伙伴都这么说(<span>{{bestCommentData.total}}</span>)
+                                </a>
+                            </template>
+                            <template v-else>
+                                <div class="comment-empty">
+                                    <span>用户评论</span>
+                                    <span class="comment-tips">暂无评论</span>
+                                </div>
+                            </template>
+                        </p>
+                        <!--<div class="comment-wrap" v-if="bestCommentData['data'].length>0">-->
+                        <div class="comment-wrap" v-if="bestCommentLength>0">
+                            <div class="swiper-container">
+                                <div @drag="swiper"  class="swiper-wrapper">
+                                    <div class="comment-group swiper-slide" v-for="option in bestCommentData['data']" v-if="option.thumbList.length>0">
+                                        <div class="comment-img">
+                                            <img :src="option.thumbList[0].s_thumb" alt="评价图片" @tap="preview(option.thumbList[0].b_thumb)">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <div class="comment-user">
+                                                <div class="comment-avatar">
+                                                    <img :src="option.avatar?option.avatar:'/images/app/my/include/user-logo.png'" alt="个人头像">
+                                                </div>
+                                                <div class="comment-user-info">
+                                                    <h3 class="user-name ov">{{option.userName}}</h3>
+                                                    <p class="user-stars">
+                                                        <template v-for="index in 5">
+                                                            <i class="star-icon" :class="(index+1) <= option.star?'active':''"></i>
+                                                        </template>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="comment-cnt-text ov4">
+                                                {{option.text}}
+                                            </div>
+                                            <div class="comment-group-time">{{option.date}}</div>
+                                        </div>
+                                    </div>
+                                    <a class="comment-group-more swiper-slide"  @tap="toComment" href="#comment">
+                                        <div>
+                                            <span>更多评论</span> <br>
+                                            See More
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-information">
+                    <p>图文详情</p>
+                    <div id="product-detail">{{{productData.detail}}}</div>
+                </div>
+                <div class="about-memebox">
+                    <p><a href="../home/home.html">关于MEMEBOX</a></p>
+                    <img src="include/aboutMemebox.jpg" alt="Memebox">
+                </div>
+            </div>
+            <img class="add-success" :src=getProIcon(productData) :class="ani==true?'add-success-transition':''">
+            <div class="add-shopping-cart">
+                <div @tap="useCollection" class="cart-box">
+                    <a class="collection" :class="collection==1 ? 'cur' : ''"></a>
+                </div>
+                <div v-show="!newComerPrice || (mbData &&mbData.isNewcomer!=1)">
+                    <div class="cart-box" @tap="goCart()">
+                        <a :class="cartNumber==0 ? 'show-cart' : 'show-number'">
+                            <span v-show="cartNumber!=0" :class="ani==true?'cart-ani':''">{{cartNumber}}</span>
+                        </a>
+                    </div>
+                    <div class="add-btn">
+                        <button @tap="canBuyPro()&&addCart()"
+                                :class="{'not-add-btn':!canBuyPro()}"
+                        >
+                            加入购物车
+                        </button>
+                    </div>
+                </div>
+                <div v-show="newComerPrice &&(!mbData||mbData.isNewcomer==1)" class="add-btn newcomer-buy"
+                >
+                    <button @tap="canBuyPro()&&newcomerBuy()"
+                            :class="{'not-add-btn':!canBuyPro()}"
+                    >
+                        立即购买
+                    </button>
+                    <!--<span v-show="grouponInfo.activityStatus=='1'">已结束</span>-->
+                    <!--<span v-show="grouponInfo.activityStatus=='2'||!canBuyPro()">已抢光</span>-->
+                </div>
+            </div>
+            <div class="imageTextBtn" :class="{top:toTop}"  style="display:none" v-show="imgTextBtn" @tap="changePosition()"></div>
+
+        </div>
+
+        <div class="mask-layer tax-layer" v-show="showTaxMask">
+            <div class="mask" @touchstart="takMask"></div>
+            <div class="show-product">
+                <span class="close-tax" @tap="takMask"></span>
+                <div class="show-tax-rate">
+                    <span class="tax-title">税费:</span>
+                    <span class="tax-rate">{{productData.taxFee}}</span>
+                    <p>
+                        根据国家政策规定，本产品适用于“跨境综合税”。税率为:{{productData.taxRate}},实际结算税率请以提交订单时应付总金额明细为准。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,265 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+
+html, body {
+  position: relative;
+  height: 100%;
+}
+.tele-container{
+  display: block;
+}
+.tele-header{
+  height: 44*@xem;
+  background-color: transparent;
+  z-index: 250;
+  &.headerColor{
+    color:#333;
+    .mui-icon{
+      color:#333;
+    }
+    ul {
+      li {
+        color:#333;
+        opacity:.6;
+        &.active {
+          color:#333;
+          opacity:1;
+        }
+      }
+    }
+    .share-icon{
+      background: transparent url("include/shareIcon-on.png") no-repeat;
+      -webkit-background-size:cover;
+      background-size:cover;
+    }
+  }
+  .mui-icon{
+    color: @white;
+  }
+  .mui-title{
+    list-style: none;
+    line-height:24*@xem;
+    height:44*@xem;
+    padding:10*@xem;
+    li{
+      float: left;
+      font-size:16*@xem;
+      font-weight: normal;
+      opacity:.6;
+      .brand-link{
+        padding-right:25*@xem;
+        display: block;
+      }
+      &.active{
+        opacity:1;
+      }
+    }
+    &:after{
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+.clearfix{
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+.main-content{
+  position: relative;
+  width:100%;
+  height:100%;
+  div,font,p,img,b{
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+  .tele-homeBg{
+    position: relative;
+    right:0;
+    top:0;
+    left:0;
+    z-index:0;
+    width:100%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    img{
+      display: inline-block;
+      width:100%;
+      height:auto;
+    }
+  }
+}
+
+.tele-content{
+  padding: 20*@xem 15*@xem 30*@xem;
+  background-color: #fff;
+  .tele-head{
+    font-size:14*@xem;
+    padding:20*@xem 0 10*@xem;
+    &>div{
+      display: inline-block;
+    }
+    .tele-author{
+      color: #333;
+    }
+    .tele-date{
+      letter-spacing: 1*@xem;
+      padding:0 15*@xem;
+      color: #999;
+    }
+  }
+  .tele-label{
+    &:after{
+      content: '';
+      display: table;
+      clear: both;
+    }
+    li{
+      min-width:50*@xem;
+      height:22*@xem;
+      font-size:11*@xem;
+      line-height:20*@xem;
+      text-align: center;
+      color: #999;
+      border:1px #e0e0e0 solid;
+      padding:0 10*@xem;
+      display: inline-block;
+      margin-right:15*@xem;
+      margin-bottom:10*@xem;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      float: left;
+    }
+  }
+  .tele-title{
+    font-size:20*@xem;
+    line-height:25*@xem;
+    max-height:50*@xem;
+    font-weight:bold;
+    color:#333;
+    overflow: hidden;
+  }
+  .tele-paragraph{
+    padding:10*@xem 0 20*@xem;
+    line-height:25*@xem;
+    text-align: justify;
+
+    p{
+      color:#666;
+      padding:0;
+      margin:0 auto;
+      &>img{
+        margin:10*@xem auto;
+        display: block;
+      }
+    }
+    .teleImg{
+      width:100%;
+      height:150*@xem;
+      margin:15*@xem auto;
+      background-color: #f0f0f0;
+    }
+    .teletext-prd{
+      margin:20*@xem auto;
+      padding: 15*@xem 15*@xem 15*@xem 94*@xem;
+      border:1px #e0e0e0 solid;
+      color: #666;
+      font-size:14*@xem;
+      .teletext-link{
+        display: block;
+        color: #666;
+      }
+      .teletext-img{
+        width: 84*@xem;
+        height: 84*@xem;
+        display: inline-block;
+        float: left;
+        margin-left: -94*@xem;
+        background-color: #f0f0f0;
+      }
+      .teletext-group{
+        height:84*@xem;
+      }
+      .teletext-name{
+        height: 54*@xem;
+        font-size:14*@xem;
+        color: #333;
+        line-height: 25*@xem;
+        overflow: hidden;
+      }
+      .teletext-foot{
+        height:30*@xem;
+        &:after{
+          content: '';
+          display: table;
+          clear: both;
+        }
+        .teletext-price{
+          width:70%;
+          height:30*@xem;
+          padding-top:10px;
+          padding-right:10px;
+          font-size:18*@xem;
+          color: #fc5073;
+          span{
+            display: inline-block;
+            line-height:20*@xem;
+          }
+          .teletext-origin{
+            margin-left:5*@xem;
+            font-size:12*@xem;
+            color: #bbbbbb;
+            text-decoration: line-through;
+          }
+        }
+        .teletext-btn{
+          display: inline-block;
+          float: right;
+          outline: none;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          width: 80*@xem;
+          height: 30*@xem;
+          text-align: center;
+          line-height: 30*@xem;
+          color: #fff;
+          font-size: 14*@xem;
+          text-decoration: none;
+          background-color: #fc5375;
+        }
+      }
+    }
+    .space{
+      padding:10*@xem 0;
+    }
+  }
+  .tele-row{
+    padding:10*@xem 0;
+    .tele-views{
+      font-size:16*@xem;
+      color: #bbb;
+      margin-right:30*@xem;
+      display: inline-block;
+    }
+  }
+}
+.share-icon{
+  width:18*@xem;
+  height:19*@xem;
+  margin-top:12*@xem;
+  background: transparent url("include/shareIcon.png") no-repeat;
+  -webkit-background-size:cover;
+  background-size:cover;
+}

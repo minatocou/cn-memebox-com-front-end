@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html :class="noSearch&&'noSearch'">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app" class="search-page" style="display: none" v-show="init">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="/m/cart/cart.html"></a>
+    <h1>{{extra.title}}</h1>
+</header>
+<div class="mui-content">
+    <p class="top-title">
+        {{extra.tips}}
+    </p>
+    <link rel="import" href="_searchResult.html?__inline">
+</div>
+<div class="bottom">
+    <div class="bottom-show-price">
+        <p>已选：<span class="red">{{extra.type==9?'¥':''}}{{extra.amount}}{{extra.type==8?'件':''}}</span></p>
+        <p v-if="extra.margin!=0">再购{{extra.type==9?'¥':''}}{{extra.margin}}{{extra.type==8?'件':''}}可获赠品</p>
+        <p v-else>已满足赠品条件</p>
+    </div>
+    <div class="bottom-changebuy-pro" align="center" @tap="showChangePro">
+        选择赠品
+    </div>
+    <div class="bottom-cart-btn" align="center" @tap="goCart">
+        去购物车
+    </div>
+</div>
+<link rel="import" href="./_choicepro.html?__inline">
+<!--<script src="../../../js/plugins/swiper/swiper-3.3.1.min.js"></script>-->
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+</body>
+<script>
+    require('special/hallgift/index');
+</script>
+
+</html>

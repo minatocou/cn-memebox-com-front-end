@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title v-text="questionsData.title"></title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="questionnaire.less">
+</head>
+<body>
+    <main class="page-main hide" :class="{hide: !questionsData}">
+		<div class="banner-wrapper">
+			<div class="banner-container">
+				<div class="banner-left-img">
+					<div class="img-wrapper"></div>
+				</div>
+				<div class="banner-right-content">
+					<h4 class="banner-title" v-html="questionsData.award_description?'问卷奖励，先到先得' : '希望可以更懂你,<br>这里有几个小问题'"></h4>
+			    	<div class="banner-description" v-if="questionsData.award_description" v-text="questionsData.award_description"></div>
+				</div>
+			</div> 
+		</div>
+    	<div class="questionnaire-description">
+    		<div class="inline-block text-left" v-text="questionsData.description"></div>
+    	</div>
+        <ul class="question-list">
+        	<li v-for="(index,question) in questionsData.questions">
+        		<span class="question-index">{{index+1 + '.'}}</span> 
+	        	<div class="mui-checkbox question-checked-tag" :class="{show: isQuestionAnswered[index]}">
+	            	<input type="checkbox" name="" id="" checked @change="foreverChecked">
+	        	</div>
+        		<div class="question-title" @tap.prevent="toggleCollapse(index)">
+        			<span class="must-input-tag" v-if="question.is_required == '1'">*</span>
+	        	    <span v-text="question.title || '&nbsp;'"></span>：&nbsp;
+	        	    <div class="hide choosed-item" v-html="answersText[index]" :class="{hide: isNotCollapse[index]}"></div>
+        		</div>
+        	    <div class="question-option-container" :class="{collapse: !isNotCollapse[index]}">
+	        	    <span class="" v-if="question.type == 2" v-text="'（' + questionType[question.type] + '）'"></span>
+        	    	<ol class="question-option-list">
+	                    <li v-for="(idx,option) in question.options">
+	                    	<label class="mui-radio block-input-wrap" v-if="question.type == '1'">
+	                    	    <input type="radio" name="{{'radio' + index}}" value="{{option.option_id}}" v-model="submitObj.answers[index].answer" @change="chooseReady(index)">
+	                    	    <span class="order-list-style" v-text="orderListStyle[idx] + '.'"></span>
+	                    	    <span v-text="option.value"></span>
+	                    	</label>
+	                    	
+	                    	<label class="mui-checkbox block-input-wrap" v-if="question.type == '2'">
+	                    	    <input type="checkbox" name="{{'checkbox_' + index}}" value="{{option.option_id}}" v-model="submitObj.answers[index].answer" @touchstart="fixAndroidBug" @change="setQuestionAnswered(index)">
+	                    	    <span class="order-list-style" v-text="orderListStyle[idx] + '.'"></span>
+	                    	    <span v-text="option.value"></span>
+	                    	</label>
+	                    	
+	                    </li>
+	                    <li v-if="question.type == '3'">
+	                    	<div class="textarea-container">
+	                    	    <textarea data-index="{{question.question_id}}" placeholder="请在这里填写答案" @change="setQuestionAnswered(index)" v-model="submitObj.answers[index].answer"></textarea>
+	                    	</div>
+	                    </li>
+        	    	</ol>
+        	    	<div class="mt-14" v-if="question.type != '1'" @touchend.prevent="chooseReady(index)" @mouseup.prevent="chooseReady(index)">
+        	    		<button type="button" class="choose-ready">确定</button>
+        	    	</div>
+        	    </div>
+        	</li>
+        </ul>
+
+    </main>
+    <div class="question-btn-wrap" :class="{active:isAnswerComplete}">
+    	<button type="button" @tap="submit" v-text="hasReward?'领取我的奖励':'完成'"></button>
+    </div>
+	<div class="answer-complete-block hide" :class="{active: hasSubmitted,hide:!questionsData}">
+		<div class="avatar-container">
+			<div class="avatar-face">
+				
+			</div>
+			<div class="question-thanks">感谢答题</div>
+			<div class="submit-msg" v-text="msg" v-if="msg"></div>
+		</div>
+		<div class="question-btn-wrap">
+			<button type="button" @tap="goToUserCenter" v-if="isApp()">去"我哒"完善个人信息</button>
+		</div>
+		<div class="go-back" @tap="app_back()" v-if="isApp()">返回 &nbsp;></div>
+	</div>
+ 	<link rel="import" href="../../include/c.html?__inline">
+    <link rel="import" href="../../include/ga.html?__inline">
+</body>
+<script>
+    require('special/questionnaire/questionnaire');
+</script>
+</html>

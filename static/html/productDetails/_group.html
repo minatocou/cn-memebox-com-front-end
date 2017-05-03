@@ -1,0 +1,256 @@
+<!--拼团详情-->
+<div id="group" class="mui-page">
+    <div :style="headerCss" :class="{iconGray:iconBg}"  class="mui-navbar-inner mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @tap=goBack></a>
+        <h1 v-show="showTitle" class="mui-title">商品详情</h1>
+        <a href="/" class="mui-icon-home mui-icon go-home"></a>
+    </div>
+    <div class="mui-page-content" style="display: none" v-show="init">
+        <div class="mui-scroll-wrapper" id="s-details">
+            <div class="mui-scroll">
+                <div class="details-banner">
+                    <!--<div class="stockout" v-show=productData.stockStatus=='0'>-->
+                        <!--<span>售&nbsp;&nbsp;罄</span>-->
+                    <!--</div>-->
+                    <img class="product-type"
+                         :src=getProIcon(productData)
+                         v-show=getProIcon(productData)&&canBuySta=='1'
+                         alt="美美箱">
+                    <link rel="import" href="./_banner.html?__inline">
+                </div>
+                <div class="product-introduce">
+                    <div class="product-title">
+                        <h2 class="ov2">
+                            <span class="group-tag">{{grouponInfo.grouponType=='1'?'拼团':'邀新团'}}</span>
+                            {{productData.brandName}}{{productData.name}}
+                        </h2>
+                        <div class="sales">
+                            <span>已售{{productData.soldNum}}件</span>
+                            <span v-if="productData.commentRate"><em>{{productData.commentRate}}</em>好评</span>
+                        </div>
+                    </div>
+                    <div class="box" v-if="productData.productLabels.length>0">
+                        <span class="label" v-for="label in productData.productLabels" :style="{color:label.color}">
+                               {{label.text}}
+                                <span :style="{background:label.color}"></span>
+                        </span>
+                    </div>
+                    <p class="show-price">
+                        <!--<span class="group-tag">{{grouponInfo.maxNum}}人团</span>-->
+                        <span class="price">¥{{grouponInfo.grouponPrice}}</span>
+                        <del v-show="parseFloat(productData.originPrice)>parseFloat(productData.price)">
+                            ¥{{productData.originPrice}}
+                        </del>
+                    </p>
+                    <div class="group-time">
+                        <span class="groupon-countdown">
+                            剩余<em>{{result.day}}天{{result.hour}}时{{result.minute}}分{{result.second}}秒</em>后结束
+                        </span>
+                        <span class="group-total-num" v-if="grouponInfo.totalNum&&grouponInfo.totalNum!=''&&grouponInfo.totalNum!=0">
+                            已有<span>{{grouponInfo.totalNum}}</span>人参团
+                        </span>
+                    </div>
+                </div>
+                <!--拼团玩法-->
+                <div class="product-attach">
+                    <div class="group-rule">
+                        <p>
+                            拼团玩法
+                            <a href="/m/group/groupExplain.html">
+                                查看规则
+                            </a>
+                        </p>
+                        <div>
+                            <div class="block active">
+                                <span>支付</span>
+                                <span>开团/参团</span>
+                            </div>
+                            <span class="arrow"></span>
+                            <div class="block">
+                                <span>邀请</span>
+                                <span>好友参团</span>
+                            </div>
+                            <span class="arrow"></span>
+                            <div class="block">
+                            <span>
+                                拼团成功立即发货
+                            </span>
+                            <span>
+                                逾期未成团自动退款
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mui-table-view explain shipping">
+                        <p class="mui-table-view-cell">
+                            <a class="mui-navigate-right ov" href="#service">
+                                拼团购买包邮<!--{{productData.slogan}}-->
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group-list" v-if="grouponInfo.grouponList.length>0">
+                    <div class="title">
+                        <span>以下小伙伴发起的该拼团就快成团啦</span><br>
+                        可直接点击参加哦
+                    </div>
+                    <ul>
+                        <li v-for="item in grouponInfo.grouponList" @tap="goGroupDetail(item.grouponDetailUrl)">
+                            <div class="group-item" v-if="item.endTime > item.serverTime">
+                                <div class="group-left">
+                                    <img class="leader-avater" :src="item.leaderImg">
+                                    <div>
+                                        <span class="ov leader-name">{{item.leaderName}}</span>
+                                        <div class="time">剩余<div><countdown :endtime='(item.endTime-item.serverTime)*1000'></countdown></div>结束</div>
+                                    </div>
+                                </div>
+                                <div class="group-center">
+                                    还差<span>{{item.leftNum}}人</span>成团
+                                </div>
+                                <div class="group-right">
+                                    <a  @tap="goGroupDetail(item.grouponDetailUrl)">去参加</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="mui-table-view" v-if="productData.hasOptions !='0'">
+                    <li class="mui-table-view-cell"
+                        @tap="(grouponInfo.activityStatus==0 &&canBuyPro())?grouponBuy():''">
+                        <a class="mui-navigate-right product-text">
+                            <span class="ov" v-if="text">已选择 {{text}}</span>
+                            <span class="ov" v-else>请选择规格</span>
+                            <!--<span class="buy-number" v-show="number"> {{number}}</span>-->
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="product-comment">
+                    <div class="mui-table-view explain">
+                        <p class="mui-table-view-cell">
+                            <template v-if="bestCommentData.total>0">
+                                <a @tap="toComment" class="mui-navigate-right ov" href="#comment">
+                                    购买过的小伙伴都这么说(<span>{{bestCommentData.total}}</span>)
+                                </a>
+                            </template>
+                            <template v-else>
+                                <div class="comment-empty">
+                                    <span>用户评论</span>
+                                    <span class="comment-tips">暂无评论</span>
+                                </div>
+                            </template>
+                        </p>
+                        <!--<div class="comment-wrap" v-if="bestCommentData['data'].length>0">-->
+                        <div class="comment-wrap" v-if="bestCommentLength>0">
+                            <div class="swiper-container">
+                                <div @drag="swiper"  class="swiper-wrapper">
+                                    <div class="comment-group swiper-slide" v-for="option in bestCommentData['data']" v-if="option.thumbList.length>0">
+                                        <div class="comment-img">
+                                            <img :src="option.thumbList[0].s_thumb" alt="评价图片" @tap="preview(option.thumbList[0].b_thumb)">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <div class="comment-user">
+                                                <div class="comment-avatar">
+                                                    <img :src="option.avatar?option.avatar:'/images/app/my/include/user-logo.png'" alt="个人头像">
+                                                </div>
+                                                <div class="comment-user-info">
+                                                    <h3 class="user-name">{{option.userName}}</h3>
+                                                    <p class="user-stars">
+                                                        <template v-for="index in 5">
+                                                            <i class="star-icon" :class="(index+1) <= option.star?'active':''"></i>
+                                                        </template>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="comment-cnt-text ov4">
+                                                {{option.text}}
+                                            </div>
+                                            <div class="comment-group-time">{{option.date}}</div>
+                                        </div>
+                                    </div>
+                                    <a class="comment-group-more swiper-slide"  @tap="toComment" href="#comment">
+                                        <div>
+                                            <span>更多评论</span> <br>
+                                            See More
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-information">
+                    <p>图文详情</p>
+                    <div id="product-detail">{{{productData.detail}}}</div>
+                </div>
+                <div class="about-memebox">
+                    <p><a href="../home/home.html">关于MEMEBOX</a></p>
+                    <img src="include/aboutMemebox.jpg" alt="Memebox">
+                </div>
+            </div>
+            <img class="add-success" :src=getProIcon(productData) :class="ani==true?'add-success-transition':''">
+            <!--老版本app-->
+            <div class="add-shopping-cart inApp" v-if="isApp()&&(iosVer()&&iosVer()<400||androidVer()&&androidVer()<400)">
+                <div class="add-btn">
+                    <div class="group-buy"
+                         :class="{'not-add-btn':grouponInfo.activityStatus!=0}"
+                         @tap="grouponInfo.activityStatus==0?grouponBuy():''"
+                    >
+                        <span>¥{{grouponInfo.grouponPrice}}</span>
+                        <span>{{grouponInfo.maxNum}}人团</span>
+                    </div>
+                </div>
+            </div>
+            <!--H5-->
+            <div class="add-shopping-cart" v-else>
+                <div @tap="useCollection" class="cart-box">
+                    <a class="collection" :class="collection==1 ? 'cur' : ''"></a>
+                </div>
+                <div class="cart-box" @tap="goCart">
+                    <a :class="cartNumber==0 ? 'show-cart' : 'show-number'">
+                        <span v-show="cartNumber!=0" :class="ani==true?'cart-ani':''">{{cartNumber}}</span>
+                    </a>
+                </div>
+                <div class="add-btn">
+                    <div @tap="canBuyPro()&&addCart()"
+                         class="normal-buy"
+                         :class="{'not-add-btn':!canBuyPro()}"
+                    >
+                        <span>¥{{productData.price}}</span>
+                        <span v-if="canBuyPro()">单独购买</span>
+                        <span v-else>已抢光</span>
+                    </div>
+                    <div class="group-buy"
+                         :class="{'not-add-btn':grouponInfo.activityStatus!=0||!canBuyPro()}"
+                         @tap="(grouponInfo.activityStatus==0 &&canBuyPro())?grouponBuy():''"
+                    >
+                        <span>¥{{grouponInfo.grouponPrice}}</span>
+                        <span v-show="grouponInfo.activityStatus=='0'&&canBuyPro()">{{grouponInfo.maxNum}}人成团</span>
+                        <span v-show="grouponInfo.activityStatus=='1'">已结束</span>
+                        <span v-show="grouponInfo.activityStatus=='2'||!canBuyPro()">已抢光</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="imageTextBtn" :class="{top:toTop}"  style="display:none" v-show="imgTextBtn" @tap="changePosition()"></div>
+
+        <div class="mask-layer tax-layer" v-show="showTaxMask">
+            <div class="mask" @touchstart="takMask"></div>
+            <div class="show-product">
+                <span class="close-tax" @tap="takMask"></span>
+                <div class="show-tax-rate">
+                    <span class="tax-title">税费:</span>
+                    <span class="tax-rate">{{productData.taxFee}}</span>
+                    <p>
+                        根据国家政策规定，本产品适用于“跨境综合税”。税率为:{{productData.taxRate}},实际结算税率请以提交订单时应付总金额明细为准。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

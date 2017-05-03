@@ -1,0 +1,414 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+body {
+  background-color: #fff;
+}
+
+.top-title {
+  line-height: 30*@xem;
+  background: #fef4f4;
+  color: #e94542;
+  text-align: center;
+  margin: 0;
+}
+
+.search-page {
+  .memebox-header {
+    .mui-action-back {
+      width: 35*@xem;
+      height: 100%;
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  .mui-content {
+    #pullrefresh {
+      top: 109*@xem;
+      //padding-bottom: 50*@xem;
+
+      &.topBrandWrap {
+        top: 279*@xem;
+      }
+    }
+  }
+}
+
+#sort {
+  z-index: 102;
+  margin: 0;
+
+  &:before {
+    content: none;
+  }
+
+  .sort-method {
+    &:after {
+      content: none;
+    }
+
+    .sort-price,
+    .sort-title {
+      position: relative;
+      width: 33.33%;
+      float: left;
+      text-align: center;
+    }
+
+    .sort-choice {
+      &:before {
+        content: "";
+      }
+    }
+  }
+
+  .sort-title-active {
+    &:after {
+      position: absolute;
+      bottom: 0;
+      content: "";
+      width: 50*@xem;
+      height: 4*@xem;
+      background: @mainColor;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+}
+
+.bottom {
+  position: fixed;
+  z-index: 10;
+  background: #fff;
+  width: 100%;
+  height: 50*@xem;
+  bottom: 0;
+
+  &:before {
+    position: absolute;
+    content: "";
+    background: @border-color;
+    top: 0;
+    width: 100%;
+    height: 1*@xem;
+    transform: scaleY(.5);
+    -webkit-transform: scaleY(.5);
+  }
+
+  .red {
+    color: @mainColor;
+    font-size: 18*@xem;
+  }
+
+  div {
+    float: left;
+  }
+
+  &-show-price {
+    position: relative;
+    width: 40%;
+    height: 100%;
+
+    p {
+      color: @gray-6;
+      font-size: 12*@xem;
+      margin: 0;
+      padding: 5*@xem 0 0 10*@xem;
+    }
+
+    &:after {
+      position: absolute;
+      height: 100%;
+      width: 1*@xem;
+      transform: scaleX(.5);
+      -webkit-transform: scaleX(.5);
+      content: "";
+      right: 0;
+      top: 0;
+      background: @border-color;
+    }
+  }
+
+  &-changebuy-pro {
+    color: @title;
+    line-height: 50*@xem;
+    width: 30%;
+  }
+
+  &-cart-btn {
+    color: #fff;
+    background: @mainColor;
+    line-height: 50*@xem;
+    width: 30%;
+  }
+}
+
+.choice-pro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  top: 0;
+  left: 0;
+
+  .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45*@xem;
+    height: 45*@xem;
+    background: url('./include/css-close.png') no-repeat center center;
+    background-size: 15*@xem 15*@xem;
+  }
+  .top-title {
+    //display: none;
+  }
+  p {
+    &:first-child {
+      position: relative;
+      line-height: 45*@xem;
+      background: #fff;
+      font-size: 15*@xem;
+      color: @title;
+      &:after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 1*@xem;
+        transform: scaleY(.5);
+        -webkit-transform: scaleY(.5);
+        background: @border-color;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    margin: 0;
+  }
+
+  .mask {
+    background: rgba(0, 0, 0, .3);
+  }
+  @keyframes move {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .pro-box {
+    position: absolute;
+    bottom: 0;
+    z-index: 300;
+    background: #fff;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    width: 100%;
+    // transform:translateY(100%);
+    // -webkit-transform: translateY(100%);
+    &.move {
+      animation: move .5s;
+      // transform:translateY(0);
+      // -webkit-transform: translateY(0);
+    }
+    .mui-table-view-cell {
+      padding: 15*@xem 0 0 15*@xem;
+    }
+
+    .mui-checkbox {
+      position: absolute;
+      left: 0;
+    }
+
+    .proCheckBox {
+      top: 15*@xem;
+      left: 0;
+    }
+
+    ul {
+      max-height: 220*@xem;
+      overflow-y: scroll;
+    }
+
+    .pro {
+      &-img {
+        float: left;
+        width: 50*@xem;
+        height: 50*@xem;
+        margin-right: 10*@xem;
+      }
+
+      &-info {
+        position: relative;
+        margin-bottom: 15*@xem;
+        overflow: hidden;
+      }
+
+      &-options {
+        overflow: hidden;
+
+        span, label {
+          float: left;
+          padding: 0 12*@xem;
+          color: @title;
+          line-height: 30*@xem;
+          margin: 0 10*@xem 10*@xem 0;
+          background: @mainBg;
+          border-radius: 4*@xem;
+          font-size: 12*@xem;
+          width: auto;
+        }
+
+        .activity {
+          border: 1px solid @mainColor;
+          color: @mainColor;
+          background: #fff;
+        }
+      }
+
+      &-btn {
+        position: relative;
+        overflow: hidden;
+        line-height: 50*@xem;
+
+        &:before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 1*@xem;
+          transform: scaleY(.5);
+          -webkit-transform: scaleY(.5);
+          background: @border-color;
+          top: 0;
+          left: 0;
+        }
+
+        span {
+          float: left;
+          width: 50%;
+          text-align: center;
+
+          &:first-child {
+            font-size: 15*@xem;
+            color: @title;
+          }
+
+          &:nth-child(2) {
+            font-size: 16*@xem;
+            color: #fff;
+            background: @mainColor;
+          }
+        }
+      }
+    }
+
+    .price {
+      position: absolute;
+      bottom: 0;
+      left: 60*@xem;
+
+      span:first-child {
+        font-size: 15*@xem;
+        color: @mainColor;
+      }
+
+      span:nth-child(2) {
+        font-size: 13*@xem;
+        color: @gray-9;
+      }
+    }
+
+    .title {
+      padding: 0 15*@xem 0 0;
+
+      .ov2 {
+        font-size: 12*@xem;
+        color: @title;
+      }
+    }
+
+    .mui-slider-handle {
+      padding-left: 30*@xem;
+    }
+  }
+
+  &.disable {
+    //display: none;
+    p {
+      &:first-child {
+        display: block;
+      }
+    }
+
+    .pro {
+      &-box {
+        .price {
+          span {
+            color: #bbb;
+          }
+        }
+      }
+
+      &-btn {
+        span:nth-child(2) {
+          background: #bbb;
+        }
+      }
+    }
+  }
+}
+
+.halltab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > div {
+    text-align:center;
+    flex: 1;
+    span{
+      line-height: 30*@xem;
+    }
+  }
+  .activity{
+    span{
+      position: relative;
+      &:after{
+        position: absolute;
+        content: "";
+        width:100%;
+        height: 4*@xem;
+        background: @mainColor;
+        bottom:-5*@xem;
+        left:0;
+      }
+    }
+  }
+}
+.stockout{
+  .pro-info{
+    &:before{
+      position: absolute;
+      content: "已赠完";
+      width: 50*@xem;
+      background: rgba(0,0,0,.6);
+      color:#fff;
+      line-height: 50*@xem;
+      border-radius: 50*@xem;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}

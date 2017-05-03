@@ -1,0 +1,18 @@
+<div id="idcardPop" class="mui-popover mui-popover-action mui-popover-bottom mui-popover-idcard">
+   <validator name="idvali">
+      <form novalidate>
+   <ul>
+      <li class="title mui-table-view-cell">
+         实名认证
+         <span class="close fr" @tap="close">×</span>
+      </li>
+      <li class="content">
+         <p>由于国家政策要求实名认证，您的姓名或身份证信息不正确，请修改后再提交！
+         </p>
+         <input  type="text" v-model="ID" v-validate:idcard="{idcard:{rule:false,message:'请填写正确的身份证号'},minlength:{rule:1,message:'应海关要求，购买跨境商品时必须填写身份证号'}}" placeholder="收货人身份证号（将加密处理）">
+         <button type="button" @tap="addIdcard" class="mui-btn mui-btn-block mui-btn-mm">提交并支付</button>
+      </li>
+   </ul>
+      </form>
+   </validator>
+</div>

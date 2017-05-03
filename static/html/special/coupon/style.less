@@ -1,0 +1,295 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+@bg: #ff606f;
+
+html {
+  font: 14px @font-family;
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font: 16px @font-family;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font: 17.6px @font-family;
+  }
+}
+.memebox-header{
+  z-index: 250;
+}
+.icon-user {
+  float: left;
+  background: url("../../../img/personage.png") no-repeat center;
+  width: 19*@xem;
+  height: 100%;
+  background-size: 19*@xem auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.coupons {
+  font-size: 0;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap:wrap;
+  -webkit-flex-wrap: wrap;
+  align-items: stretch;
+  -webkit-align-items: stretch;
+  li {
+    vertical-align: top;
+    font-size: 12*@xem;
+    display: inline-block;
+    width: 47%;
+    margin-top: 8*@xem;
+    position: relative;
+    margin-left: 2%;
+    border-radius: 4*@xem;
+    overflow: hidden;
+    &.use{
+      .price-box {
+        background: url("include/css-coupon.png") no-repeat @gray;
+        background-size: auto 100%;
+      }
+      .view{
+        color: @gray;
+        &.show {
+          .title:after {
+            .check-up(10*@xem, 10*@xem, @gray);
+          }
+        }
+        .title.show:after{
+          .check-up(10*@xem, 10*@xem, @gray);
+        }
+        .title:after{
+          .check(10*@xem, 10*@xem, @gray);
+        }
+        .title,.desc{
+          border: 1*@xem @gray solid;
+          border-top: none;
+        }
+      }
+
+    }
+    .h {
+      top: 10*@xem;
+      font-size: 18*@xem;
+      font-weight: bold;
+      position: relative;
+      vertical-align: top;
+    }
+    .price-box {
+      text-align: left;
+      padding: 15*@xem 15*@xem;
+      color: #ffffff;
+      height: 70*@xem;
+      background: url("include/css-coupon.png") no-repeat @bg;
+      background-size: auto 100%;
+      position: relative;
+      &:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 1*@xem;
+        right: 1*@xem;
+        background: url("include/css-b.png") bottom no-repeat;
+        background-size: 100% auto;
+        height: 100%;
+        z-index: 11;
+      }
+    }
+    .price {
+      font-size: 34*@xem;
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .text {
+      position: absolute;
+      right: 15*@xem;
+      top: 50%;
+      margin-top: -9*@xem;
+      font-size: 18*@xem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .view {
+      background: #ffffff;
+      color: @bg;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+
+      &.show {
+        .desc {
+          display: block;
+        }
+        .title:after {
+          .check-up(10*@xem, 10*@xem, @bg);
+          top: 3*@xem;
+        }
+      }
+      .title {
+        border: 1*@xem @bg solid;
+        text-align: center;
+        padding: 5*@xem;
+        &:after {
+          content: "";
+          position: relative;
+          .check(10*@xem, 10*@xem, @bg);
+          margin-left: 5*@xem;
+          top: -2*@xem;
+        }
+        &.show {
+          + .desc {
+            display: block;
+          }
+          &:after {
+            .check-up(10*@xem, 10*@xem, @bg);
+            top: 3*@xem;
+          }
+        }
+      }
+      .desc {
+        z-index: 10;
+        padding: 5*@xem 0;
+        position: relative;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border: 1*@xem @bg solid;
+        border-top: none;
+        background: #ffffff;
+        word-wrap: break-word;
+        border-bottom-left-radius: 4*@xem;
+        border-bottom-right-radius: 4*@xem;
+        > div {
+          transform: scale(0.75);
+          -webkit-transform: scale(0.75);
+          white-space: nowrap;
+          transform-origin: 0;
+          -webkit-transform-origin: 0;
+          text-align: left;
+          width: 135%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .coupons li .view .desc {
+    padding: 5*@xem 8*@xem;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  .coupons li .view .desc {
+    padding: 5*@xem 10*@xem;
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 101;
+}
+.mask-box{
+  background: #fff;
+  position: fixed;
+  left: 20*@xem;
+  right: 20*@xem;
+  top: 30%;
+  padding: 20*@xem;
+  border-radius: 6*@xem;
+  z-index: 102;
+
+}
+.phone-box {
+  box-sizing: border-box;
+  vertical-align: middle;
+  background-color: #fff;
+  position: relative;
+  .button {
+    position: absolute;
+    right: 0;
+    bottom: 20*@xem;
+    height: 30*@xem;
+    width: 90*@xem;
+    line-height: 30*@xem;
+    font-size: 14*@xem;
+    border-left: 1*@xem solid @gray-c;
+    color: @mainColor;
+    text-align: center;
+  }
+}
+
+.phone-icon {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: 40*@xem;
+  //background: url("iPhone.png?__inline") no-repeat center;
+  background-size: (27/2)*@xem;
+  vertical-align: middle;
+}
+
+input.phone-number {
+  outline: 0;
+  text-align: center;
+  padding: 10*@xem 15*@xem 10*@xem 40*@xem;
+  margin: 0;
+}
+
+.mui-btn-mm{
+  margin-top: 15*@xem;
+}
+
+
+.share-mask{
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.3);
+  z-index: 1000;
+  .success-join{
+    width:100%;
+    height:345*@xem;
+    margin-top: 85*@xem;
+    background: url("include/css-success-join.png") no-repeat top center;
+    background-size: 339*@xem;
+    padding-top: 165*@xem;
+    .success-text{
+      margin-bottom: 15*@xem;
+      font-size: 15*@xem;
+      width:265*@xem;
+      color:#333;
+      line-height: 25*@xem;
+    }
+    .download-btn{
+      width:191*@xem;
+      height:40*@xem;
+      background-color: #f42c4b;
+      color: #fff;
+      font-size: 18*@xem;
+      border: 0;
+      border-radius: 40*@xem;
+    }
+  }
+  img{
+    position: absolute;
+    width: 272*@xem;
+  }
+}

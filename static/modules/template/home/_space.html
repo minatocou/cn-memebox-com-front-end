@@ -1,0 +1,11 @@
+<div class="space">
+    <div v-if="spaceData.items[0].space_type=='block'" class="space_block"
+         :style="{height:revertHeight(spaceData.items[0].space_height),backgroundColor:spaceData.items[0].space_color}">
+    </div>
+
+    <div v-if="spaceData.items[0].space_type=='img'" class="space_img">
+        <a :href="toH5Url(spaceData.items[0].item_action_url)">
+            <img :src="spaceData.items[0].space_bg">
+        </a>
+    </div>
+</div>

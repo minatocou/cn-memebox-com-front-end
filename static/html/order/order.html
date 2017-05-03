@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body class="mui-fullscreen">
+<div  id="app" class="mui-views">
+    <div class="mui-view">
+        <div class="mui-navbar">
+        </div>
+        <div style="display: none" v-show="init" class="mui-pages">
+        </div>
+
+    </div>
+</div>
+<link rel="import" href="_order.html?__inline">
+<link rel="import" href="_address.html?__inline">
+<link rel="import" href="_add_address.html?__inline">
+<link rel="import" href="_discount.html?__inline">
+<link rel="import" href="_proDetail.html?__inline">
+<script src="../../js/vendor/mui/mui.view.js"></script>
+<script src="../../js/vendor/mui/mui.picker.js"></script>
+<script src="../../js/vendor/mui/mui.poppicker.js"></script>
+<script src="../../js/vendor/city.data-3.js?s=new"></script>
+<script src="../../js/vendor/city.js"></script>
+<script src="../../js/vendor/underscore.js"></script>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script>
+    require('order/order');
+</script>
+
+</html>

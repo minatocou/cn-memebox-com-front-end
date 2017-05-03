@@ -1,0 +1,32 @@
+<div align="center" v-show="!isShowCart()" class="noPro">
+    购物车没有商品<br>赶快搜索精彩美妆吧<br>
+    <a href="../home/home.html" class="mui-btn mui-btn-mm mui-btn-outlined">去购物</a>
+</div>
+<!--<div v-show="isShowCart() && gwpItem.items.length>0" class="cart-box">-->
+    <!--<ul class="cart-pro">-->
+        <!--<li v-for="gwp in gwpItem.items" class="mui-table-view-cell mui-transitioning">-->
+            <!--<div class="mui-slider-handle" style="transform: translate(0px, 0px);">-->
+                <!--<div class="mui-input-row mui-checkbox mini mui-left">-->
+                    <!--<div :class="gwp.stockStatus==0 ? 'lose' : ''" class="p15">-->
+                        <!--<div class="cart-img">-->
+                            <!--<div class="lose-img">-->
+                                <!--售罄-->
+                            <!--</div>-->
+                            <!--<img class="pro-icon" src="../../img/give.png">-->
+                            <!--<img class="pro-img" :src="gwp.imgUrl"/>-->
+                        <!--</div>-->
+                        <!--<div class="cart-text" @tap="goDetail(gwp)">-->
+                            <!--<div class="title ">-->
+                                <!--<span class="ov2">{{gwp.brandName}}&nbsp;{{gwp.productName}}</span>-->
+                                <!--<p class="gray ov">{{gwp.option}}</p>-->
+                            <!--</div>-->
+                            <!--<div class="red">￥0.00-->
+                                <!--<span style="color: #b0b0b0;float: right;" v-show="gwp.qty>1">x{{gwp.qty}}件</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->

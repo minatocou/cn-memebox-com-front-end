@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a :href="page+'/my/home.html'" class="icon-user"></a>
+    <h1 class="mui-title">活动</h1>
+    <a href="../../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+</header>
+<div class="share-mask" style="display: none" v-show="isOldApp() && isAndroid() && !isAndroidApp()" >
+    <div class="success-join" align="center">
+        <p class="success-text">您可升级app至最新版本参加活动</p>
+        <button class="download-btn" @tap="getAppUrl()">前往升级APP</button>
+    </div>
+</div>
+    <div  style="display: none" v-show="init" class="mui-content">
+        <div class="banner">
+            <img :src="pageData.imageUrl">
+        </div>
+        <ul class="coupons">
+            <li :class="isDisabled(c) ? 'use' : '' " v-for="c in pageData.couponList"  >
+                <div class="price-box" @tap="useCoupon(c)">
+                    <span class="h">{{c.discount | pcc 0}}</span>
+                    <span class="price">{{c.discount | pcc 1}}</span>
+                    <span class="text ov2">{{getText(c)}}</span>
+                </div>
+                <div class="view">
+                    <div class="desc">
+                        <div class="hh ov">使用范围：{{c.detail}}</div>
+                        <div v-show="c.is_dynamic=='1'">有效时间：{{c.expire_days}}天</div>
+                        <div v-show="c.is_dynamic=='0'">有效时间：{{c.from_date | dateFormat 'yyyy-MM-dd'}}~{{c.to_date | dateFormat 'yyyy-MM-dd'}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+<div align="center" v-show="showM" @tap="showM=false" style="display: none" class="mask">
+</div>
+<div class="mask-box" v-show="showM" style="display: none">
+    <div class="phone-box">
+        <span class="phone-icon"></span>
+        <validator name="validation">
+            <form novalidate>
+                <input id='phone'  name="mobile" type="number" maxlength="11" v-model="mobile"
+                       v-validate:phone="['phone']"
+                       placeholder="输入手机号">
+                <input id="authCode"  name="authCode" type="number" maxlength="6" v-model="authCode"
+                       v-validate:authCode="{required:{rule: true,message:'请输入验证码'},maxlength: {rule:5 , message:'请输入正确的验证码'}}"
+                       placeholder="输入验证码">
+            </form>
+        </validator>
+        <span class="button" @tap="getAuth">
+            <span v-if="showTime.show">{{showTime.time}}s</span>
+            <span v-else>获取验证码</span>
+        </span>
+    </div>
+    <button @tap="useCoupon()" class="mui-btn mui-btn-block mui-btn-mm">立即领取</button>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/coupon/index');
+</script>
+</body>
+<link rel="import" href="../../include/ga.html?__inline">
+</html>

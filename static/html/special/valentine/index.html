@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>情人节</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="valentine.less">
+</head>
+<body>
+<div class="music" :class="{play: isActive}" @tap="setAudio">
+    <audio class="audio" id="myAudio" :src="audioSrc" autoplay="autoplay" preload="preload" loop="loop"></audio>
+</div>
+<article class="page-loading current" @touchstart.prevent="scrollPage" @touchend.prevent="scrollPage">
+    <div class="load-wrap" :class="{loadHide: showLoad}">
+        <span class="loading-num">0%</span>
+    </div>
+</article>
+<div class="container" :class="{showContain: showLoad}" id="pageContain">
+    <article class="page page1" >
+        <div class="contain wrap">
+            <div></div>
+        </div>
+        <div class="scroll-down">
+            <img class="scroll-arrow" src="include/cover_arrow.png">
+        </div>
+    </article>
+    <!--<article class="page page2">
+        <div class="contain wrap">
+            <ul class="bar-group">
+                <li value="1" @tap="chooseBar">酒吧一</li>
+                <li value="2" @tap="chooseBar">酒吧二</li>
+                <li value="3" @tap="chooseBar">酒吧三</li>
+                <li value="4" @tap="chooseBar">酒吧四</li>
+            </ul>
+        </div>
+        <div class="scroll-down">
+            <img class="scroll-arrow" src="include/cover_arrow.png">
+        </div>
+    </article>-->
+    <article class="page page3">
+        <div class="contain">
+            <div class="bar-info bar1">
+                <div class="bar-infowrap">
+                    <h1>CHINA · SHANGHAI</h1>
+                    <h2>中国 · 上海</h2>
+                </div>
+                <div class="bar-infowrap">
+                    <h2>NO.98 Huaihai zhong Road · Jinzhong Plaza</h2>
+                    <h2>淮海中路98号 · 金钟广场</h2>
+                </div>
+                <div class="bar-infofoot">
+                    <a class="bar-link" @tap="submitInfo" href="javascript:void(0);">即刻报名</a>
+                    <a class="bar-link" @tap="barInfo" href="javascript:void(0);">产品详情</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<!--报名表单-->
+<div class="bar-dialog" :class="{active: tableSta, hidden: tableHid}" @touchstart.prevent="scrollPage" @touchend.prevent="scrollPage">
+    <div class="dlg-wrap table">
+        <div class="dlg-content">
+            <validator name="validation">
+                <form novalidate>
+                    <div class="dlg-row">
+                        <span class="row-left">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+                        <span class="row-right">
+                            <input type="text" class="mui-input-clear mui-input" maxlength="10" name="userName" required>
+                            <i class="row-line"></i>
+                            <span class="input-valid" :class="{active: nameValid}">{{nameInfo}}</span>
+                        </span>
+                    </div>
+                    <div class="dlg-row">
+                        <span class="row-left">手&nbsp;&nbsp;&nbsp;&nbsp;机：</span>
+                        <span class="row-right">
+                            <input name="userNum" maxlength="11" type="tel" class="mui-input-clear mui-input" required>
+                            <i class="row-line"></i>
+                            <span class="input-valid" :class="{active: numValid}">{{numInfo}}</span>
+                        </span>
+                    </div>
+                    <div class="dlg-pony">
+                        <span class="pony-icon"></span>
+                        <div class="pony-txt">凡报名参加本活动，</br>即可现场获得PONY EFFECT</br>纯真染色唇彩一支。</div>
+                    </div>
+                    <div class="dlg-tips">
+                        <div class="dlg-tip-row">
+                            <span class="dlg-radio"></span>
+                            <div class="dlg-txt">本人同意接受PONY EFFECT活动信息及规则。</div>
+                        </div>
+                        <div class="dlg-tip-row">
+                            <span class="dlg-radio"></span>
+                            <div class="dlg-txt">本人同意所提供的资料可按照本人已阅读，理解及同意之法律声明及隐私政策而持有及使用。</div>
+                        </div>
+                    </div>
+                    <div class="dlg-foot">
+                        <a class="dlg-link" @tap="submitForm" href="javascript:void(0);">提交</a>
+                    </div>
+                </form>
+            </validator>
+        </div>
+        <div class="dlg-foot">
+            <span class="dlg-close" @tap="closeDlg"></span>
+        </div>
+    </div>
+</div>
+
+<!--酒店详情-->
+<div class="bar-dialog" :class="{active: productSta, hidden: productHid}" @touchstart.prevent="scrollPage" @touchend.prevent="scrollPage">
+    <div class="dlg-wrap product">
+        <div class="dlg-content"></div>
+        <div class="dlg-foot">
+            <span class="dlg-close" @tap="closeDlg"></span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../js/vendor/fullPage.js"></script>
+<script>
+    require("special/valentine/valentine");
+</script>
+</html>

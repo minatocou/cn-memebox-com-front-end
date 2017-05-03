@@ -1,0 +1,14 @@
+<li class="sort-method">
+    <span class="sort-title" :class=" position==true ? 'sort-title-active' : ''"  @tap="positionSort">综合排序</span>
+    <div class="sort-price" @tap="priceSort">
+        <span>
+            <span class="sort-choice"
+                  :class=" price ? 'sort-title-active' : ''">{{price&&price=='desc'?'价格由高到低':'价格由低到高'}}</span>
+            <span class="sort-icon">
+                <span :class="price&&price=='asc'?'sort-active':''"></span>
+                <span :class="price&&price=='desc'?'sort-active':''"></span>
+            </span>
+            </span>
+        </span>
+    </div>
+</li>

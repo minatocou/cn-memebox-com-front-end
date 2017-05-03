@@ -1,0 +1,22 @@
+<div id="service" class="mui-page page-desc">
+    <header class="mui-navbar-inner mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1>服务说明</h1>
+        <a href="../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <div class="mui-page-content">
+        <!--style="display: none" v-show="init">-->
+        <div class="mui-scroll-wrapper" id="s-service">
+            <div class="mui-scroll">
+                <div class="service">
+                    <div class="distribution">
+                        <h3><span></span>本仓配送说明</h3>
+                        <p v-for="info in productData.shippingInfo">
+                            {{info}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

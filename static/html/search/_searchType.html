@@ -1,0 +1,8 @@
+<ul id="list" class="mui-table-view mui-table-view-chevron"  v-show="showResult==false">
+    <search-type v-for="searchTypes in dataSearchType"
+                 url="../productClassify/productClassify.html#"
+                 :first-level-name="searchTypes['name']"
+                 :second-level="searchTypes['subCate']"
+                 :first-id="$key"
+    ></search-type>
+</ul>

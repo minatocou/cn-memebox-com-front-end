@@ -1,0 +1,157 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+
+html {
+  font: 14px @font-family;
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font: 16px @font-family;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font: 17.6px @font-family;
+  }
+}
+body{
+  margin: 0;
+}
+#coupon {
+  *{
+    font-family: "微软雅黑";
+    font-weight: 100;
+  }
+  height:142*@xem;
+  padding:10*@xem 0;
+  //background-color: #fff823;
+  background: url("include/css-bg.jpg?__inline") no-repeat;
+  background-size: 100% 100%;
+  line-height: normal;
+  box-sizing: border-box;
+  #mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1000;
+  }
+  #success {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 300*@xem;
+    height: 140*@xem;
+    padding:0 10*@xem;
+    background: #fff;
+    margin-top: 50%;
+    border-radius: 3*@xem;
+    font-size: 17*@xem;
+    box-shadow: 0 0 20*@xem rgba(255,120,147,.5);
+  }
+
+  #success-text {
+    color: #333;
+    margin: 20*@xem 0 40*@xem;
+    &:before{
+      content: "";
+      display: inline-block;
+      width: 25*@xem;
+      height: 25*@xem;
+      background: url("success.png?__inline") no-repeat;
+      background-size:25*@xem;
+      vertical-align: middle;
+      margin-right: 8*@xem;
+    }
+  }
+  #success-btn {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #fff;
+    box-sizing: border-box;
+    width: 200*@xem;
+    line-height: 35*@xem;
+    border-radius: 35*@xem;
+    text-align: center;
+    font-size: 17*@xem;
+    background-color: #ff788f;
+  }
+  #false {
+    #success;
+  }
+  #false-text {
+    #success-text;
+    &:before{
+      background: url("false.png?__inline") no-repeat;
+      background-size:25*@xem;
+    }
+  }
+  #false-btn {
+    #success-btn;
+  }
+  .hide {
+    display: none;
+  }
+  #mask .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+  #mask .show{
+    display: inline-block;
+  }
+  #container {
+    position: relative;
+    width: (526/2)*@xem;
+    margin: 0 auto;
+  }
+  #phone-div{
+    width: 100%;
+    height: 50*@xem;
+    border-radius: 10*@xem;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background-color: #fff;
+  }
+  #phone-icon{
+    display: inline-block;
+    height:(39/2)*@xem;
+    width:(27/2)*@xem;
+    //background: url("iPhone.png?__inline") no-repeat center ;
+    background-size: (27/2)*@xem;
+    vertical-align: middle;
+  }
+  #phone-number {
+    height:100%;
+    width: 175*@xem;
+    font-size: 20*@xem;
+    font-weight: normal;
+    vertical-align: middle;
+    outline: 0;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+  }
+
+  #get-btn {
+    display: block;
+    width: 100%;
+    height: 50*@xem;
+    padding: 0;
+    outline: 0;
+    background-color: #ff4d58;
+    border: 0;
+    border-radius: 10*@xem;
+    color: #fff;
+    font-size: 20*@xem;
+    box-sizing: border-box;
+    margin-top: 15*@xem;
+  }
+}

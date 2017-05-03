@@ -1,0 +1,84 @@
+<!--预售列表-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link rel="stylesheet" href="detail.less">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 id="title" class="mui-title">{{title}}</h1>
+        <a href="../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <div style="display: none" v-show="init" class="mui-content pre-container videoContainer">
+        <div class="videoCon" :style="{paddingTop:videoHeight}">
+            <div class="videoBox" id="videoBox" :style="{height:videoHeight}">
+                <video id="myVideo" controls="false" @tap="changeControlBar" v-on:ended="endPlay" v-on:stalled="noNetTip" v-on:progress="initBuffer" preload="metadata" v-show="!isShowPreview" width="100%" :src="detailData.video.videoUrl"></video>
+                <img class="videoImg" v-show="isShowPreview" :src="detailData.video.videoPreviewImage">
+                <div class="controllerBar" v-show="isShowControlBar">
+                    <div class="controlBtn" @tap="changeVideo" :class="isPlay?'play':'pause'"></div>
+                    <div class="progress" id="progress">
+                        <span class="currentTime">{{videoCurrentTime}}</span>
+                        <div id="proBar" class="progressBar">
+                            <div class="playPro" :style="{width:playProgress}"></div>
+                            <div class="bufferPro" :style="{width:bufferProgress}"></div>
+                            <div class="dragBtn" v-on:touchstart="dragProBarStart($event)" v-on:touchmove="dragProBar($event)" v-on:touchend="dragProBarEnd($event)" :style="{left:playProgress}"></div>
+                        </div>
+                        <span class="totalTime">{{videoTotalTime}}</span>
+                    </div>
+                </div>
+                <div class="coverController coverPause" @tap="showVideo" v-show="!isPlay"></div>
+            </div>
+            <div class="videoInfo">
+                <h2 class="ov">{{detailData.video.videoTitle}}</h2>
+                <p class="">{{detailData.video.videoDesc}}</p>
+            </div>
+        </div>
+        <div class="pro-list">
+            <h2>相关商品</h2>
+            <ul>
+                <li v-for="item in detailData.productList" @tap="$parent.go('/m/productDetails/productDetails.html#'+item.productId)">
+                    <div class="proImg">
+                        <img :src="item.imgUrl">
+                    </div>
+
+                    <div class="proDetail">
+                        <h3 class="name ov2">[{{item.brandName}}]{{item.name}}</h3>
+                        <div class="box ov">
+                            <template v-if="item.productLabels.length>0">
+                                <span class="label" v-for="label in item.productLabels" :style="{color:label.color}">
+                                       {{label.text}}
+                                        <span :style="{background:label.color}"></span>
+                                </span>
+                            </template>
+                        </div>
+                        <p class="price">¥{{item.price}} <del>¥{{item.originPrice}}</del></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--购物车-->
+        <div class="shopping-cart">
+            <a href="{{page}}/cart/cart.html"></a>
+            <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+        </div>
+    </div>
+
+</div>
+
+<link rel="import" href="../include/c.html?__inline">
+
+<script>
+    require('video/videoDetail');
+</script>
+</body>
+</html>

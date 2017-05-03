@@ -1,0 +1,145 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+
+//蜜豆
+.mui-page-content,.mui-page,.mui-scroll-wrapper,.mui-scroll{
+  background-color: #f5f5f5;
+}
+
+.me{
+  .me-top{
+    background-color: #fff;
+    .my-me{
+      position: relative;
+      .text{
+        position: absolute;
+        top:45*@xem;
+        width: 100%;
+        h4{
+          margin: 0;
+          color: #fff;
+          font-size: 24*@xem;
+          font-style: italic;
+        }
+      }
+    }
+    img{
+      width: 100%;
+    }
+
+  }
+  .me-rule{
+    padding: 3*@xem 0 10*@xem 0;
+    overflow: hidden;
+    div{
+      position: relative;
+      float: left;
+      width: 50%;
+      height: 40*@xem;
+      line-height:40*@xem;
+      &:first-child{
+        &:after{
+          content: "";
+          position: absolute;
+          right: 0;
+          top:50%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+          height: 20*@xem;
+          width: 1*@xem;
+          background-color: @gray-c;
+        }
+        img{
+          width: 28*@xem;
+          height: 28*@xem;
+        }
+      }
+      img{
+        width: 25*@xem;
+        height: 23*@xem;
+        vertical-align: middle;
+        margin-right:10*@xem;
+      }
+    }
+    span{
+      font-size: 14*@xem;
+      color:@gray-6;
+    }
+  }
+  .me-main{
+    padding: 10*@xem 15*@xem;
+    .me-ul{
+      li{
+        position: relative;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position:  20*@xem center;
+        margin-bottom: 10*@xem;
+        border-radius: 2*@xem;
+        padding: 25*@xem 15*@xem 23*@xem 110*@xem;
+        div{
+          display: inline-block;
+        }
+        h4{
+          font-size: 16*@xem;
+          color:@title;
+          margin: 0 0 12*@xem 0;
+          font-weight: normal;
+        }
+        p{
+          font-size: 13*@xem;
+          color:@gray-9;
+          margin: 0;
+        }
+        .mui-icon-arrowright{
+          position: absolute;
+          right: 15*@xem;
+          top:50%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+      }
+      .sign{
+        background-image: url("include/css-sign.png") ;
+        background-size: (135/2)*@xem;
+      }
+      .give-back{
+        background-image: url("include/css-giveback.png") ;
+        background-size: (135/2)*@xem;
+      }
+    }
+  }
+}
+.method{
+  padding:0 17*@xem;
+  h4{
+    color: @title;
+    font-size: 15*@xem;
+    margin: 23*@xem 0 10*@xem;
+    font-weight: 300;
+    &:before{
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 5*@xem;
+      height:5*@xem;
+      border-radius: 50%;
+      background: @mainColor;
+      margin-right: 10*@xem;
+    }
+  }
+  p{
+    color:@gray-6;
+    font-size: 14*@xem;
+    line-height: 20*@xem;
+    margin: 0;
+  }
+}

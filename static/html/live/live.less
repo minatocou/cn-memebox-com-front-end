@@ -1,0 +1,250 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+@import "../../css/view";
+
+html,body,#app{
+  height:100%;
+}
+#meme-video{
+  background-color: #1b1a1f;
+}
+.mui-bar-nav ~ .mui-content {
+  padding-top: 0;
+}
+.liveContainer{
+  height:100%;
+  position: relative;
+  .liveRoom-info{
+    padding:20*@xem 20*@xem 0 20*@xem;
+    position: relative;
+    z-index:3;
+  }
+  .liveRoom-bottom-box{
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow: hidden;
+  }
+  .video-play-btn{
+    height: 60*@xem;
+    width: 60*@xem;
+    background: transparent url("../../img/coverPause.png") no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+    display: inline-block;
+    position: relative;
+    top: 70*@xem;
+    left: 45%;
+    z-index: 8;
+    padding: 0;
+    cursor: pointer;
+    opacity: 1;
+    &.videobtn {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  .liveRoom-video{
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    .liveRoom-play-btn{
+      height: 60*@xem;
+      width: 60*@xem;
+      background: transparent url("../../img/coverPause.png") no-repeat;
+      -webkit-background-size:cover;
+      background-size:cover;
+      display: inline-block;
+      position: absolute;
+      top: 30%;
+      left: 45%;
+      z-index: 8;
+      padding: 0;
+      cursor: pointer;
+      opacity: 1;
+      &.videobtn {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    .vjs-big-play-button{
+      opacity: 0;
+      visibility: hidden;
+    }
+    .vjs-default-skin{
+      width:100%;
+      height:100%;
+      z-index:2;
+      video{
+        object-fit: fill;
+        object-position: center center;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+      }
+    }
+  }
+}
+.liveRoom-info{
+  .liveRoom-info-head{
+    .liveRoom-title{
+      width:150*@xem;
+      height:45*@xem;
+      padding-left:50*@xem;
+      background-color: rgba(0,0,0,.1);
+      -webkit-border-radius:22*@xem;
+      -moz-border-radius:22*@xem;
+      border-radius:22*@xem;
+      .anchor-img{
+        width:40*@xem;
+        height:40*@xem;
+        margin-top:2*@xem;
+        -webkit-border-radius:20*@xem;
+        -moz-border-radius:20*@xem;
+        border-radius:20*@xem;
+        display: inline-block;
+        overflow: hidden;
+        margin-left:-47*@xem;
+        float: left;
+        background-color: rgba(0,0,0,.3);
+        .anchor-avatar{
+          width:40*@xem;
+          height:40*@xem;
+          display: inline-block;
+        }
+      }
+      .liveRoom-name{
+        color: #fff;
+        padding:5*@xem 3*@xem 5*@xem 0;
+        .anchor-name{
+          max-width:95*@xem;
+          height:20*@xem;
+          line-height:20*@xem;
+          font-size:14*@xem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .liveRoom-count{
+          max-width:95*@xem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-size:12*@xem;
+          line-height:15*@xem;
+          opacity: .7;
+        }
+      }
+    }
+    .liveRoom-zanCount{
+      width:65*@xem;
+      height:20*@xem;
+      margin-top:15*@xem;
+      background: transparent url("../../img/live-love.png") no-repeat;
+      -webkit-background-size:cover;
+      background-size:cover;
+      -webkit-border-radius:10*@xem;
+      -moz-border-radius:10*@xem;
+      border-radius:10*@xem;
+      .liveRoom-love{
+        max-width:100*@xem;
+        padding:3*@xem 5*@xem  2*@xem 25*@xem;
+        color: #fff;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: inline-block;
+        font-size:12*@xem;
+        line-height:15*@xem;
+        opacity: .7;
+      }
+    }
+  }
+}
+.liveRoom-content-box{
+  width:70%;
+  height:200*@xem;
+  position: absolute;
+  left: 0;
+  bottom:95*@xem;
+  z-index: 5;
+  overflow: hidden;
+  .liveRoom-group{
+    margin: 0;
+    list-style: none;
+    width: 100%;
+    position: absolute;
+    padding:0 15*@xem;
+    left: 0;
+    bottom: 0;
+    li{
+      display: block;
+      margin-bottom:3*@xem;
+      .liveRoom-row{
+        max-width:100%;
+        padding:5*@xem;
+        font-size:12*@xem;
+        display: inline-block;
+        color: #fff;
+        line-height:15*@xem;
+        background-color: rgba(0,0,0,.3);
+        -webkit-border-radius:3*@xem;
+        -moz-border-radius:3*@xem;
+        border-radius:3*@xem;
+        .user-name{
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: #ff5073;
+          display: inline-block;
+          float: left;
+          margin-right:5*@xem;
+        }
+        .user-content{
+          display: inline-block;
+          float: left;
+        }
+        &:after{
+          content: "";
+          display: table;
+          clear: both;
+        }
+      }
+    }
+  }
+}
+.liveRoom-bottom-box{
+  .bottom-box {
+    position: relative;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    font-size: 0;
+    .liveRoom-link{
+      display: block;
+    }
+    .liveRoom-input{
+      width:100%;
+      img{
+        width:100%;
+        height:auto;
+      }
+    }
+  }
+  .liveRoom-app{
+    display: block;
+    width:100%;
+    .liveRoom-bottom{
+      width:100%;
+      height:auto;
+    }
+  }
+}

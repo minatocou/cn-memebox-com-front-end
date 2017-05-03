@@ -1,0 +1,55 @@
+<div class="groupon" v-if="grouponData.detail.productList&&grouponData.detail.productList.length!=0">
+    <div class="groupon-header">
+        <a :href="toH5Url(grouponData.action_url)">
+            <span class="groupon-img"></span>
+            <div class="groupon-text">
+                <span>
+                    <em class="black">价低</em>品质硬
+                </span>
+                <span>
+                    <em class="black">爱拼</em>才会赢
+                </span>
+            </div>
+        </a>
+    </div>
+    <div class="groupon-container">
+        <ul class="groupon-content">
+            <li class="groupon-box"
+                v-for="(index,productList) in grouponData.detail.productList"
+                v-bind:class={"stockout":productList.grouponInfo.activityStatus!="0"}
+                @tap="$parent.$parent.go('/m/productDetails/productDetails.html#'+productList.productId)" v-if="index<8">
+                <div class="show-groupon-img">
+                    <span class="groupon-num"><span>参团</span> <br> {{productList.grouponInfo.totalNum}}</span>
+                    <div class="stockout-mark" v-show=productList.grouponInfo.activityStatus!="0">
+                        <span>已抢光</span>
+                    </div>
+                    <img :src=productList.imgUrl alt="美美箱">
+                </div>
+                <div class="groupon-product-details">
+                    <h2 class="ov2">
+                        {{productList.brandName+productList.name}}
+                    </h2>
+                    <div class="groupon-product-price">
+                        <div class="show-price">
+                            <p class="price-box">
+                                <template v-if="productList.grouponInfo.grouponType==2">邀新团</template><template v-else>{{productList.grouponInfo.maxNum}}人团</template>: <span class="price">¥{{parseInt(productList.grouponInfo.grouponPrice)}}</span>.<span>{{getFloat2(productList.grouponInfo.grouponPrice)}}</span></p>
+                            <!--<p class="original-price" v-show="(productList.originPrice-productList.price)>0">-->
+                            <p class="original-price">
+                                单买: <span >¥{{productList.price}}</span>
+                            </p>
+                        </div>
+                        <!--<button class="groupon-btn">立即抢购</button>-->
+                    </div>
+                </div>
+            </li>
+            <li class="groupon-box see-all" v-if="grouponData.action_url">
+                <a :href="toH5Url(grouponData.action_url)">
+                    <div>
+                        <span>查看全部</span><br>
+                        See All
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

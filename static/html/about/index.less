@@ -1,0 +1,148 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+
+body {
+  background-color: #fff;
+}
+
+.fleft {
+  float: left;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+
+.top-container {
+  width: 100%;
+  position: relative;
+  img {
+    display: block;
+    width: 100%;
+  }
+  .des {
+    position: absolute;
+    top: 59%;
+    width: 100%;
+    color: #fff;
+    font-size: 13*@xem;
+    text-align: center;
+  }
+}
+
+.tab-header {
+  width: 100%;
+  border-bottom: 1*@xem solid #e0e0e0;
+  .tab-item {
+    height: 45*@xem;
+    line-height: 45*@xem;
+    text-align: center;
+    width: 33.33%;
+    display: block;
+    font-size: 13*@xem;
+    font-weight: 700;
+  }
+  .active {
+    position: relative;
+    color: #ff5073;
+  }
+  .active:after {
+    content: '';
+    width: 70%;
+    height: 5*@xem;
+    background-color: #ff5073;
+    position: absolute;
+    left: 15%;
+    bottom: 0;
+  }
+  .active:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 5*@xem;
+    left: 45%;
+    border-left: 7.5*@xem solid transparent;
+    border-right: 7.5*@xem solid transparent;
+    border-bottom: 5*@xem solid #ff5073;
+  }
+}
+
+.tab-content {
+  .title {
+    margin: 30*@xem auto;
+    width: 100%;
+    text-align: center;
+    background-image: url("include/texture.png");
+    font-size: 15*@xem;
+    font-weight: 700;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  img {
+    display: block;
+    width: 100%;
+  }
+  .text {
+    //width: 100%;
+    margin: 15*@xem 15*@xem;
+    color: #666;
+    word-break: break-all;
+    font-size: 15*@xem;
+  }
+}
+
+.corporation {
+  background-color: #f5f5f5;
+  padding-top: 20*@xem;
+  .font-blue {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15*@xem;
+    color: #4bbffb;
+    font-size: 14*@xem;
+    text-decoration: underline;
+    a {
+      color: #4bbffb;
+    }
+  }
+  .font-grey {
+    width: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 12*@xem;
+    padding-bottom: 14*@xem;
+  }
+}
+
+.swiper-slide {
+  height: 500*@xem;
+  text-align: center;
+  img.swiper-lazy {
+    max-height: 300*@xem;
+    max-width: 100%;
+    width: auto;
+  }
+}
+.method{
+  padding:0 17*@xem;
+  h4{
+    color: @title;
+    font-size: 15*@xem;
+    margin: 23*@xem 0 10*@xem;
+    font-weight: 500;
+  }
+  p{
+    color:@gray-6;
+    font-size: 14*@xem;
+    line-height: 20*@xem;
+    margin: 0;
+    text-indent:2em;
+  }
+}

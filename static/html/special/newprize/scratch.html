@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="scratch.less">
+</head>
+<body>
+<div class="scratch-prize" align="center" v-show="init" style="display: none" >
+    <div class="info"  id="scratch">
+        <img src="include/g2.png" width="300" id="card">
+        <div class="prize">
+            <img :src="prize_img" class="prize_img">
+            <div class="text">{{prize}}</div>
+        </div>
+        <img @touchstart="start()" src="include/g1.png" v-show="showBi" width="300" class="bottomImg">
+    </div>
+    <link rel="import" href="./mask.html?__inline">
+    <div class="desc">
+        {{{pageData.raffle.info.description}}}
+    </div>
+    <!--<ol class="desc">-->
+        <!--<li>每个手机号每天可抽奖一次，微信分享到朋友圈可再抽一次。</li>-->
+        <!--<li>蜜豆等于现金，仅限MEMEBOX APP上使用。</li>-->
+        <!--<li>实物奖品将于2017年3月23日活动结束后一周内寄出。</li>-->
+        <!--<li>非MEMEBOX APP用户如抽取到实物奖品，请于2017年3月23日至28日保持手机畅通，客服将电话联系用户，如联系不上，则视为自动放弃奖品。</li>-->
+        <!--<li>活动最终解释权归MEMEBOX美美箱所有。</li>-->
+    <!--</ol>-->
+</div>
+<script src="../../../js/vendor/mui/mui.view.js"></script>
+<script src="../../../js/vendor/mui/mui.picker.js"></script>
+<script src="../../../js/vendor/mui/mui.poppicker.js"></script>
+<script src="../../../js/vendor/city.data-3.js?s=new"></script>
+<script src="../../../js/vendor/city.js"></script>
+
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+<script>
+    require('special/newprize/scratch.js');
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!--支付确认页-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body class="pay" id="app">
+<header class="mui-bar mui-bar-nav memebox-header" style="display: none" v-show="init">
+    <a class="mui-icon mui-icon-left-nav mui-pull-left" @tap=goBack></a>
+    <h1>支付</h1>
+    <a href="../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+</header>
+<div class="mui-content" style="display: none" v-show="init">
+    <p class="margin-0 give border-bottom po-r ov" align="center" v-show="gift">
+        {{gift}}
+    </p>
+    <div class="personal-in mt-10">
+        <div class="content">
+            <div class="personal">
+                <p class="margin-0 ov">
+                    收货人:&nbsp;{{addressData.name}}&nbsp;{{addressData.telephone}}
+                </p>
+            </div>
+            <p class="address ov mt-10">
+                {{addressData.street}}
+            </p>
+            <p class="id-num pl-38 margin-0">
+                {{addressData.idNumber | encryption}}
+            </p>
+        </div>
+    </div>
+    <ul class="order">
+        <li class="border-top border-bottom po-r mt-10" v-for="(index,list) in orderList">
+            <div class="order-top pl-14 pr-14 border-bottom po-r" :class="type(list.type)[1]">
+                <span class=" pro-type v-m" >{{type(list.type)[0]}}</span>
+                <span class="order-price v-m">¥{{list.totalAmount}}
+                    <span v-if="list.rewardBack" class="reward">(本单可返 <span class="red">{{list.rewardBack}}蜜豆</span>)</span>
+                </span>
+
+                <div class="overTime" v-show="times[index]<=0&&list.orderStatus=='pending'"><span>支付时效已过期</span></div>
+                <div class="time" v-show="(list.orderStatus=='pending') && (times[index]>0)">
+                    <span>{{timer(times[index]).hh}}</span>
+                    <span>:{{timer(times[index]).mm}}</span>
+                    <span>:{{timer(times[index]).ss}}</span>
+                </div>
+            </div>
+            <div class="order-middle pl-14 po-r">
+                <div class="title">
+                    <h3 class="pro-title margin-0 ov v-m">{{list.itemsSummary}}</h3>
+                    <span class="order-num v-m">共{{list.orderQty}}件</span>
+                </div>
+                <p class="margin-0">订单号：{{list.orderId}}</p>
+            </div>
+            <div class="order-bottom pl-14 pr-14 border-top po-r">
+                <a class="pay-btn"
+                   :class="(times[index]<=0)?'over-time-btn':''"
+                   @tap="(times[index]>0)?getOrderId({grantTotal:list.totalAmount,time:list.closedLeftTime*1000+nowTime,clear:true,type:list.type,orderId:list.orderId}):''"
+                   v-show="list.orderStatus=='pending'&&list.orderId!=getOrderIds('orderId')"
+                >支付</a>
+                <a class="pay-btn" v-show="list.orderStatus=='processing'">
+                    已成功
+                </a>
+                <a class="pay-btn" v-show="list.orderStatus=='pending'&&list.orderId==getOrderIds('orderId')">
+                    处理中
+                </a>
+            </div>
+        </li>
+    </ul>
+    <select-pay :pay="pay" v-ref:pay></select-pay>
+</div>
+<div class="show-pay-result" v-show="prompt.show" style="display:none;">
+    <div class="mask" @tap="closePromptBox"></div>
+    <div class="bottom" align="center">
+        <div class="top">
+            <span>
+                支付成功
+            </span>
+            <span class="close-pay-result" @tap="closePromptBox">
+                <img src="../../img/close.png" alt="关闭">
+            </span>
+        </div>
+        <div class="prompt">
+            <div class="pay-title">
+                <img src="../../img/alipay.png" alt="支付宝" v-if="prompt.type===0">
+                <img src="../../img/weixin.png" alt="微信" v-else>
+                <span v-if="prompt.type===0">
+                    支付宝支付成功:
+                </span>
+                <span v-else>
+                    微信支付成功:
+                </span>
+                <span>
+                    ¥ {{prompt.price}}
+                </span>
+            </div>
+            <div class="prompt-text">
+                <p>
+                    MEMEBOX不会以付款异常，商品质量问题，配送问题等为由联系您，请勿向任何自称为MEMEBOX工作人员泄漏银行卡号、手机验证码、身份证号等重要信息。谨防诈骗！如有疑问，请致电官方客服电话：400-7209967
+                </p>
+            </div>
+            <div class="btn" @tap="closePromptBox">
+                知道啦
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script>
+    require('payment/payment');
+</script>
+
+</html>

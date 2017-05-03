@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="prize.less">
+</head>
+<body :style="{background:pageData.raffle.info.color}">
+<div class="prize" v-show="showPrize" style="display: none" >
+    <img :src=pageData.raffle.info.banner||"/images/app/special/newprize/include/banner.png"
+         class="banner"
+         width="100%">
+    <img src="./include/hua.png" width="100%" class="floor">
+    <div class="main">
+        <div v-show="pageData.raffle.info.status==1">
+            <img src="./include/star.png" alt="" class="star">
+            <img src="./include/star.png" alt="" class="star">
+            <img src="./include/star.png" alt="" class="star">
+        </div>
+        <img src="./include/main1.png" alt="" class="main-top" width="100%">
+        <img src="./include/main2.png" alt="" class="main-mid" width="100%" >
+        <div class="gift "  :class="pageData.raffle.info.status==1&&'gift-jump'"  align="center">
+            <div class="user" v-show="pageData.customer">
+                <img :src=pageData.customer.avatar>
+                <span>{{pageData.customer.nickname}}</span>
+            </div>
+            <div class="user" v-show="!pageData.customer">
+                <p>Hi  (>^ω^<)</p>
+                <span>没登录奖品发给谁</span>
+            </div>
+            <div class="gift-content">
+                <h2>{{prize}}</h2>
+                <p v-show="!pageData.address&&is_real">请填写收获地址 不然礼物就飞走了</p>
+            </div>
+            <p v-show="pageData.customer">{{checkDraw()}}</p>
+        </div>
+        <span class="move-heart move-heart-active" @tap="start" v-show="pageData.raffle.info.status==1"></span>
+        <span class="main-btn" id="prize-btn" @tap="login()">{{checkDraw()}}</span>
+    </div>
+    <div class="gift-list" v-show="pageData.raffle.reward.length!=0">
+        <h3 class="title">
+            奖品列表
+        </h3>
+        <swipe class="vue-swipe"
+               :auto="0"
+               :show-indicators="false">
+            <swipe-item v-for="gift in pageData.raffle.reward">
+                <span>{{gift.prize}}</span>
+            </swipe-item>
+        </swipe>
+        <div class="l"></div>
+        <div class="r"></div>
+    </div>
+    <div class="my-list" v-show="pageData.raffle.myPrize&&pageData.raffle.myPrize.length!=0">
+        <h3 class="title">
+            我的中奖信息
+        </h3>
+        <div class="list">
+            <ul>
+                <li v-for="gift in pageData.raffle.myPrize">
+                    <span class="fr">x{{gift.num}}</span>
+                    <p class="ov">{{gift.prize}}</p>
+                </li>
+            </ul>
+            <div class="add-address ov" align="center" @tap="address">
+                <img src="./include/add.png">收货地址
+            </div>
+        </div>
+    </div>
+    <div class="other-list" v-show="pageData.raffle.history.length!=0">
+        <h3 class="title">
+            其他中奖信息
+        </h3>
+        <div class="list">
+            <ul>
+                <li v-for="gift in pageData.raffle.history">
+                    <span class="fr">{{gift.prize}}</span>
+                    <img :src="gift.avatar" alt="">
+                    <span class="ov">{{gift.nickname}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="prize-explain">
+        <h3 class="title">
+            抽奖活动说明
+        </h3>
+        <div class="list">
+            <p v-for="desc in pageData.raffle.info.description.split('\n')">
+                {{desc}}
+            </p>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="icon">
+            <div class="bg"></div>
+            <span>100%正品</span>
+        </div>
+        <div class="icon">
+            <div class="bg"></div>
+            <span>优质低价</span>
+        </div>
+        <div class="icon">
+            <div class="bg"></div>
+            <span>极速发货</span>
+        </div>
+        <div class="icon">
+            <div class="bg"></div>
+            <span>退换无忧</span>
+        </div>
+    </div>
+    <link rel="import" href="./mask.html?__inline">
+</div>
+<!--&lt;!&ndash;老版本&ndash;&gt;-->
+<!--<div class="mui-popup-backdrop mui-active" style="display: none" v-show="isApp()&&(iosVer()&&iosVer()<430||androidVer()&&androidVer()<430)"></div>-->
+<!--<div class="mui-popup mui-popup-in" style="display: none"  v-show="isApp()&&(iosVer()&&iosVer()<430||androidVer()&&androidVer()<430)">-->
+    <!--<div class="mui-popup-inner">-->
+        <!--<div class="mui-popup-title"></div>-->
+        <!--<div class="mui-popup-text">抱歉老版本用户不能参加我们的抽奖活动，赶紧去应用市场下载最新MEMEBOX吧！</div>-->
+    <!--</div>-->
+    <!--<div class="mui-popup-buttons" @tap="app_back"><span class="mui-popup-button mui-popup-button-bold">知道啦</span></div>-->
+<!--</div>-->
+<script src="../../../js/vendor/mui/mui.view.js"></script>
+<script src="../../../js/vendor/mui/mui.picker.js"></script>
+<script src="../../../js/vendor/mui/mui.poppicker.js"></script>
+<script src="../../../js/vendor/city.data-3.js?s=new"></script>
+<script src="../../../js/vendor/city.js"></script>
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+<script src="../../../js/appsdk/app.js"></script>
+<script>
+    require('special/newprize/prize');
+</script>
+</body>
+</html>

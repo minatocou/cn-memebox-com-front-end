@@ -1,0 +1,233 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+.mui-bar-nav~.mui-content #pullrefresh {
+  padding-top: 44*@xem;
+}
+
+.pre-container .pre-list {
+  .pre-item {
+    position: relative;
+    overflow: hidden;
+    padding: 2*@xem 0 2*@xem 2*@xem;
+    //padding: 10*@xem 10*@xem 0;
+  }
+}
+
+.pre-container
+.banner {
+  img {
+    vertical-align: top;
+    width: 100%;
+  }
+}
+
+.colorfff91a {
+  color: #fff91a;
+}
+
+.time-con {
+  height: 130*@xem;
+  padding-top: 15*@xem;
+  text-align: center;
+  color: #fff;
+  background: url("include/timebg.png") center center no-repeat;
+  background-size: cover;
+  font-size: 15*@xem;
+  .time {
+    font-size: 11*@xem;
+    margin-top: 10*@xem;
+    span {
+      line-height: 40*@xem;
+      span {
+        vertical-align: middle;
+        width: 27*@xem;
+        height: 40*@xem;
+        text-align: center;
+        display: inline-block;
+        background: url("include/numbg.png") center center no-repeat;
+        background-size: cover;
+        font-size: 23*@xem;
+      }
+    }
+    .second span {
+      color: #fff91a;
+    }
+  }
+  a {
+    font-size: 16*@xem;
+    margin-top: 10*@xem;
+    display: inline-block;
+    font-weight: bold;
+  }
+}
+
+.pre-over {
+  height: 75*@xem;
+}
+
+.product-img {
+  float: left;
+  width: 124*@xem;
+  height: 124*@xem;
+  position:relative;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.product-info {
+  position: relative;
+  overflow: hidden;
+  padding:14*@xem 15*@xem 15*@xem 10*@xem;
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transform: scaleY(0.5);
+    background: #e0e0e0;
+    height: 1*@xem;
+  }
+  h2 {
+    font-size: 13*@xem;
+    color: #333;
+    height: 40*@xem;
+    line-height: 20*@xem;
+    margin: 0;
+  }
+  em {
+    font-style: normal;
+    display: inline-block;
+    margin: 0 -2*@xem 0 -3*@xem;
+  }
+  .product-priceBox {
+    //position: absolute;
+    float: left;
+    .double11-price {
+      .double11-tag {
+        width: 36*@xem;
+        height: 12*@xem;
+        display: inline-block;
+        img{
+          width:100%;
+          height:100%;
+        }
+      }
+      .ls-double11-price {
+        font-size: 14*@xem;
+        color: #ff5073;
+        em {
+          font-size: 12*@xem;
+        }
+      }
+    }
+    .pre-price {
+      margin-top: 5*@xem;
+      .pre-tag {
+        height: 15*@xem;
+        line-height: 15*@xem;
+        padding: 1*@xem 3*@xem;
+        background: url("include/pre-tag.png") center center no-repeat;
+        background-size: cover;
+        color: #fff;
+        font-size: 12*@xem;
+        text-align: center;
+        margin-bottom: 5*@xem;
+      }
+      .pre-tag~div{
+        margin-top: 5*@xem;
+      }
+      .ls-current-price {
+        font-size: 18*@xem;
+        color: #ff75c0;
+        em {
+          font-size: 16*@xem;
+        }
+      }
+      .ls-original-price {
+        font-size: 12*@xem;
+        color: #999;
+        em {
+          font-size: 10*@xem;
+        }
+      }
+    }
+  }
+  .product-foot {
+    position: absolute;
+    right: 15*@xem;
+    bottom:15*@xem;
+    padding:0 5*@xem;
+    min-width: 100*@xem;
+    background-color: #ff75c0;
+    line-height: 35*@xem;
+    text-align: center;
+    color: #fff;
+    font-size: 15*@xem;
+    border-radius: 2*@xem;
+    white-space: nowrap;
+  }
+}
+
+.pre-container .pre-list {
+  .over {
+    position: relative;
+    .product-foot{
+      background-color: #e0e0e0;
+      color: #999;
+    }
+    .stock-out {
+      width: 65*@xem;
+      height: 65*@xem;
+      line-height: 65*@xem;
+      border-radius: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-top:-32.5*@xem;
+      margin-left:-32.5*@xem;
+      font-size: 15*@xem;
+      color: #fff;
+      text-align: center;
+    }
+  }
+}
+
+.prelist-nostart{
+  .nostart{
+    width: 65*@xem;
+    height: 65*@xem;
+    line-height: 65*@xem;
+    border-radius: 100%;
+    background: rgba(218,38, 118, 0.7);
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-top:-32.5*@xem;
+    margin-left:-32.5*@xem;
+    font-size: 15*@xem;
+    color: #fff;
+    text-align: center;
+  }
+  .product-foot{
+    background:#e0e0e0;
+    color: #999;
+  }
+}
+
+.pre-container .prelist-over {
+  .product-info {
+    .product-foot{
+      background-color: #e0e0e0;
+      color: #999;
+    }
+  }
+}
+.product-info h2{
+  font-weight: normal;
+}

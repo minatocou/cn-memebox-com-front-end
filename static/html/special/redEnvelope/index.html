@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body>
+    <div class="main-container" v-show="init" style="display: none">
+        <img class="main-bg" src="images/song.jpg"/>
+        <div class="main-content-container">
+            <div class="white-layer">
+                <div v-show="pageData">
+                    <!--顶部-->
+                    <!-- <div class="status-title" v-show="currentStatus != 'NORMAL' ">
+                        {{STATUS_TITLE[currentStatus]}}
+                    </div> -->
+
+                    <!--蜜豆-->
+                    <div class="coupon">
+                        <div class="coupon-info fleft">
+                            <template v-if="coupon.price">
+                                <div class="pre">￥</div>
+                                <div class="price-number">{{coupon.price | toInt}}</div>
+                            </template>
+                            <template v-else>
+                                <div class="pre">￥</div>
+                                <div class="price">?</div>
+                            </template>
+
+                            <div class="text">蜜豆</div>
+                        </div>
+                        <div class="coupon-text fleft">
+                            <div class="sub-title">宋仲基红包分享计划,最高可获{{pageData.maxPrice}}个蜜豆</div>
+                        </div>
+                    </div>
+
+                    <!--底部-->
+                    <div class="coupon-container clearfix" v-if="coupon">
+                        <p>红包已绑定到您的账户中</p>
+                        <p>登录APP即可使用</p>
+                        <div class="pink-button margin-bottom" @tap="getAppUrl">
+                            立即使用
+                        </div>
+                        <span class="act-rule" @tap="popRule">活动详细规则 ></span>
+                    </div>
+                    <div v-else class="coupon-phone">
+                        <!--表单-->
+                        <div class="overdue-text clearfix" v-if="currentStatus == 'FAILED'">
+                            好像没领成功唉~<br>
+                            蜜豆不知道飘到哪里去了。。。
+                            <div class="pink-button margin-bottom">没领上,再试试</div>
+                        </div>
+                        <div v-else>
+                            <div class="form" v-if="!pageData.isOverdue && pageData.availableTime">
+                                <validator name="validation">
+                                    <div class="tel clearfix">
+                                        <div class="icon fleft"></div>
+                                        <input class="fleft"
+                                               v-model="formData.phone"
+                                               v-validate:phone="['phone']"
+                                               type="text"
+                                               maxlength="11"
+                                               placeholder="请输入手机号码">
+                                    </div>
+                                    <div class="code clearfix">
+                                        <div class="icon fleft"></div>
+                                        <input class="fleft"
+                                               v-validate:code="['code']"
+                                               v-model="formData.code"
+                                               type="text"
+                                               maxlength="5"
+                                               placeholder="请输入验证码">
+                                        <template v-if="hasPostMes">
+                                            <div class="get-code fright">还剩{{timer}}s</div>
+                                        </template>
+                                        <template v-else>
+                                            <div class="get-code fright" @tap="getPhoneCode">获取短信验证码</div>
+                                        </template>
+                                    </div>
+                                    <div class="pink-button" @tap="checkAndGetCoupon">确定绑定</div>
+                                    <span class="act-rule" @tap="popRule">活动详细规则 ></span>
+                                </validator>
+                            </div>
+                            <!--无次数-->
+                            <div class="overdue-text clearfix" v-else>
+                                别灰心,红包没了宋仲基还在。<br>
+                                快来美美箱和老公一起遨游最in韩妆平台!
+                                <div class="pink-button margin-bottom" @tap="getAppUrl">现在就去逛逛</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="service-container">
+            <img src="images/service.jpg">
+        </div>
+    </div>
+    <div class="mui-backdrop rule-popup-container">
+        <div class="rule-popup">
+            <div class="close" @tap="closeRule">x</div>
+            <div class="header">活动详细规则</div>
+            <div class="content">
+                <div id="js_rule_pop_content">
+                    {{{pageData.description}}}
+                </div>
+                <div class="button" @tap="closeRule">
+                    我知道了
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<link rel="import" href="../../include/c.html?__inline">-->
+    <link rel="import" href="../../include/ga.html?__inline">
+</body>
+
+<script>
+    require('special/redEnvelope/app');
+</script>
+
+</html>

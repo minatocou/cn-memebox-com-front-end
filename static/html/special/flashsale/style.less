@@ -1,0 +1,266 @@
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+html,body{
+  position: relative;
+  height:100%;
+  width: 100%;
+  background: #fff;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+nav{
+  position:fixed;
+  width:100%;
+  &:first-child{
+    top:0;
+  }
+  &:last-child{
+    top: 40*@xem;
+  }
+  background:#3a4047;
+  .swiper-container{
+    color:@gray-9;
+    font-size: 14px;
+    .swiper-slide-active{
+      color:#fff;
+      p{
+        color:#fff;
+      }
+    }
+  }
+  .swiper-slide {
+    height: 40*@xem;
+    line-height: 40*@xem;
+    text-align: center;
+    background: transparent;
+    font-size:12*@xem;
+    color:@gray-9;
+  }
+  .swiper-check{
+    position: absolute;
+    background: #31363c;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    left: 40%;
+  }
+}
+.nav-time{
+  width:100%;
+  background:#f7f7f7;
+  overflow: scroll;
+  white-space: nowrap;
+  .block{
+    width: 20%;
+    display: inline-block;
+    padding:5*@xem 0;
+    p{
+      margin:0;
+      text-align: center;
+      color:@gray-9;
+      &:first-child{
+        margin-bottom: 5*@xem;
+        font-size: 16*@xem;
+      }
+      &:last-child{
+        font-size: 12*@xem;
+      }
+    }
+  }
+  .active{
+    background: @mainColor;
+    p{
+      color:#fff;
+    }
+  }
+  //.swiper-check{
+  //  position: absolute;
+  //  background: @mainColor;
+  //  top: 0;
+  //  height: 100%;
+  //  width: 20%;
+  //  left: 40%;
+  //  &:after{
+  //    content: "";
+  //    position: absolute;
+  //    bottom:-5*@xem;
+  //    right: 50%;
+  //    margin-right:-5*@xem;
+  //    width: 10*@xem;
+  //    height:5*@xem;
+  //    border-top: 5*@xem solid @mainColor;
+  //    border-right: 5*@xem solid #fff;
+  //    border-left: 5*@xem solid #fff;
+  //  }
+  //}
+  //.swiper-slide{
+  //  height: 50*@xem;
+  //  flex-direction: column;
+  //  justify-content: space-around;
+  //  align-items: center;
+  //  line-height: normal;
+  //  p{
+  //    margin: 0;
+  //  }
+  //}
+
+}
+.tab{
+  position: relative;
+  z-index: 3;
+  height: 90*@xem;
+}
+.countdown{
+  position: relative;
+  padding:15*@xem 0;
+  //&:before,&:after{
+  //  content: "";
+  //  width: 105*@xem;
+  //  height: 1*@xem;
+  //  background: @gray-c;
+  //  display: inline-block;
+  //  vertical-align: middle;
+  //}
+  //&:before{
+  //  margin-right: 10*@xem;
+  //}
+  //&:after{
+  //  margin-left: 10*@xem;
+  //}
+
+  &.no-start{
+    span:first-child{
+      &:before{
+        content: "距离活动开始：";
+      }
+    }
+  }
+  &.end{
+    span:first-child{
+      &:before{
+        content: "活动已结束";
+      }
+    }
+    span:last-child{
+      display: none;
+    }
+  }
+  &.start{
+    span:first-child{
+      &:before{
+        content: "本场还剩：";
+      }
+    }
+  }
+  span{
+    display: inline-block;
+    vertical-align:middle;
+  }
+  span:first-child{
+    color:@gray-9;
+    font-size: 12*@xem;
+  }
+  span:last-child{
+    color: @title;
+    font-size: 14*@xem;
+  }
+}
+.flash-list{
+  background: #fff;
+  li{
+    padding:4*@xem 15*@xem 4*@xem 5*@xem;
+    border-bottom:5*@xem solid @mainBg;
+    overflow: hidden;
+  }
+  .ov2{
+    font-size:13*@xem;
+  }
+  p{
+    color:@title;
+    font-size:12*@xem;
+  }
+  img{
+    float: left;
+    width:120*@xem;
+    height: 120*@xem;
+  }
+  .right{
+    position: relative;
+    padding-top: 14*@xem;
+    margin-left: 130*@xem;
+    height: 120*@xem;
+  }
+  .bottom{
+    position: absolute;
+    width: 100%;
+    bottom:15*@xem;
+    p{
+      display: none;
+      font-size:12*@xem;
+      color:#feb11c;
+      margin: 5*@xem 0 0;
+      &:after{
+        content:" 准时开抢";
+      }
+    }
+  }
+  del{
+    font-size: 12*@xem;
+    color:#bbb;
+    &:before{
+      content:"¥";
+    }
+  }
+  .price{
+    font-size: 18*@xem;
+    color:@mainColor;
+    &:before{
+      content:"¥";
+    }
+  }
+  .button{
+    position: absolute;
+    bottom:0;
+    right:0;
+    background: @mainColor;
+    font-size: 13*@xem;
+    color:#fff;
+    border-radius:4*@xem;
+    line-height: 25*@xem;
+    height: 25*@xem;
+    width: 70*@xem;
+    text-align: center;
+    &:before{
+      content: "立即秒杀";
+    }
+  }
+  .disabled{
+    background:@gray-c;
+    &:before{
+      content: "抢光了";
+    }
+  }
+  .no-start{
+    .info{
+      display: block;
+    }
+    .button{
+      &:before{
+        content: "去看看";
+      }
+    }
+  }
+  .end{
+    .button{
+      background:@gray-c;
+      &:before{
+        content: "已结束";
+      }
+    }
+  }
+}

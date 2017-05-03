@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a href="my_orders.html" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <a v-show="order.orderState=='待支付'" style="display: none" @tap="cancelOrder(order.realOrderId)"
+       class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">取消订单</a>
+    <h1 class="mui-title">订单详情</h1>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <div class="address-box bw">
+        <a v-if="getOutsAttr('trackingLabel')" @tap="goOuts(getOutsAttr('outsid'))"
+           class="mui-navigate-right tip">订单号：{{order.realOrderId}} <span class="fr red">{{getOutsAttr('trackingLabel')}}</span></a>
+        <a v-else class="tip">
+            订单号：{{order.realOrderId}}
+        </a>
+        <div class="address">
+            <div class="title">收货人：{{order.shippingName}} {{order.shippingInfo.phone}}</div>
+            <p class="ov2">{{order.shippingInfo.province}}{{order.shippingInfo.city}}
+                {{order.shippingInfo.district}}
+                {{order.shippingInfo.street}}
+            </p>
+            <p v-show="order.shippingInfo.idcard" class="icon-user">{{order.shippingInfo.idcard |
+                encryption}}</p>
+        </div>
+    </div>
+    <ul class="pro bw" v-show="order.orderProductInfo">
+        <li v-for="o in order.orderProductInfo" class="mui-table-view-cell">
+            <a>
+                <div class="cart-img">
+                    <img class="pro-icon" v-if="order.is_GWP=='1'" :src="getProIcon(order)">
+                    <img class="pro-icon" v-else :src="getProIcon(o,order)">
+                    <img class="pro-img" :src="o.img" alt=""/>
+                </div>
+                <div @tap="goPro(o.productId,o.price)" class="cart-text">
+                    <div class="title">
+                        <span class="ov2">{{o.brandName}}&nbsp;{{o.name}}</span>
+                        <p class="gray ov">
+                            <template v-if="o.bundleOption.length">
+                                <span v-for="option in o.bundleOption" :value="option.productId">&quot;{{option.name}} x{{option.qty}}&quot;&nbsp;</span>
+                            </template>
+                            <span v-if="o.options.length" v-for="option in o.options">{{option.title}}</span>
+                        </p>
+                    </div>
+
+                    <div v-if="order.isPresale==1" class="red">￥{{o.presaleInfo.prePrice}}
+                        <span class="num">x{{o.qty}}件</span>
+                    </div>
+
+                    <div v-else class="red">￥{{getPrice(o)}}
+                        <span class="num">x{{o.qty}}件</span>
+                    </div>
+
+                </div>
+            </a>
+            <div v-if="order.isPresale==1" class="presale">
+                <ul>
+                    <li class="mui-table-view-cell presale-li no-border"
+                        :class={'red':presaleStatus()==1}>
+                        <span>第一步 预付定金{{(o.presaleInfo.depositPaymentFlag==1||o.presaleInfo.depositPaymentFlag==2)?'(已支付)':''}}</span>
+                        <span class="ft">￥{{toFixed2(o.presaleInfo.deposit)}}</span>
+                    </li>
+                    <li class="mui-table-view-cell presale-li"
+                        :class={'red':presaleStatus()==2}>
+                        <span>
+                            第二步 补尾款 {{presaleStatus()==3?'(已支付)':''}}
+                            <br v-if="presaleStatus()==1||presaleStatus()==2">
+                            {{(presaleStatus()==1||presaleStatus()==2)?('('+presaleFormatTime(o.presaleInfo.startRetainageTime)+' 可支付尾款)'):''}}
+                        </span>
+                        <span class="ft">￥{{toFixed2(o.presaleInfo.restPrice)}}</span>
+                    </li>
+                    <li class="mui-table-view-cell presale-li">
+                        <div align="right" class="count-total">
+                            订单总额：<span class="price-text">{{toFixed2(o.presaleInfo.totalPrice)}}</span>
+                            <div>(含运费¥0.00)</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul v-show="order.krChildOrders && order.krChildOrders.krOrderProductInfo" class="pro bw">
+        <li v-show="order.localChildOrders.localChildOrderId || (order.localChildOrders.localChildOrderId && order.krChildOrders.krChildOrderId)"
+            class="mui-table-view-cell">
+            <div>订单号：{{order.krChildOrders.krChildOrderId}}<a @tap="goOuts(order.krChildOrders.outsid)"
+                                                              v-show="order.localChildOrders.outsid"
+                                                              class="fr red mui-navigate-right">{{order.krChildOrders.trackingLabel}}</a>
+            </div>
+        </li>
+        <li v-for="o in order.krChildOrders.krOrderProductInfo" class="mui-table-view-cell">
+            <a>
+                <div class="cart-img">
+                    <img class="pro-icon" :src="getProIcon(o,order)">
+                    <img class="pro-img" :src="o.img[0]" alt=""/>
+                </div>
+                <div @tap="goPro(o.productId,o.price)" class="cart-text">
+                    <div class="title">
+                        <span class="ov2">{{o.brandName}}&nbsp;{{o.name}}</span>
+                        <p class="gray ov">
+                            <span v-for="option in o.options">{{option.title}}</span>
+                        </p>
+                    </div>
+
+                    <div class="red">￥{{getPrice(o)}}
+                        <span class="num">x{{o.qty}}件</span>
+                    </div>
+
+                </div>
+            </a>
+        </li>
+    </ul>
+    <ul v-show="order.localChildOrders && order.localChildOrders.localOrderProductInfo" class="pro bw">
+        <li v-show="order.krChildOrders.krChildOrderId || (order.localChildOrders.localChildOrderId && order.krChildOrders.krChildOrderId)"
+            class="mui-table-view-cell">
+            <div>订单号：{{order.localChildOrders.localChildOrderId}}<a @tap="goOuts(order.localChildOrders.outsid)"
+                                                                    v-show="order.localChildOrders.outsid"
+                                                                    class="fr red mui-navigate-right">{{order.localChildOrders.trackingLabel}}</a>
+            </div>
+        </li>
+        <li v-for="o in order.localChildOrders.localOrderProductInfo" class="mui-table-view-cell">
+            <a>
+                <div class="cart-img">
+                    <img class="pro-icon" :src="getProIcon(o,order)">
+                    <img class="pro-img" :src="o.img[0]" alt=""/>
+                </div>
+                <div @tap="goPro(o.productId,o.price)" class="cart-text">
+                    <div class="title">
+                        <span class="ov2">{{o.brandName}}&nbsp;{{o.name}}</span>
+                        <p class="gray ov">
+                            <span v-for="option in o.options">{{option.title}}</span>
+                        </p>
+                    </div>
+                    <div class="red">￥{{getPrice(o)}}
+                        <span class="num">x{{o.qty}}件</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+
+    <ul class="mui-table-view order-text box-title">
+        <li v-show="order.subtotal">商品总额 <span class="red fr">￥{{getPriceTotal(order)}}</span></li>
+        <li v-show="order.shippingAmount">运费
+                <span class="red fr" v-if="isGroupon(order)">
+                    ￥0
+                </span>
+                <span class="red fr" v-else>
+                    ￥{{order.shippingAmount}}
+                </span>
+        </li>
+        <li v-show="order.discountAmount && !isBonded()">优惠券 <span
+                class="red fr">￥{{(order.is_GWP=='1'||order.is_GWP=='1')?'0.00':order.discountAmount}}</span></li>
+        <li v-show="order.rewardPointsDiscount && !isBonded()">蜜豆抵扣 <span
+                class="red fr">￥{{(order.isPresale=='1'||order.is_GWP=='1')?'0.00':order.rewardPointsDiscount==0?order.rewardPointsDiscount:('-'+order.rewardPointsDiscount)}}</span>
+        </li>
+        <li>订单金额 <span class="fr red">￥{{(presaleInfo&&presaleInfo.totalPrice)||order.grantTotal}}</span></li>
+        <li v-if="order.rewardBack">本单返现 <span class="fr red">{{(order.isPresale=='1'||order.is_GWP=='1')?'0':order.rewardBack}} 蜜豆</span></li>
+        <li>下单时间 <span class="fr gray">{{order.createdAt}}</span></li>
+    </ul>
+    <!--预售-->
+    <template v-if="order.isPresale==1">
+        <a v-if="presalePay()=='1'"
+           class="mui-btn mui-btn-block mui-btn-mm mui-table-view"
+           @tap="showMyPayBox"
+        >付定金</a>
+        <a v-if="presalePay()=='2'"
+           class="mui-btn mui-btn-block mui-btn-mm mui-table-view" @tap="showMyPayBox">付尾款</a>
+        <a v-if="presalePay()=='3'"
+           class="mui-btn mui-btn-block mui-table-view mui-btn-gray">付尾款</a>
+        <a v-if="presalePay()=='4'||presalePay()=='5'"
+           class="mui-btn mui-btn-block mui-btn-mm mui-table-view">
+            <div @tap="toDetail()">再次购买</div>
+        </a>
+    </template>
+    <!--非预售-->
+    <template v-else>
+        <a v-show="order.orderState=='待支付'&&order.orderProductInfo"
+           class="mui-btn mui-btn-block mui-btn-mm mui-table-view"
+           @tap="showMyPayBox"
+        >去支付</a>
+        <a v-show="order.orderState!='待支付'" class="mui-btn mui-btn-block mui-btn-mm mui-table-view">
+            <div v-if="order.isGroupon == 1" @tap="toDetail()">再拼一单</div>
+            <div v-else @tap="addToCart(order)">再次购买</div>
+        </a>
+    </template>
+
+</div>
+<select-pay :pay="pay" v-ref:pay></select-pay>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script>
+    require('my/order');
+</script>
+
+</html>

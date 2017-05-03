@@ -1,0 +1,387 @@
+@import "../../../css/variables";
+@data-color:         #cb6e70;
+html {
+  font: 14px @font-family;
+  color: @text-gray;
+  line-height: normal;
+}
+body{
+  font-size: 14*@xem;
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font: 16px @font-family;
+
+  }
+
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font: 16px @font-family;
+  }
+}
+
+body, html, ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+*, *:after, *:before {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-user-select: -moz-none;
+  -webkit-touch-callout: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button, input {
+  -webkit-appearance: none;
+  font-family: @font-family;
+  outline: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 14*@xem;
+  -webkit-appearance: none;
+}
+
+a {
+  text-decoration: none;
+}
+html,body {
+	height: 100%;
+	background-color: #fff;
+	overflow: hidden;
+}
+.page-main {
+	overflow: auto;
+	position: relative;
+	height: 100%;
+	font-weight: 400;
+	line-height: 1.6;
+	font-size: 16*@xem;
+	padding: 0 20*@xem;
+	padding-bottom: 87*@xem;
+	z-index: 1;
+}
+.theme-text {
+	font-size: 14*@xem;
+	color: @data-color;
+	margin-left: 15*@xem;
+}
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+.inline-block { 
+	display: inline-block; 
+}
+.half-line {
+	float: left;
+	width: 50%;
+	font-size: 14*@xem;
+}
+.font-bigger {
+	font-size: 16*@xem;
+}
+.h-100p {
+	height: 100%;
+}
+.ov-auto {
+	overflow: auto;
+}
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.hide {
+	display: none !important;
+}
+.show {
+	display: block !important;
+}
+.mt-14 {
+	margin-top: 14*@xem;
+}
+.banner {
+	&-wrapper {
+		margin: 0 -20*@xem;
+		padding: 10*@xem 15*@xem;
+		background: url(include/bj.png) no-repeat;
+		background-size: 100% 100%;
+		color: #fff;
+	}
+	&-container {
+		display: table;
+		width: 100%;
+	}
+	&-left-img {
+		display: table-cell;
+		.img-wrapper {
+			background: url(include/icon.png) no-repeat center;
+			background-size: 100% auto;
+			width: 110*@xem;
+			height: 90*@xem;
+		}
+	}
+	&-right-content {
+		padding-left: 15*@xem;
+		display: table-cell;
+		width: 100%;	
+		vertical-align: middle;
+	}
+	&-title {
+		font-size: 18.4*@xem;
+		line-height: 1.33;
+		margin-top: 0;
+	}
+	&-description {
+		font-size: 15*@xem;
+		line-height: 1.4;
+		max-height: 2.8em;
+		overflow: hidden;
+	}
+}
+
+.questionnaire-description {
+	word-wrap: break-word;
+	margin: 15*@xem 16*@xem 30*@xem;
+	text-align: center;
+	font-size: 15*@xem;
+	color: #bbb;
+	line-height: 1.4;
+}
+.question-list {
+	padding-left: 30*@xem;
+	& > li {
+		padding-left: 4*@xem;
+		position: relative;
+		margin: 30*@xem 0 25*@xem;
+	}
+}
+.question-title {
+	margin-bottom: 8*@xem;
+	font-weight: 600;
+	font-size: 18*@xem;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.question-btn-wrap {
+	position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20*@xem 40*@xem;
+    text-align: center;
+    margin-top: -87*@xem;
+    z-index: 2;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transition: all .3s ease 0s;
+    transition: all .2s ease 0s;
+    background-color: #fff;
+    &.active {
+    	-webkit-transform: scale(1);
+    	        transform: scale(1);
+    }
+    button {
+    	color: #fff;
+    	padding: 10*@xem 0;
+    	width: 100%;
+    	font-size: 18*@xem;
+	    border: 0.0625rem solid #ff5073;
+	    background-color: #ff5073;
+    }
+}
+.answer-complete-block {
+	position: relative;
+	z-index: 100;
+	height: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	-webkit-transition: all .3s ease 0s;
+	transition: all .3s ease 0s;
+	&.active {
+		-webkit-transform: translateY(-100%);
+		        transform: translateY(-100%);
+	}
+	.question-btn-wrap {
+		position: relative;
+		bottom: auto;
+		display: block;
+		margin-top: 0;
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
+}
+.avatar-container {
+	margin: 32*@xem 0;
+	.avatar-face{
+		height: 86*@xem;
+		background: url(include/face_avartar.png) no-repeat center;
+		background-size: auto 100%;
+	}
+}
+.question-thanks {
+	font-size: 20*@xem;
+	text-align: center;
+	margin: 12*@xem 0 16*@xem;
+}
+.question-index {
+	position: absolute;
+	left: -20*@xem;
+	top: 1*@xem;
+}
+.question-checked-tag {
+	display: none;
+	& input[type] {
+		left: -34*@xem;
+		top: 0;
+		background-color: #fff;
+	}
+}
+.question-option {
+	&-container {
+		-webkit-transition: all .3s ease 0s;
+		transition: all .3s ease 0s;
+		overflow: hidden;
+		&.collapse {
+			height: 0 !important;
+		}
+	}
+	&-list {
+		list-style: none; 
+		li:only-child {
+			list-style: none;
+			padding-left: 8*@xem;
+		}
+		li:not(:only-child) {
+			padding-left: 64*@xem;
+			border-bottom: 1*@xem solid #ddd;
+			.order-list-style {
+				position: absolute;
+				height: 100%;
+				width: 21*@xem;
+				left: -24*@xem;
+				text-align: center;
+			}
+		}
+	}
+}
+.textarea-container {
+	margin: 0;
+	textarea {
+		border: 1*@xem solid #ddd;
+		border-radius: 6*@xem;
+		margin-bottom: 0;
+		padding: 6*@xem 12*@xem;
+		&:focus{
+			/*box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @red-text;*/
+		}
+	}
+}
+.must-input-tag {
+	color: @red-text;
+	vertical-align: middle;
+}
+.block-input-wrap {
+	display: inline-block;
+	word-wrap: break-word;
+	word-break: break-all;
+	line-height: 50*@xem;
+	/*padding-left: 30*@xem;*/
+	& input[type="radio"],input[type="checkbox"] {
+		top: 11*@xem;
+		left: -56*@xem;
+	}
+}
+.choose-ready {
+	border: 0; 
+	background-color: #303030;
+	padding: 8*@xem 45*@xem;
+	font-size: 17*@xem;
+	margin-left: 8*@xem;
+	color: #fff;
+}
+.choosed-item {
+	font-size: 15*@xem;
+	font-weight: 400;
+	padding-left: 20*@xem;
+}
+.go-back {
+	padding: 6*@xem 40*@xem;
+	float: right;
+	font-size: 17*@xem;
+}
+.submit-msg {
+	width: 14em;
+	margin: 0 auto;
+	text-align: center;
+}
+.app-loader {
+  position: fixed;
+  display: none;
+  top: 40%;
+  width: 90*@xem;
+  left: 50%;
+  margin-left: -45*@xem;
+  z-index: 1000;
+  .logo {
+    width: 90*@xem;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    width: 70*@xem;
+    left: 10*@xem;
+    height: 20*@xem;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .8) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .8) 50%, rgba(255, 255, 255, 0) 100%);
+    top: 10*@xem;
+    z-index: 10000;
+    /*
+      安卓4.4会挂掉......
+    */
+    animation: loading 1.5s ease-out infinite;
+    -webkit-animation: loading 1.5s ease-out infinite;
+  }
+}
+.mui-android-4-4{
+  .app-loader {
+    &:before {
+      animation-name: none;
+      -webkit-animation-name: none;
+    }
+  }
+}
+@-webkit-keyframes loading {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0,50*@xem, 0);
+            transform: translate3d(0,50*@xem, 0);
+  }
+
+}
+@keyframes loading {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0,50*@xem, 0);
+            transform: translate3d(0,50*@xem, 0);
+  }
+
+}

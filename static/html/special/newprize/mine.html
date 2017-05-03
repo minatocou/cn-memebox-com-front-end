@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="import" href="../../include/head.html?__inline">
+        <link rel="stylesheet" href="mine.less">
+    </head>
+    <body>
+    <div v-show="showPrize" style="display: none" >
+        <div class="address frame" v-if="pageData.raffle.myPrize.length > 0 && showMyPrizes" align="center">
+            <div class="peo" algin="center">
+                填写收货地址
+                <span class="close" @tap="hideMask"></span>
+            </div>
+            <div class="add-main" v-show="pageData.raffle.info.status!=2">
+                <validator name="validation">
+                    <form novalidate>
+                        <ul>
+                            <li>
+                                    <input type="text"
+                                           v-model="userInfo.name"
+                                           placeholder="请填写真实姓名"
+                                           name="username"
+                                           v-validate:username="['username']"
+                                    >
+                            </li>
+                            <li>
+                                    <input type="number"
+                                           name="phone"
+                                           v-model="userInfo.phone"
+                                           v-validate:phone="['phone']"
+                                           placeholder="请填写收货人电话">
+                            </li>
+                            <li>
+                                    <input type="text"
+                                           @click="selectCity"
+                                           name="address"
+                                           v-model="userInfo.address"
+                                           v-validate:address="{require:{rule:true,message:'请输入正确地址'}}"
+                                           placeholder="省份   市／地区   区县"
+                                           readonly
+                                    >
+                            </li>
+                            <li>
+                                <input type="text"
+                                       name="street"
+                                       v-model="userInfo.street"
+                                       v-validate:street="['street']"
+                                       placeholder="详细地址"
+                                >
+                            </li>
+                        </ul>
+                    </form>
+                </validator>
+                <span class="btn" @tap="addAddress">确定</span>
+            </div>
+            <div class="add-main" v-show="pageData.raffle.info.status==2">
+                        <ul>
+                            <li>
+                                    <input type="text"
+                                           v-model="userInfo.name"
+                                           placeholder="姓名"
+                                           name="username"
+                                           readonly
+                                    >
+                            </li>
+                            <li>
+                                    <input type="number"
+                                           name="phone"
+                                           v-model="userInfo.phone"
+                                           placeholder="收货人电话"
+                                           readonly
+                                    >
+                            </li>
+                            <li>
+                                    <input type="text"
+                                           name="address"
+                                           v-model="userInfo.address"
+                                           placeholder="省份   市／地区   区县"
+                                           readonly
+                                    >
+                            </li>
+                            <li>
+                                <input type="text"
+                                       name="street"
+                                       v-model="userInfo.street"
+                                       placeholder="详细地址"
+                                       readonly
+                                >
+                            </li>
+                        </ul>
+            </div>
+        </div>
+        <div class="myprize" :class="{'not': pageData.raffle.myPrize.length == 0}" align="center" v-if="showMyPrizes">
+            <div class="peo">已获奖品</div>
+            <div class="cont" align="center">
+            <template v-if="pageData.raffle.myPrize.length == 0">
+                <img src="./include/noprize.png" alt="" class="nothing">
+                <p>您还暂时未获得奖品</p>
+            </template>
+            <template v-else>
+                <ul>
+                    <li v-for="mine in pageData.raffle.myPrize">
+                        <!-- <img :src="hist.avatar" alt="" class="ava"> -->
+                        <div class="peolist">
+                            <p class="name">{{mine.prize}}</p>
+                            <p class="time">中奖时间 {{mine.time.split('2017-')[1]}}</p>
+                        </div>
+                        <img :src="mine.prize_img" alt="" class="pri">
+                    </li>
+                </ul>
+            </template>
+            </div>
+        </div>
+        </div>
+        <script src="../../../js/vendor/mui/mui.view.js"></script>
+        <script src="../../../js/vendor/mui/mui.picker.js"></script>
+        <script src="../../../js/vendor/mui/mui.poppicker.js"></script>
+        <script src="../../../js/vendor/city.data-3.js?s=new"></script>
+        <script src="../../../js/vendor/city.js"></script>
+        <link rel="import" href="../../include/c.html?__inline">
+        <link rel="import" href="../../include/ga.html?__inline">
+        <script src="../../../js/appsdk/app.js"></script>
+        <script>
+            require('special/newprize/mine.js');
+        </script>
+    </body>
+</html>

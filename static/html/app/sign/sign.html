@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>签到</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body >
+<div class="sign" id="app" v-show="init" style="display: none">
+    <!--日历-->
+    <div class="calendar" >
+        <div class="calendar-head" align="center">
+            <span>{{signData.year}}年{{signData.month}}月</span>
+        </div>
+        <div class="progress">
+            <span class="finish" :style="style"></span>
+        </div>
+        <div class="calender-main">
+            <ul>
+                <li>
+                    <span>周日</span>
+                    <span>周一</span>
+                    <span>周二</span>
+                    <span>周三</span>
+                    <span>周四</span>
+                    <span>周五</span>
+                    <span>周六</span>
+                </li>
+                <li>
+                    <span v-for="(index,value) in date.day"
+                          :class="value[1]">
+                        {{value[0]<10?'0'+value[0]:value[0]}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sign-rule">
+        <h4>签到规则</h4>
+        <p>1.以自然月为统计单位，截止到该自然月最后一天，累计签到满十天即可获得5蜜豆奖励，5蜜豆=5RMB;（每自然月至多赠送5个蜜豆）</p>
+        <p>2.5蜜豆自动发至账户，可在“个人中心-我的蜜豆”中查看，蜜豆可在下单结算时抵扣订单金额使用;</p>
+        <p>3.当月签到次数不满10天时无奖励，且次数自动清零，不会累计到下一个自然月。</p>
+    </div>
+</div>
+<div class="mask" align="center" v-show="mask&&succeed" style="display: none">
+    <div class="mask-layer" @touchstart="maskFoo"></div>
+    <div class="main">
+        <div class="day">
+            <div>
+                <span>第</span>
+                <span class="s">{{signData.record.length}}</span>
+                <span>天</span>
+            </div>
+        </div>
+        <div class="text">
+            <h4 v-show="10>signData.record.length">签到成功!</h4>
+            <p v-show="10>signData.record.length">本月再签到{{10-signData.record.length}}天就可以获得蜜豆奖励哦</p>
+            <h4 v-show="signData.record.length==10">你已获得5蜜豆!</h4>
+            <p v-show="signData.record.length==10">本月已累计签到10次</p>
+            <h4 v-show="signData.record.length>10">本月签到奖励已发放</h4>
+            <p v-show="signData.record.length>10">每自然月至多送5蜜豆</p>
+        </div>
+        <span class="btn" @touchstart="maskFoo">
+            知道啦
+        </span>
+    </div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<script src="../../../js/appsdk/app.js"></script>
+<link rel="import" href="../../include/ga.html?__inline">
+</body>
+<script>
+    require('app/sign/sign');
+</script>
+
+</html>

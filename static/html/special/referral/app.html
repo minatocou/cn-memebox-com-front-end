@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="app.less" rel="stylesheet"/>
+</head>
+<body>
+<div class="box" align="center" v-show="init" style="display: none">
+    <div class="top">
+        <h1>{{data.data.couponAmount}}元礼券赠好友</h1>
+        <h2>自己再获{{data.data.cashAmount}}元</h2>
+        <img src="include/app-banner.png" alt="邀请有礼">
+    </div>
+    <div class="rule">
+        <div class="fl">
+            <span>¥{{data.data.cashAmount}}</span>
+        </div>
+        <div class="rule-text">
+            <h3>邀请1人得{{data.data.cashAmount}}元蜜豆</h3>
+            <h4 @tap="ruleF">好友下单，您的蜜豆可使用</h4>
+            <p>&nbsp;&nbsp;( 除拼团预售、新人专享订单外 )</p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="content">
+            <span class="ball1"></span>
+            <span class="ball2"></span>
+            <span class="ball3"></span>
+            <span class="ball4"></span>
+            <div class="top-ball">
+
+            </div>
+            <div class="no-award" v-if="data.code=='0'||data.data.rewardList.length==0">
+            <img src="include/app-noaward.png" alt="请登录">
+            <p>居然还没有奖励</p>
+            <p>赶快去邀请好友领奖励吧！</p>
+            </div>
+            <div class="award" v-else>
+                <div class="award-top">
+                    <h4>我获得的奖励</h4>
+                    <p>以后的瓶瓶罐罐都靠闺蜜买单咯</p>
+                </div>
+                <div class="award-list">
+                    <div class="award-title">
+                        <span>已激活</span>
+                        <span class="number">{{data.data.activeCash.toFixed(2)}}</span>
+                        <!--<span>元</span>-->
+                    </div>
+                    <div class="progress-bar">
+                        <span :style='style'></span>
+                    </div>
+                    <div class="award-money">
+                        <span class="fr" @tap="ruleF">{{data.data.recordCash.toFixed(2)}}</span>
+                    </div>
+                    <div class="show-award" :class="!down&&'show-award-default'">
+                        <ul>
+                            <li>
+                                <span class="phone">好友</span>
+                                <span class="status">状态</span>
+                                <span class="reward">我的奖励</span>
+                            </li>
+                            <li v-for="list in  data.data.rewardList">
+                                <span  class="phone gray-6">{{list.phone}}</span>
+                                <span  class="status gray-6">{{list.status}}</span>
+                                <span class="reward gray-6 reward-state">
+                                    <span>
+                                        {{list.reward.slice(0,3)}}
+                                    </span>
+                                    <span>
+                                        {{list.reward.slice(5,list.reward.length).trim()}}
+                                    </span>
+                                </span>
+                                <!--<span  class="w-90 gray-6 orange" v-else>{{list.reward}}</span>-->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="up-down-container">
+                        <div v-show="data.data.rewardList.length>5" >
+                            <span class="up"  v-if="down"@tap="up">点击收起</span>
+                            <span class="down" v-else  @tap="up">查看更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rank">
+            <div class="title">
+                <span class="rank-text">
+                    邀请好友排名
+                </span>
+            </div>
+            <ul align="left">
+                <li v-for="(index,rank) in data.data.rank">
+                    <img class="icon" :src="'/images/app/special/referral/include/app-no'+(index+1)+'.png'" alt="好友排行">
+                    <img class="avatar" :src="rank.avatar" alt="好友头像">
+                    <span class="nickname">{{rank.nickname}}</span>
+                    <div class="fr">
+                        <span>{{rank.amount}}</span>
+                        <span>已入账蜜豆</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="ani-box">
+            <div class="ani" align="left" :style="{display:aniData.aniDisplay}">
+                <img :src="tends.avatar" alt="好友头像">
+                <div class="nickname">
+                    <span>{{tends.nickname}}</span>
+                    <span>发出一个变美的邀请</span>
+                </div>
+                <div class="show-time">
+                    <span>{{aniData.number}}s之前</span>
+                </div>
+            </div>
+        </div>
+        <div class="btn">
+            <a  @tap="appShare" class="share-btn">点击分享</a>
+        </div>
+        <!--<span class="fr" @touchend="ruleF">活动规则&nbsp;></span>-->
+    </div>
+</div>
+<div class="mask" v-show="rule" style="display: none">
+    <div class="mask-bg" @touchend="ruleF"></div>
+    <div class="show-rule">
+        <div class="rule-title">
+            <h4>活动规则</h4>
+            <span @touchend="ruleF"></span>
+        </div>
+        <div class="text">
+            <p v-for="desc in data.data.desc">{{desc}}</p>
+        </div>
+    </div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+
+</body>
+<script>
+    require('special/referral/app');
+</script>
+
+</html>

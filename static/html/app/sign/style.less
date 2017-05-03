@@ -1,0 +1,201 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+
+html {
+  min-height: 100%;
+  background: linear-gradient(#fb9eb1, #fc6684);
+  background: -webkit-linear-gradient(#fb9eb1, #fc6684);
+}
+
+body {
+  background: transparent;
+}
+
+.sign {
+  padding: 10*@xem;
+}
+
+.calendar {
+  border-radius: 10*@xem;
+  background: #fff;
+}
+
+.calendar-head {
+  height: 50*@xem;
+  span {
+    color: @mainColor;
+    font-size: 18*@xem;
+    line-height: 50*@xem;
+  }
+}
+
+.progress {
+  position: relative;
+  height: 5*@xem;
+  background-color: #efeded;
+  .finish {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background-color: #fc6f8b;
+    &:after {
+      position: absolute;
+      content: "";
+      top: 50%;
+      right: 0;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 18*@xem;
+      height: 18*@xem;
+      border-radius: 50%;
+      background: url("include/css-progress.png") @mainColor no-repeat center center;
+      background-size: 10*@xem;
+    }
+  }
+}
+
+.calender-main {
+  font-size: 0;
+  ul {
+    padding: 15*@xem 1%;
+    span {
+      position: relative;
+      float: left;
+      width: 14%;
+      text-align: center;
+      font-size: 13*@xem;
+      line-height: 40*@xem;
+      color: rgb( 41, 36, 36 );
+    }
+    .other{
+      color: rgba( 41, 36, 36, 0.302 );
+    }
+    li {
+      &:first-child {
+        span{
+          font-size: 12*@xem;
+        }
+      }
+    }
+    li {
+      overflow: hidden;
+      font-size: 13*@xem;
+    }
+    .today{
+      &:after{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        content: "";
+        width: 30*@xem;
+        height: 30*@xem;
+        background:url("include/css-today.png") no-repeat center center;
+        background-size: 30*@xem;
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+      }
+    }
+    .sign-day{
+      .today;
+      &:after{
+        background-image:url("include/css-sign-day.png");
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.sign-rule {
+  margin-top: 25*@xem;
+  padding:0 5*@xem;
+  h4 {
+    font-size: 16*@xem;
+    margin-bottom: 10*@xem;
+    font-weight: normal;
+    color: #fff;
+  }
+  p {
+    font-size: 14*@xem;
+    line-height: 20*@xem;
+    color: #fff;
+  }
+}
+
+.mask {
+  .mask-layer{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom:0;
+    right:0;
+  }
+  .main {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    padding: 40*@xem 25*@xem 20*@xem;
+    border-radius: 10*@xem;
+    background-color: rgb(255, 255, 255);
+    margin-top: 110*@xem;
+    .day{
+      position: relative;
+      width: 140*@xem;
+      height: 90*@xem;
+      background: url("include/css-icon.png") no-repeat 36% center;
+      background-size: 120*@xem;
+      span{
+          color:@mainColor;
+          font-size: 14*@xem;
+      }
+      .s{
+        font-size: 30*@xem;
+        font-weight: bold;
+      }
+      div{
+        //position: absolute;
+        //bottom:10*@xem;
+        //left: 50%;
+        //-webkit-transform: translateX(-50%);
+        //-moz-transform: translateX(-50%);
+        //-ms-transform: translateX(-50%);
+        //-o-transform: translateX(-48%);
+        //transform: translateX(-48%);
+        padding-top: 40*@xem;
+        white-space: nowrap;
+
+      }
+    }
+  }
+  .text{
+    padding-top: 13*@xem;
+    h4{
+      font-weight: normal;
+      color:@mainColor;
+      font-size: 18*@xem;
+    }
+    p{
+      color:@gray-9;
+      font-size: 15*@xem;
+    }
+  }
+  .btn{
+    margin-top: 20*@xem;
+    display: inline-block;
+    font-size:16*@xem;
+    color:#fff;
+    line-height: 45*@xem;
+    width: 250*@xem;
+    border-radius: 5*@xem;
+    background-color: @mainColor;
+  }
+}

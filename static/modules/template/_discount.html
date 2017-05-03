@@ -1,0 +1,26 @@
+<ul class="discount-box">
+    <li v-for="(index,c) in coupon"
+        :class="(c.to_date) < (c.serverTime) ? 'out-of-time':priceChangesClass(c.value)">
+        <div class="price-box">
+            <div class="price">
+                        <span class="coupon">
+                            <span class="h">{{changePrice(c.value)[0]}}</span>
+                            <span>{{changePrice(c.value)[1]}}</span>
+                            <span>{{changePrice(c.value)[2]}}</span>
+                        </span>
+                <!--<div class="info">{{c.info}}</div>-->
+            </div>
+            <div class="desc">
+                <p class="title">{{c.name}}</p>
+                <p class="time">有效期至{{c.to_date | timestamp2Date}}</p>
+            </div>
+            <img v-show="c.code==couponCode" src="/images/app/order/include/coupn-select.png" class="coupon-icon" />
+        </div>
+        <img :src="'/images/app/order/include/'+priceChangesClass(c.value)+'.png'" alt="" width="100%" class="price-img">
+        <div class="description">
+            <p>
+                {{c.detail}}
+            </p>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="praise.less" rel="stylesheet">
+</head>
+<body>
+<div v-show="init" style="display: none">
+    <new-download  v-ref:tdl></new-download>
+    <div class="pagea contanier">
+        <div class="content">
+            <div class="comment-box">
+                <img :src="productInfo.img" class="pro-img" alt="">
+                <div class="comment-info">
+                    <div class="text">
+                        <span>
+                            {{reviewInfo.comment}}
+                        </span>
+                    </div>
+                    <div class="star">
+                        <img v-for="v in pi(reviewInfo.star)" src="include/xx.png" class="xx" alt="">
+                    </div>
+                    <div class="user">
+                        <img :src="reviewInfo.avatar" class="head" alt="">
+                        <span class="name">{{reviewInfo.nickName}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box" align="center">
+                <div class="main">
+                    <div class="coupon" v-show="showReceive">
+                        <div class="title">
+                            <h1 v-if="receive">{{referralInfoData.data.couponAmount}}元好友礼券</h1>
+                            <h1 v-else>{{referralInfoData.data.couponAmount}}元蜜豆</h1>
+                            <span>新人专享</span>
+                        </div>
+                        <div class="bottom">
+                            <p class="desc" v-if="receive">送你{{referralInfoData.data.couponAmount}}元立减券</p>
+                            <p class="desc" v-else>成功领取了{{referralInfoData.data.cashAmount}}元蜜豆!</p>
+                            <template v-if='referralInfoData.data.phone==""'>
+                                <a @tap="getAppUrl()">快去美美箱看看吧!</a>
+                                <span @tap="ruleF">查看详情 ></span>
+                            </template>
+                            <template v-else>
+                                <a @tap="couponF" v-if="receive">点击领取</a>
+                                <a @tap="getAppUrl()"
+                                   v-else>立即使用</a>
+                                <span @tap="ruleF">查看详情 ></span>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="fail" v-show="fail">
+                        <img src="include/new-fail.png" alt="好友礼券">
+                        <h4>好像没有领成功唉～</h4>
+                        <p>蜜豆不知道飘到哪里去了。</p>
+                        <a @tap="getCoupon">
+                            重新领取 找回我的券
+                        </a>
+                    </div>
+                    <div class="register" v-show="register">
+                        <img src="include/new-register.png" alt="好友礼券">
+                        <h4>你已经注册过了</h4>
+                        <p>这位眼疾手快,机智无比的同学</p>
+                        <p v-if="receive">赶紧卖了好友赚{{referralInfoData.data.couponAmount}}元立减券!</p>
+                        <p v-else>赶紧卖了好友赚{{referralInfoData.data.cashAmount}}元蜜豆!</p>
+                        <a @tap="getAppUrl()">
+                            快去美美箱看看吧!
+                        </a>
+                    </div>
+                    <!--<img class="sawtooth" src="include/new-sawtooth.png" alt="好友礼券">-->
+                </div>
+            </div>
+            <img width="100%" src="include/new-pageb-bottom.png" class="bottom-img" alt="好友礼券">
+        </div>
+    </div>
+
+
+</div>
+
+<div class="mask" v-show="rule||coupon" style="display: none">
+    <div class="mask-bg" @touchstart="closeMask"></div>
+    <div class="show-rule" v-show="rule">
+        <div class="rule-title">
+            <h4>活动规则</h4>
+            <span @touchend="ruleF"></span>
+        </div>
+        <div class="text">
+            <p v-for="d in desc">
+                {{d}}
+            </p>
+        </div>
+    </div>
+    <div class="show-coupon" align="center" v-show="coupon">
+        <div class="close-coupon">
+            <span @touchend="couponF"></span>
+        </div>
+        <div class="coupon-form">
+            <p>提交手机号后</p>
+            <p>蜜豆会自动放入您的手机账号中</p>
+            <validator name="validation">
+                <form novalidate>
+                    <input id='phone' name="phone" type="number" maxlength="11" v-model="param.phone"
+                           v-validate:phone="['phone']"
+                           placeholder="输入手机号">
+                    <input id="authCode" name="authCode" type="number" maxlength="6" v-model="param.authCode"
+                           v-validate:authCode="{required:{rule: true,message:'请输入验证码'},maxlength: {rule:5 , message:'请输入正确的验证码'}}"
+                           placeholder="输入验证码">
+                </form>
+            </validator>
+            <span class="button" @tap="getAuth" v-if="!showTime.show">
+                    获取验证码
+            </span>
+            <span class="button time" v-else>
+                    {{showTime.time}}s
+            </span>
+        </div>
+        <a @tap="getCoupon" v-if="showGetBtn">领取礼券</a>
+        <a style="background-color: #999" v-else>领取礼券</a>
+    </div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<link rel="import" href="../../include/ga.html?__inline">
+
+
+</body>
+<script>
+    require('special/referral/praise');
+</script>
+
+</html>

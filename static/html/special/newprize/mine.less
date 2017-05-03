@@ -1,0 +1,126 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+@import "../../../js/vendor/mui/mui.picker.less";
+@import "../../../js/vendor/mui/mui.poppicker.less";
+.myprize,.prilist{
+        background-color: #ffffff;
+        margin: 25*@xem 15*@xem;
+        padding: 25*@xem 15*@xem;
+        border-radius: 10*@xem;
+        .peo{
+            font-size: 18*@xem;
+            width: 80%;
+            line-height: 2*@xem;
+            border-left: 60*@xem solid #ffd8dd;
+            border-right: 60*@xem solid #ffd8dd;
+            text-align: center;
+        }
+        ul{
+            margin-top: 30*@xem;
+            max-height: 200*@xem;
+            overflow-y: scroll;
+            li{
+                position: relative;
+                height: 60*@xem;
+                margin-bottom: 15*@xem;
+            }
+        }
+        img{
+            width: 60*@xem;
+            height: 60*@xem;
+            position: absolute;
+            &.ava{
+                left: 10*@xem;
+                border-radius: 30*@xem;
+            }
+            &.pri{
+                right: 10*@xem;
+            }
+        }
+        .peolist{
+            float: left;
+            margin-left: 10*@xem;
+            height: 60*@xem;
+            text-align: left;
+            position: absolute;
+            left: 70*@xem;
+            .name{
+                font-size: 15*@xem;
+                color: #333;
+                margin-bottom: 0;
+                height: 30*@xem;
+                line-height: 30*@xem;
+                overflow: hidden;
+                width: 120*@xem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .time{
+                color: #999999;
+                font-size: 13*@xem;
+                margin-bottom: 0;
+                line-height: 30*@xem;
+                height: 30*@xem;
+            }
+        }
+    }
+    .myprize {
+        &.not{
+            background: #f5f5f5;
+            .cont{
+                min-height: 200*@xem;
+            }
+        }
+            .cont{
+            margin-top: 25*@xem;
+            img.nothing{
+                width: 180*@xem;
+                height: 180*@xem;
+                position: inherit;
+                margin-bottom: 10*@xem;
+            }
+            .peolist{
+                left: 10*@xem;
+                .name{
+                    width: 200*@xem;
+                }
+            }
+        }
+    }
+    .address{
+        background-color: #ffffff;
+        margin: 25*@xem 15*@xem;
+        padding: 25*@xem 15*@xem 0 15*@xem;
+        border-radius: 10*@xem;
+        .peo{
+            font-size: 18*@xem;
+            width: 80%;
+            line-height: 2*@xem;
+            border-left: 60*@xem solid #ffd8dd;
+            border-right: 60*@xem solid #ffd8dd;
+            text-align: center;
+        }
+        .add-main{
+            margin-top: 25*@xem;
+            input{
+                border: 0;
+                border-bottom: 1px solid #e0e0e0;
+                border-radius: 0;
+            }
+        }
+    }
+    .btn{
+        color: @mainColor;
+        padding: 12*@xem;
+        display: block;
+        position: relative;
+        font-size: 15*@xem;
+        z-index: 10;
+        top: -10*@xem;
+    }
+    .mui-popup.mui-popup-in{background: #ffffff;}
+::-moz-placeholder { color: #999; }
+::-webkit-input-placeholder { color:#999; }
+:-ms-input-placeholder { color:#999; }

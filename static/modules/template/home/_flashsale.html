@@ -1,0 +1,52 @@
+<div class="flashsale" :class=checkStatus(flashsaleData.secKillStatus) v-show="showFlash&&flashsaleData.productList" style="display: none">
+    <div class="flashsale-header">
+        <span class="flashsale-title"></span>
+        <div class="show-time" v-show="flashsaleData.time.second!=undefined" style="display: none">
+                <span class="days" v-show="flashsaleData.time.day!=0">
+                    <span>
+                        {{flashsaleData.time.day}}
+                    </span>
+                    天
+                </span>
+            <span class="hours">
+                    <span>
+                        {{flashsaleData.time.hour[0]}}{{flashsaleData.time.hour[1]}}
+                    </span>
+                    时
+                </span>
+            <span class="minutes">
+                    <span>
+                        {{flashsaleData.time.minute[0]}}{{flashsaleData.time.minute[1]}}
+                    </span>
+                    分
+                </span>
+            <span class="seconds">
+                    <span>
+                        {{flashsaleData.time.second[0]}}{{flashsaleData.time.second[1]}}
+                    </span>
+                    秒
+                </span>
+        </div>
+    </div>
+    <div class="flashsale-container">
+        <ul>
+            <li v-for="pro in flashsaleData.productList"
+                @tap="goFlashDetail(pro.productId,pro.groupId,pro.durationId)">
+                <img :src=pro.imgUrl alt="">
+                <div class="pro">
+                    <p class="ov2">
+                        {{pro.brandName}}{{pro.name}}
+                    </p>
+                    <div class="price">
+                        <span>{{pro.secKillPrice}}</span>
+                        <del>{{pro.originPrice}}</del>
+                    </div>
+                    <span class="button" :class="pro.seckillStock===false&&'disabled'"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <a href="/m/special/flashsale/index.html?from=h5home" class="more">
+        <span>查看更多</span>
+    </a>
+</div>

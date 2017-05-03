@@ -1,0 +1,44 @@
+<div class="activity" v-if="activityData.detail.items&&activityData.detail.items.length!=0">
+    <div class="activity-header">
+        <a :href="toH5Url(activityData.action_url)">
+            <img :src="activityData.component_bg_url" alt="美美箱">
+        </a>
+    </div>
+    <div class="activity-container">
+        <ul class="activity-content">
+            <li class="activity-box"
+                v-for="(index,productList) in activityData.detail.items"
+                v-bind:class={"stockout":productList.stockStatus=="0"}
+                @tap="$parent.$parent.go('/m/productDetails/productDetails.html#'+productList.productId)" v-if="index<8">
+                <div class="show-activity-img">
+                    <div class="stockout-mark" v-show=productList.stockStatus=="0">
+                        <span>已抢光</span>
+                    </div>
+                    <img :src=productList.imgUrl alt="美美箱">
+                </div>
+                <div class="activity-product-details">
+                    <h2 class="ov2">
+                        {{productList.brandName+productList.name}}
+                    </h2>
+                    <div class="activity-product-price">
+                        <div class="show-price">
+                            <p class="price-box"><span class="price">¥{{parseInt(productList.price)}}</span>.<span>{{getFloat2(productList.price)}}</span></p>
+                            <!--<p class="original-price" v-show="(productList.originPrice-productList.price)>0">-->
+                            <p class="original-price">
+                                <del >¥{{productList.originPrice}}</del>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="activity-box see-all">
+                <a :href="toH5Url(activityData.action_url)">
+                    <div>
+                        <span>查看全部</span><br>
+                        See All
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

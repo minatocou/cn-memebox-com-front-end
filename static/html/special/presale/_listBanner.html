@@ -1,0 +1,14 @@
+<div v-show="dataBanner.length==1&&dataBanner[0]['banner_image']!=''">
+    <a :href="bannerHref(dataBanner[0].banner_type,dataBanner[0].target_id)">
+        <img :src=dataBanner[0]["banner_image"] :alt="dataBanner[0]['banner_title']" style="vertical-align: top;" width="100%">
+    </a>
+</div>
+<div v-show="dataBanner.length>=2">
+    <swipe class="vue-swipe">
+        <swipe-item v-for="banner in dataBanner">
+            <a :href="bannerHref(banner.banner_type,banner.target_id)">
+                <img :src=banner["banner_image"] :alt="banner['banner_title']" style="vertical-align: top;">
+            </a>
+        </swipe-item>
+    </swipe>
+</div>

@@ -1,0 +1,294 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+@mainBgColor: #ffffff;
+
+body{
+  background-color: @mainBgColor;
+}
+
+.fleft{
+  float: left;
+}
+.fright{
+  float: right;
+}
+.clearfix:after{
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden
+}
+
+.font-yellow{
+  color:#fbca47;
+}
+.main-container{
+  .main-bg{
+    display: block;
+    width: 100%;
+  }
+  .pink-button{
+    text-align: center;
+    font-size: 15*@xem;
+    color: #fff;
+    background-color: #ff5073;
+    margin:15*@xem;
+    position: relative;
+    height: 45*@xem;
+    line-height: 45*@xem;
+    border-radius: 5*@xem;
+  }
+  .main-content-container{
+    padding: 0 30*@xem;
+    position: relative;
+    //margin-top:-160*@xem;
+    // margin-top: -160*@xem;
+    min-height: 200*@xem;
+    //margin-top: -40%;
+    .white-layer{
+      min-height: 50*@xem;
+      border-radius: 10*@xem;
+      width: 100%;
+      background-color: rgba(255,255,255,0.9);
+      text-align: center;
+      .coupon-phone{
+        margin-bottom: -60*@xem;
+      }
+      .logo{
+        display: block;
+        width: 263/7.5%;
+        height: 41*@xem *@xem;
+        margin: 0 auto;
+        padding-top: 17.5*@xem;
+      }
+      .status-title{
+        margin-top: 10*@xem;
+        font-size: 18*@xem;
+      }
+      .coupon{
+        margin:15*@xem auto 0;
+        width: 280*@xem;
+        height: 101*@xem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image:  url("images/coupon-bg.png");
+        position: relative;
+        .coupon-info{
+          height: 50%;
+          width: 90%;
+          margin-left: 10%;
+          color: #ff5073;
+          position: relative;
+          .pre,
+          .price,
+          .text{
+            position: absolute;
+            bottom: 0;
+          }
+          .pre{
+            font-size: 26*@xem;
+            left: 22*@xem;
+            top: 22*@xem;
+          }
+          .price-number{
+            font-size: 45*@xem;
+            left: 50*@xem;
+            text-align: center;
+            bottom: 0;
+            position: absolute;
+            top: 8*@xem;
+          }
+          .price{
+            font-size: 42*@xem;
+            left: 70*@xem;
+            top: 10*@xem;
+          }
+          .text{
+            font-size: 17*@xem;
+            left: 110*@xem;
+            top: 30*@xem;
+          }
+        }
+        .coupon-text{
+          height: 50%;
+          width: 90%;
+          margin-left: 10%;
+          text-align: left;
+          .main-titie{
+            margin-left:15*@xem;
+            margin-top: 25*@xem;
+            font-size: 14*@xem;
+          }
+          .sub-title{
+            margin-left:15*@xem;
+            margin-top: 10*@xem;
+            font-size: 12*@xem;
+            color: #999999;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .coupon-expire{
+            margin-left:15*@xem;
+            margin-top: 5*@xem;
+            font-size: 10*@xem;
+            color: #999999;
+          }
+        }
+      }
+      .act-rule{
+        color: #999;
+        float: right;
+        margin-right: 15*@xem;
+        margin-bottom: 20*@xem;
+      }
+      .coupon-container{
+        // margin-top: 100*@xem;
+        font-size: 14*@xem;
+        color: #999;
+        position: relative;
+      }
+      .form{
+        // margin-top: 50*@xem;
+        .tel,
+        .code{
+          width: 90%;
+          margin:0 auto;
+          border-bottom: 1*@xem solid #d6d6d6;
+          margin-bottom: 15*@xem;
+          input{
+            position: relative;
+            font-size: 14*@xem;
+            line-height: 21*@xem;
+            width: auto;
+            margin: 0 auto;
+            height: 40*@xem;
+            //margin-bottom: 15*@xem;
+            padding: 10*@xem;
+            -webkit-user-select: text;
+            border:none;
+            outline: 0;
+            -webkit-appearance: none;
+            outline: none;
+            background: transparent;
+          }
+        }
+        .tel{
+          .icon{
+            width:14*@xem;
+            height: 14*@xem;
+            //margin:10*@xem 0 0 7*@xem;
+            margin-top:12*@xem;
+            background-size: contain;
+            background-image: url("images/avatar.png");
+          }
+        }
+        .code{
+          .icon{
+            width: 13*@xem;
+            height: 14*@xem;
+            margin-top:12*@xem;
+            //margin:10*@xem 0 0 6.5*@xem;
+            background-size: contain;
+            background-image: url("images/locked.png");
+          }
+          input{
+            width: 44%;
+          }
+          .get-code{
+            color: #ff5072;
+            font-size: 14*@xem;
+            border:1*@xem solid #ff5072;
+            border-radius: 50*@xem;
+            padding: 5*@xem 10*@xem;
+          }
+        }
+        .exchange-btn{
+          width: 90%;
+          margin:0 auto;
+          padding: 16*@xem 0;
+          font-size: 14*@xem;
+          background-color: #ff5072;
+          color: #fff;
+          border-radius: 5*@xem;
+        }
+        .tips{
+          padding: 30*@xem 0;
+          color: #999;
+          text-align: center;
+          font-size: 11*@xem;
+        }
+      }
+      .overdue-text{
+        font-size: 14*@xem;
+        line-height: 21*@xem;
+        margin-top: 80*@xem;
+        .margin-bottom{
+          margin-bottom: 40*@xem;
+        }
+      }
+    }
+  }
+  .service-container{
+    text-align: center;
+    padding-top: 60px;
+    img{
+      width: 100%;
+      display: block;
+      margin:0 auto;
+    }
+  }
+}
+.rule-popup-container{
+  display: none;
+  .rule-popup{
+    width: 300*@xem;
+    position: relative;
+    margin: 110*@xem auto 0;
+    .close{
+      position: absolute;
+      color:#fff;
+      width: 25*@xem;
+      height: 25*@xem;
+      text-align: center;
+      line-height: 25*@xem;
+      border-radius: 25*@xem;
+      background-color: #ff5073;
+      right: -5*@xem;
+      top:-5*@xem;
+    }
+    .header{
+      height: 40*@xem;
+      border-top-left-radius: 10*@xem;
+      border-top-right-radius: 10*@xem;
+      line-height: 40*@xem;
+      background-color: #ff5073;
+      text-align: center;
+      font-size: 14*@xem;
+      color: #fff;
+    }
+    .content{
+      background-color: #fff;
+      font-size: 13*@xem;
+      line-height: 20*@xem;
+      padding: 20*@xem;
+      border-bottom-left-radius: 10*@xem;
+      border-bottom-right-radius: 10*@xem;
+      .button{
+        width:160*@xem;
+        margin:10*@xem auto;
+        text-align: center;
+        height: 35*@xem;
+        line-height: 35*@xem;
+        font-size: 14*@xem;
+        background-color: #ff5073;
+        color: #fff;
+        border-radius: 20*@xem;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html :class="noSearch&&'noSearch'">
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app" class="search-page" style="display: none" v-show="init">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @tap=goBack></a>
+    <div id="search" name="search">
+        <span class="search-icon" @tap="submit"></span>
+        <validator name="validation">
+            <form novalidate name="searchForm" @submit="submit">
+                <input id="searchInput" type="search" name="searchInput" @change="submit" v-model="searchText"
+                       v-validate:searchInput="{required:{rule: true,message:'请输入搜索内容'}}">
+            </form>
+        </validator>
+        <span class="close-icon" v-show="searchText" @tap="inputEmpty"></span>
+    </div>
+</header>
+<div class="mui-content">
+    <!--搜索类型-->
+    <link rel="import" href="_searchType.html?__inline">
+    <!--搜索结果页-->
+    <link rel="import" href="_searchResult.html?__inline">
+    <!--购物车-->
+    <div class="shopping-cart" v-if="showResult==true">
+        <a href="../cart/cart.html"></a>
+        <span class="number" v-if="cartNumber!=0">{{cartNumber}}</span>
+    </div>
+</div>
+<script src="../../js/plugins/swiper/swiper-3.3.1.min.js"></script>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script>
+    require('search/search');
+</script>
+
+</html>

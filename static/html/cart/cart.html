@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+    <script src="../../js/vendor/underscore.js"></script>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">购物车</h1>
+    <span class="mui-pull-right cart-edit" @tap="editCart" v-if="isShowCart()">编辑</span>
+</header>
+<div style="display: none" v-show="init" class="mui-content padding-bottom">
+    <link rel="import" href="_nopro.html?__inline">
+    <link rel="import" href="_pro.html?__inline">
+    <link rel="import" href="_disabledpro.html?__inline">
+    <p class="kr-notice" v-show="cartData.krNotice">
+        {{cartData.krNotice}}
+    </p>
+    <link rel="import" href="_bottomtab.html?__inline">
+    <link rel="import" href="_chiocediscount.html?__inline">
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script>
+    require('cart/cart');
+</script>
+
+</html>

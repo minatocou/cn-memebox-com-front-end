@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="../../js/plugins/swiper/swiper-3.3.1.min.less" rel="stylesheet">
+    <link href="style.less" rel="stylesheet">
+</head>
+<body>
+<div class="mui-page brand-container" style="display: none" v-show="init">
+    <div class="mui-bar mui-bar-nav brand-header" :class="{headerColor: headerColorSta}" :style="headerCss">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <ul class="mui-title brand-topNav">
+            <li :class="{active: ($index==0)}" data-index="{{$index}}" v-for="n in pageData.channels" v-show="n.name">
+                <a class="brand-link" href="javascript:" :value="n.url" @tap="changeTab">{{n.name}}</a>
+            </li>
+        </ul>
+        <!--<span class="mui-pull-right share-icon"></span>-->
+    </div>
+    <div class="mui-page-content main-content" style="display: none" v-show="showPage1">
+        <div class="mui-scroll-wrapper" id="s-brand">
+            <div class="mui-scroll">
+                <img class="brand-homeBg" src="{{pageData.banner}}" alt="">
+                <div class="brand-home">
+                    <div class="brand-topInfo">
+                        <div class="brand-topLogo">{{pageData.name}}</div>
+                        <div class="brand-topTips"><pre>{{pageData.intro}}</pre></div>
+                        <!--<div class="brand-topics">2017时髦关键词就是这些</div>-->
+                    </div>
+                    <div class="brand-infoWrap" :class="currentBrand">
+                        <ul class="brand-nav clearfix">
+                            <li v-for="n in brandFourCate" :class="{active: ($index==0)}" @tap="getFourCateList(n.searchBrand,n.searchCategory,$event, $index)">
+                                {{n.cateName}}
+                            </li>
+                        </ul>
+                        <div class="brand-group clearfix">
+                            <div class="brand-group-left">
+                                <div class="brand-left-wrap">
+                                    <img :src="brandCateImg">
+                                    <span class="brand-group-btn" @tap="checkAllBrand">查看全部</span>
+                                </div>
+                            </div>
+                            <div class="brand-group-right">
+                                <ul class="clearfix">
+                                    <li v-for="n in categoryfourList">
+                                        <div class="brand-group-item" @tap="goToPage(n.productId)">
+                                            <div class="brand-group-img">
+                                                <img src="{{n.imgUrl}}" alt="">
+                                            </div>
+                                            <div class="brand-group-price">
+                                                <span v-if="n.price">￥{{n.price}}</span>
+                                                <span v-else>￥--</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-product-wrap">
+                    <div class="brand-product-list">
+                        <ul class="clearfix">
+                            <li v-for="n in brandList">
+                                <div class="brand-product-group" @tap="goToPage(n.productId)">
+                                    <div class="brand-prd-img">
+                                        <img src="{{n.imgUrl}}" alt="">
+                                    </div>
+                                    <div class="brand-prd-name">{{n.name}}</div>
+                                    <div class="brand-prd-label">
+                                        <label>{{(n.price/n.originPrice*10).toFixed(1)}}折</label>
+                                    </div>
+                                    <div class="brand-prd-price">
+                                        <span class="brand-price-num">￥{{n.price}}</span><span class="brand-price-ori">￥{{n.originPrice}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="brand-empty" v-if="isEmpty">没有合适的商品！</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mui-page-content brandlist-container" style="display: none" v-show="showPage2">
+        <div class="swiper-container">
+            <div class="swiper-wrapper brand-cate-list" :class="currentBrand">
+                <div class="swiper-slide" :class="{active: isNowCate[$index]}" :value="$index" v-for="n in brandCategory">
+                    <div class="brand-cate-bg" style="background-image: url({{n.backImg}});"></div>
+                    <div class="brand-cate-item" @tap="changeCate(n.searchBrand, n.searchCategory, $event)">{{n.cateName}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="mui-page-content">
+            <div class="mui-content mui-scroll-wrapper" id="brandlist">
+                <div class="mui-scroll">
+                    <div class="brandList-content">
+                        <div class="brand-product-list">
+                            <ul class="mui-table-view mui-table-view-chevron clearfix">
+                                <li class="mui-table-view-cell" v-for="n in allBrandPrdList">
+                                    <div class="brand-product-group" @tap="goToPage(n.productId)">
+                                        <div class="brand-prd-img">
+                                            <img src="{{n.imgUrl}}" alt="">
+                                        </div>
+                                        <div class="brand-prd-name">{{n.name}}</div>
+                                        <div class="brand-prd-label">
+                                            <label>{{(n.price/n.originPrice*10).toFixed(1)}}折</label>
+                                        </div>
+                                        <div class="brand-prd-price">
+                                            <span class="brand-price-num">￥{{n.price}}</span><span class="brand-price-ori">￥{{n.originPrice}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="brand-empty" v-if="isEmpty">没有合适的商品！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mui-page-content brandlist-container" style="display: none" v-show="showPage3">
+        <iframe class="frameWork" name="frame" frameborder="0" scrolling="yes" :src="frameSrc"></iframe>
+    </div>
+</div>
+
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+<script src="../../js/vendor/underscore.js"></script>
+<script src="../../js/plugins/swiper/swiper-3.3.1.min.js"></script>
+<script>
+    require('brand/brandHome');
+</script>
+</html>

@@ -1,0 +1,58 @@
+<div v-if="o.statusCode!='4'&&o.statusCode!=2&&o.statusCode!=0">
+    <div class="pay-timer">
+        <template v-if="o.statusCode ==6">
+            <template v-if="o.presaleInfo.serverTime < o.presaleInfo.startRetainageTime">
+                {{presaleFormatTime(o.presaleInfo.startRetainageTime)}}之后,开始支付尾款
+            </template>
+            <template v-else>
+                <countdown :endtime='(o.presaleInfo.endRetainageTime-o.presaleInfo.serverTime)*1000'></countdown>
+            </template>
+        </template>
+        <template v-else>
+            <countdown :endtime='(o.closedLeftTime)*1000 '></countdown>
+        </template>
+    </div>
+    <template v-if="o.statusCode ==6">
+        <a v-if="o.presaleInfo.serverTime<o.presaleInfo.startRetainageTime" class="pay-link">
+            <div class="graybg-button">
+                付尾款
+            </div>
+        </a>
+        <a v-else class="pay-link"
+           @tap="showPayBox({grantTotal:o.presaleInfo.restPrice,
+           time:(o.presaleInfo.endRetainageTime-o.presaleInfo.serverTime)==0?'false':((o.presaleInfo.endRetainageTime-o.presaleInfo.serverTime)*1000+nowTime),
+           clear:true,
+           type:getProPayType(o.productInfo),
+           orderId:o.realOrderId,showCloseBox:false,
+           step:2,
+           paymentMethod:o.paymentMethod
+           })">
+            <div class="pink-button">
+                付尾款
+            </div>
+        </a>
+    </template>
+    <template v-if="o.statusCode ==1">
+        <a class="pay-link"
+           @tap="showPayBox({grantTotal:o.presaleInfo.deposit,
+           time:o.closedLeftTime==0?'false':(o.closedLeftTime*1000+nowTime),
+           clear:true,
+           type:getProPayType(o.productInfo),
+           orderId:o.realOrderId,showCloseBox:false,
+           step:1,
+           paymentMethod:o.paymentMethod
+             })">
+            <div class="pink-button">
+                支付定金
+            </div>
+        </a>
+        <div @tap="cancelOrder(o.realOrderId)" class="gray-button">
+            取消订单
+        </div>
+    </template>
+</div>
+<div v-else>
+    <div class="border-button" @tap="toDetail(o.productInfo.productId)">
+        再次购买
+    </div>
+</div>

@@ -1,0 +1,249 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 12px @font-family;
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font: 16px @font-family;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font: 17px @font-family;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  font-weight: normal;
+}
+
+li {
+  list-style: none;
+}
+
+.active-started{
+  .started{
+    display: block;
+  }
+  .over,.not{
+    display: none;
+  }
+  .active-not-text{
+    display: none;
+  }
+}
+.active-not{
+  .not{
+    display: block;
+  }
+  .started,.over{
+    display: none;
+  }
+  .active-started-text{
+    display: none;
+  }
+}
+.active-over{
+  .over{
+    display: block;
+  }
+  .started,.not{
+    display: none;
+  }
+  .time-box{
+    display: none;
+  }
+}
+.active-not-text,.active-started-text{
+  color:#fff91a;
+}
+.time-box {
+  position: relative;
+  padding: 15*@xem 0;
+  background-image: -moz-linear-gradient(0deg, rgb(150, 103, 255) 0%, rgb(182, 63, 243) 100%);
+  background-image: -webkit-linear-gradient(0deg, rgb(150, 103, 255) 0%, rgb(182, 63, 243) 100%);
+  background-image: -ms-linear-gradient(0deg, rgb(150, 103, 255) 0%, rgb(182, 63, 243) 100%);
+}
+
+.time-box p {
+  color: #fff;
+  font-size: 15*@xem;
+  margin-bottom: 10*@xem;
+}
+
+.left-time {
+  color: #fff;
+  font-size: 11*@xem;
+}
+
+.card {
+  position: relative;
+  width: 25*@xem;
+  height: 40*@xem;
+  display: inline-block;
+  vertical-align: middle;
+  span {
+    position: relative;
+    font-size: 23*@xem;
+    z-index: 3;
+    line-height: 40*@xem;
+    color: #fff;
+  }
+  &:before, &:after {
+    position: absolute;
+    left: 0;
+    content: "";
+    background-color: rgb(0, 23, 60);
+    height: 48%;
+    width: 100%;
+  }
+  &:before {
+    top: 0;
+    border-top-left-radius: 5*@xem;
+    border-top-right-radius: 5*@xem;
+  }
+  &:after {
+    bottom: 0;
+    border-bottom-left-radius: 5*@xem;
+    border-bottom-right-radius: 5*@xem;
+  }
+}
+.day,.hour,.minute,.second{
+  display: inline-block;
+}
+.second{
+  .card{
+    span{
+      color:#fff91a;
+    }
+}
+}
+.color-b {
+  color: #bbb;
+}
+
+.color-m {
+  color: #ff5073;
+}
+
+.font-19 {
+  font-size: 19*@xem;
+}
+
+.font-12 {
+  font-size: 12*@xem;
+}
+
+.discount {
+  background: #ffe3f2;
+  font-size: 10*@xem;
+  color: #ff75c0;
+  padding: 2*@xem 5*@xem;
+  border-radius: 2*@xem;
+  margin-bottom: 5*@xem;
+  display: inline-block;
+}
+
+.active {
+  width: 45*@xem;
+  height: 14*@xem;
+  margin-bottom: 5*@xem;
+}
+
+.margin-right-5 {
+  margin-right: 5*@xem;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.pro-list {
+  padding: 10*@xem 8*@xem;
+  background: #db6cfb;
+  ul {
+    li {
+      overflow: hidden;
+      margin-bottom: 10*@xem;
+      .product {
+        width: 49%;
+        box-sizing: border-box;
+        background: #fff;
+        padding: 10*@xem 10*@xem 13*@xem;
+        font-size: 0;
+        a{
+          display: block;
+          text-decoration: none;
+        }
+        .pro-img{
+          height: 160*@xem;
+          width: 100%;
+        }
+        h3 {
+          color: @title;
+          font-size: 13*@xem;
+          line-height: 18*@xem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          height: 35*@xem;
+          margin:10*@xem 0 20*@xem;
+        }
+        .not {
+          overflow: hidden;
+          .not-left {
+
+          }
+          .not-right {
+            border-left: 1*@xem solid #e0e0e0;
+            padding-left: 5*@xem;
+          }
+          .active{
+            margin-bottom: 10*@xem;
+          }
+        }
+        .show-price {
+          display: inline-block;
+        }
+        .cart {
+          width: 35*@xem;
+          height: 35*@xem;
+          //padding-top: 5*@xem;
+        }
+        .started {
+          overflow: hidden;
+          .discount {
+            display: none;
+          }
+        }
+        .over {
+          .active {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

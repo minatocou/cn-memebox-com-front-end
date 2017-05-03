@@ -1,0 +1,38 @@
+<div id="promotion">
+    <div class="mask-option" @tap="closePromotion">
+    </div>
+    <div class="promotion-list">
+        <div class="title">
+            促销活动
+            <div class="close-box">
+                <img src="../../img/close.png" alt="关闭"  @tap="closePromotion">
+            </div>
+        </div>
+        <p class="toast" align="center" v-show="promotionInfo.length>1">多个活动只能参加一项 可在购物车中修改</p>
+        <ul class="mui-table-view">
+            <!--<li v-if="promotionInfo.promoteSale.items.length>0" class="mui-table-view-cell" v-for="(index,item) in promotionInfo.promoteSale.items" :class="{'MJ':item.type==0,'MZ':item.type==1,'NYG':item.type==2,'CJ':item.type==3}">
+                <div class="mui-navigate-right" @tap="toPromoteDetail(item.url)">
+                    <a class="ov" @tap="toPromoteDetail(item.url)"><span class="label"></span>{{item.title}}</a>
+                </div>
+            </li>-->
+            <li class="mui-table-view-cell" v-for="p in promotionInfo">
+                <div>
+                    <a class="ov2"><span class="label">{{p.type}}</span>{{p.rule}}</a>
+                    <div class="promotion-box"  v-if="p.items.length>0">
+                        <div class="swiper-container" v-if="p.items.length>0">
+                            <div @drag="swiper"  class="swiper-wrapper">
+                                <div class="swiper-slide" v-for="(index,item) in p.items">
+                                    <a @tap="toGiftDetail(item.product_id)"><img :src="item.img_mobile"> X {{item.stock}}</a>
+                                </div>
+                            </div>
+                            <!--<div class="swiper-scrollbar"></div>-->
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!--<div class="sure-btn" @tap="closePromotion">
+            确定
+        </div>-->
+    </div>
+</div>

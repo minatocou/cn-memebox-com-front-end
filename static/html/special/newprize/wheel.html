@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="import" href="../../include/head.html?__inline">
+        <link rel="stylesheet" href="wheel.less">
+    </head>
+    <body>
+    <div class="wheel-prize" v-show="showPrize" style="display: none" >
+        <div class="wheel">
+            <img class="bg" src="./include/wheel.png" alt="">
+            <canvas id="canvas"></canvas>
+            <img class="arr" src="./include/go.png" alt="" @tap="start()">
+            <!--<div v-show="prizeNum>0" class="j">你今天还有抽奖机会</div>-->
+        </div>
+        <div class="tabs" align="center">
+            <span class="des" @tap="showDes()">规则说明</span>
+            <span class="mypri" @tap="showMyPrize()">我的奖品</span>
+        </div>
+        <div class="prilist" align="center">
+            <div class="peo">中奖名单</div>
+            <ul>
+                <li v-for="hist in pageData.raffle.history">
+                    <img :src="hist.avatar" alt="" class="ava">
+                    <div class="peolist">
+                        <p class="name">{{hist.nickname}}</p>
+                        <p class="time">中奖时间 {{hist.time.split('2017-')[1]}}</p>
+                    </div>
+                    <img :src="hist.prize_img" alt="" class="pri">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../../../js/vendor/mui/mui.view.js"></script>
+    <script src="../../../js/vendor/mui/mui.picker.js"></script>
+    <script src="../../../js/vendor/mui/mui.poppicker.js"></script>
+    <script src="../../../js/vendor/city.data-3.js?s=new"></script>
+    <script src="../../../js/vendor/city.js"></script>
+    <link rel="import" href="../../include/c.html?__inline">
+    <link rel="import" href="../../include/ga.html?__inline">
+    <script src="../../../js/appsdk/app.js"></script>
+    <script>
+        require('special/newprize/wheel.js');
+    </script>
+    </body>
+</html>

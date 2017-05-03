@@ -1,0 +1,118 @@
+<div class="select-option-mask" id="selectOption">
+    <div class="mask-option" @tap="closeSelectOption">
+    </div>
+    <div class="select-option">
+        <div class="top border">
+            <img :src=getImg() class="pro-img" alt="产品图片">
+            <div class="show-info">
+                <div class="close-box">
+                    <img src="../../img/close.png" alt="关闭"  @tap="closeSelectOption">
+                </div>
+                <p class="pro-title">
+                    {{productData.brandName}}{{productData.name}}
+                </p>
+                <div class="show-price">
+                    <del class="original-price" v-if="productData.grouponPrice||(productData.originPrice-productData.price>0)">
+                        原价: ¥{{productData.originPrice ? productData.originPrice : productData.price}}
+                    </del>
+                    <div>
+                    <span class="price">
+                        {{price}}
+                    </span>
+                    <span class="discount" v-show="getDiscount(price,productData.originPrice)">
+                        {{getDiscount(price,productData.originPrice)}}
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="options border" v-if="productData.hasBundleOption > 0">
+            <div class="bundle-content">
+                <span class="title">
+                    选择规格
+                </span>
+                <div class="options-group" v-for="(n,item) in productData.bundleOptions">
+                    <template v-if="item.options.length > 1">
+                        <div class="options-item">
+                            <img class="options-item-img" :src="item.optionImg" alt="">
+                            <div class="options-item-title">
+                                <h1 class="options-item-name ov2">{{item.title}}</h1>
+                                <span class="options-item-num">{{item.qty}}</span>
+                            </div>
+                        </div>
+                        <div class="show-options color-kind bundle">
+                        <span v-for="(index,option) in item.options" :class="option['disabled']=='1' ? 'disabled' : '' ">
+                            <input type="radio"
+                                   name="{{item.option_id}}"
+                                   :option_id=option['selection_id']
+                                   :value=option['productId']
+                                   :itemName="option['title']"
+                                   :disabled=" option['disabled']=='1' ? true : false ">
+                            <label index="{{$index}}" data-type="{{n}}" @tap="selectItem(item, index)">
+                                <div class="option-name" v-if="trimName(option.short_name)">{{option['short_name']}}</div>
+                                <div class="option-name" v-else>{{option['title']}}</div>
+                            </label>
+                        </span>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="options-item simpleOption" data-val="{{item.options[0]['productId']}}">
+                            <img class="options-item-img" :src="item.options[0].imgUrl" alt="">
+                            <div class="options-item-title">
+                                <h1 class="options-item-name">{{item.options[0].title}}</h1>
+                                <span class="options-item-num">x{{item.options[0].qty}}</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div class="options border" v-if="productData.hasOptions!='0'">
+            <span class="title">
+                颜色选择
+            </span>
+                <div class="show-options color-kind">
+                <span v-for="(index,option) in productData.options"
+                      :class=" option['disabled']=='1' ? 'disabled' : '' ">
+                    <input type="radio"
+                           name="color"
+                           :option_id=option['option_id']
+                           :value=option['value']
+                           :disabled=" option['disabled']=='1' ? true : false ">
+                    <label index="{{$index}}"><div class="option-name">{{option['title']}}</div></label>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="chose-number">
+            <span class="title">
+            数量
+            </span>
+            <div class="mui-numbox" data-numbox-min="1">
+                <button class="mui-btn mui-btn-numbox-minus" type="button"
+                        @tap="minusNumber"
+                        :disabled=" number==1 ? true : false ">-
+                </button>
+                <input id="box" class="mui-input-numbox" type="number"
+                       :value="number"
+                       disabled="disabled"
+                />
+                <button class="mui-btn mui-btn-numbox-plus" type="button"
+                        :class="number==productData.orderLimit&&'disabled'"
+                        @tap="addNumber"
+                        >+
+                </button>
+            </div>
+        </div>
+        <div class="sure-btn" @tap="sureBtn">
+            <template v-if="productData.activityType==0">
+                加入购物车
+            </template>
+            <template v-else>
+                确定
+            </template>
+        </div>
+    </div>
+</div>
+

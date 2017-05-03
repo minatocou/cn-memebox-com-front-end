@@ -1,0 +1,370 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #e698ae;
+}
+
+.main-box {
+  position: relative;
+  background: #ffe6ec;
+  width: 100%;
+  height: 100%;
+  .top {
+    padding: 30*@xem 20*@xem 20*@xem;
+    position: relative;
+    z-index: 100;
+  }
+  .desc{
+    padding: 5*@xem;
+    border-top: 1*@xem #999999 solid;
+    border-bottom: 1*@xem #999999 solid;
+    display: inline-block;
+    margin: 8*@xem 0;
+  }
+  &:before {
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url("include/main-bg1.png") no-repeat 0 100%;
+    background-size: 159*@xem auto;
+  }
+  &:after {
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url("include/main-bg2.png") no-repeat 100% 0;
+    background-size: 188*@xem auto;
+  }
+}
+
+.mini-img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.img-box {
+  margin: 10*@xem;
+  background: #142431;
+  position: relative;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+  padding: 0.5%;
+  padding-bottom: 0;
+  min-height: 350*@xem;
+  z-index: 100;
+  img {
+    border-radius: 2*@xem;
+
+  }
+
+}
+
+.img-list {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  background: #ffe6ec;
+  margin-bottom: 0.5%;
+  min-height: 49%;
+  .c {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  img {
+    width: 100%;
+    vertical-align: top;
+  }
+}
+
+.cd {
+  font-size: 55*@xem;
+  color: #fb4c74;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
+  left: 25*@xem;
+  top: 15*@xem;
+}
+
+.top-btn {
+  height: 35*@xem;
+  line-height: 35*@xem;
+  font-size: 15*@xem;
+  padding: 0 20*@xem;
+  border: 1*@xem #142431 solid;
+  display: inline-block;
+  border-radius: 17.5*@xem;
+  vertical-align: top;
+}
+
+.gz {
+  color: #142431;
+  margin-right: 10*@xem;
+}
+
+.reset-btn {
+  color: #fff;
+  background: #142431;
+}
+
+.index {
+  width: 100%;
+  height: 100%;
+  background: #e698ae;
+
+  &:before {
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url("include/i-bg1.png") no-repeat 100% 0;
+    background-size: 192*@xem auto;
+  }
+  .c {
+    width: 100%;
+    height: 100%;
+    background: url("include/i-b.png") no-repeat center;
+    background-size: contain;
+    position: relative;
+    &:after {
+      left: 0;
+      top: 0;
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: url("include/i-bg2.png") no-repeat 0 100%;
+      background-size: 168*@xem auto;
+    }
+  }
+}
+.end{
+  background: url("include/end-bg.jpg") no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  padding: 25% 15%;
+  .t{
+    color: #e75d74;
+    font-size: 20*@xem;
+
+  }
+  .f{
+    font-size: 50*@xem;
+    color: #172430;
+    margin: 5*@xem 0;
+  }
+  .d{
+    border-top: 1*@xem #172430 solid;
+    color: #172430;
+    font-size: 12*@xem;
+    border-bottom: 1*@xem #172430 solid;
+    padding: 8*@xem 0 ;
+    max-width: 210*@xem;
+    line-height: 20*@xem;
+  }
+  .c{
+    font-size: 12*@xem;
+    a{
+      color: #e75d74;
+    }
+  }
+  .tt{
+    margin-top: 100*@xem;
+  }
+  .avatar~.tt{
+    margin-top: 35*@xem;
+  }
+  .pro-box{
+    background: #fff;
+    box-shadow: 2*@xem 0 15*@xem #bd6174;
+    border-radius: 6*@xem;
+    text-align: left;
+    position: relative;
+    padding: 15*@xem;
+    padding-left: 85*@xem;
+    margin: 25*@xem 0 15*@xem;
+    min-height: 110*@xem;
+    .pro-img{
+      position: absolute;
+      left: 15*@xem;
+      top:15*@xem;
+      width: 60*@xem;
+      .c{
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+      img{
+        max-width: 100%;
+      }
+    }
+    .title{
+      color: #172430;
+      font-size: 15*@xem;
+      margin-bottom: 5*@xem;
+    }
+    .desc{
+      font-size:12*@xem;
+      color: #999999;
+      .ov-n(2);
+    }
+    .url{
+      position: absolute;
+      right: 15*@xem;
+      bottom: 15*@xem;
+      color: #e75d74;
+      font-size:12*@xem;
+      &:after{
+        content: "";
+        .check-right(8*@xem,8*@xem,#e75d74);
+      }
+    }
+    i{
+      position: absolute;
+      width: 20*@xem;
+      height: 9*@xem;
+      bottom: -9*@xem;
+      left: 50%;
+      margin-left: -5*@xem;
+      overflow: hidden;
+      &:before{
+        position: absolute;
+        content: "";
+        display: inline-block;
+        width: 12*@xem;
+        height: 12*@xem;
+        background: #fff;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        top: -7px;
+        left: 5px;
+      }
+    }
+  }
+  .btns{
+    margin-top: 20*@xem;
+    img{
+      width: 50%;
+    }
+    .big{
+      margin-top: 30*@xem;
+      width: 80%;
+    }
+  }
+}
+.linkStart {
+  position: absolute;
+  width: 205*@xem;
+  top: 75%;
+  left: 50%;
+  margin-left: -102.5*@xem;
+  z-index: 10;
+  -webkit-animation: heartbeat ease-in-out 0.8s infinite alternate;
+  -ms-animation: heartbeat ease-in-out 0.8s infinite alternate;
+  animation: heartbeat ease-in-out 0.8s infinite alternate;
+}
+
+@-webkit-keyframes heartbeat {
+  0% {
+    -webkit-transform: scale(0.9)
+  }
+  9% {
+    -webkit-transform: scale(1.2)
+  }
+  18% {
+    -webkit-transform: scale(0.9)
+  }
+  25% {
+    -webkit-transform: scale(1)
+  }
+  100% {
+    -webkit-transform: scale(1)
+  }
+}
+
+@-ms-keyframes heartbeat {
+  0% {
+    -ms-transform: scale(0.9)
+  }
+  9% {
+    -ms-transform: scale(1.2)
+  }
+  18% {
+    -ms-transform: scale(0.9)
+  }
+  25% {
+    -ms-transform: scale(1)
+  }
+  100% {
+    -ms-transform: scale(1)
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.9)
+  }
+  9% {
+    transform: scale(1.2)
+  }
+  18% {
+    transform: scale(0.9)
+  }
+  25% {
+    transform: scale(1)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+.m{
+  display: none;
+}
+.show{
+  display: block;
+}
+.avatar{
+  width: 90*@xem;
+  height: 90*@xem;
+  border-radius: 50%;
+}
+.fl{
+  position: relative;
+  z-index: 100;
+}
+.mask{
+  text-align: right;
+  img{
+    width: 100*@xem;
+    position: relative;
+    right: 0;
+  }
+  .text{
+    position: relative;
+    right: 20%;
+    color: #fff;
+    top: 8*@xem;
+  }
+}

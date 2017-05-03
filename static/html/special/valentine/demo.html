@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>情人节</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="valentine.less">
+</head>
+<body>
+<div class="music" :class="{play: isActive}" @tap="setAudio"></div>
+<article class="page-loading" :class="{hidden: showLoad}">
+    <div class="page-logo">Pony Effect</div>
+    <div class="page-trans">
+        <img class="loading-disc" src="include/loading_disc_black.png">
+    </div>
+    <span class="loading-num">100%</span>
+</article>
+<!--<div class="zoomout_out" id="loading_disc_cont" style="opacity: 1;">-->
+    <!--<div class="disc_mask">-->
+        <!--<img src="./img/loading_mask.png" alt="">-->
+    <!--</div>-->
+    <!--<img class="disc_red disc_rotate" src="./img/loading_disc_red.png" alt="">-->
+    <!--<div class="disc_black_cont" style="transform: scale(0.38);">-->
+        <!--<img class="disc_black disc_rotate" src="./img/loading_disc_black.png" alt="">-->
+    <!--</div>-->
+    <!--<span class="" id="loading_num">100%</span>-->
+<!--</div>-->
+<div class="container" @touchstart.prevent="scrollPage" @touchend.prevent="scrollPage">
+    <article class="page" :class="{active: activeList[0]}" id="page0">
+        <div class="">第一页</div>
+    </article>
+    <article class="page" :class="{active: activeList[1]}" id="page1">
+        <div class="">第二页</div>
+    </article>
+    <article class="page" :class="{active: activeList[2]}" id="page2">
+        <div class="">第三页</div>
+    </article>
+</div>
+<div class="scroll-down">
+    <img class="scroll-arrow" src="include/cover_arrow.png">
+</div>
+
+</body>
+<script src="../../../js/vendor/fullPage.js"></script>
+<script>
+    require("special/valentine/valentine");
+</script>
+</html>

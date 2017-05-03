@@ -1,0 +1,450 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+@white: #fff;
+@gray-e: #eee;
+@gray-f1: #f1f1f1;
+@orange: #fe9b27;
+@yellow: #fbca47;
+body {
+  font-size: 0;
+}
+
+p {
+  font-size: 15*@xem;
+  color: @title;
+}
+
+span {
+  font-size: 14*@xem;
+  color: @gray-9;
+}
+
+a {
+  display: inline-block;
+  border-radius: 5*@xem;
+  background-color: @mainColor;
+  font-size: 15*@xem;
+  width: (630/2)*@xem;
+  line-height: 44*@xem;
+  color: @white;
+}
+
+h1 {
+  color: @yellow;
+  font-size: 40*@xem;
+  margin-bottom: 15*@xem;
+}
+
+h4 {
+  font-weight: normal;
+  color: #ff9294;
+  font-size: 18*@xem;
+}
+
+//引导
+.top-dow {
+  position: fixed;
+  top:0;
+  z-index: 5;
+  width: 100%;
+  height: 60*@xem;
+  padding-left: 7*@xem;
+  background-color: #eeeeee;
+  *{
+    vertical-align: middle;
+  }
+  img {
+    width: 50*@xem;
+    height: 50*@xem;
+  }
+  .close-dow-btn{
+    position: relative;
+    display: inline-block;
+    width: 24*@xem;
+    height: 100%;
+    background: url("include/css-new-close-btn.png") no-repeat center left;
+    background-size: 16*@xem;
+  }
+  .bottom-text {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    margin-left: 12*@xem;
+  }
+  h2 {
+    font-weight: 500;
+    color: #444;
+    font-size: 14*@xem;
+    margin: 10*@xem 0;
+  }
+  p {
+    color: #444;
+    font-size: 14*@xem;
+    margin: 0;
+  }
+  a {
+    position: absolute;
+    top: 0;
+    right: 10*@xem;
+    width: 90*@xem;
+    border-radius: 35*@xem;
+    color: #fff;
+    line-height: 35*@xem;
+    font-size: 14*@xem;
+    text-align: center;
+    margin-top: 12*@xem;
+    margin-left: 10*@xem;
+    background: -moz-linear-gradient( 13deg, rgb(255,80,115) 0%, rgb(255,101,132) 29%, rgb(254,122,148) 100%);
+    background: -webkit-linear-gradient( 13deg, rgb(255,80,115) 0%, rgb(255,101,132) 29%, rgb(254,122,148) 100%);
+    background: -ms-linear-gradient( 13deg, rgb(255,80,115) 0%, rgb(255,101,132) 29%, rgb(254,122,148) 100%);
+  }
+}
+
+.top-dow+.pagea,.top-dow+.pageb{
+  padding-top: 60*@xem;
+}
+
+.pagea.contanier {
+  overflow: hidden;
+  background: linear-gradient(#fb9eb1, #fc6684);
+  padding-bottom: 20*@xem;
+  .main-img {
+    width: 100%;
+    margin-top: 10*@xem;
+  }
+  .box {
+    padding: 0 15*@xem;
+  }
+  .main {
+    //background-color: @white;
+  }
+  .coupon {
+
+  }
+  .sawtooth {
+    width: 100%;
+    //position: relative;
+    //top:-1*@xem;
+  }
+  .title {
+    padding: 50*@xem 0 8*@xem;
+    background: url("include/css-new-logo.png") @white no-repeat center 15*@xem;
+    background-size: (264/2)*@xem;
+    span {
+      position: relative;
+      font-size: 12*@xem;
+      color: @yellow;
+      &:before, &:after {
+        content: "";
+        display: inline-block;
+        width: 35*@xem;
+        height: 1*@xem;
+        background-color: @yellow;
+        vertical-align: middle;
+        margin: 0 5*@xem;
+      }
+    }
+  }
+  .middle-img {
+    position: relative;
+    //top:-1*@xem;
+    width: 100%;
+    //height: 100%;
+    //@height:2*@xem;
+    //height: calc(~"100% + @{height}");
+  }
+  .middle {
+    //height: 35*@xem;
+  }
+  .bottom {
+    background-color: @white;
+    overflow: hidden;
+    padding-top: 12*@xem;
+    a + span {
+      float: right;
+      margin-top: 10*@xem;
+      padding-right: 15*@xem;
+    }
+  }
+  .phone-number {
+    font-size: 14*@xem;
+  }
+  .phone-number + p {
+    color: #ff9294;
+    font-size: 18*@xem;
+    margin: 10*@xem 0 25*@xem;
+  }
+  .bottom-img {
+    width: 275*@xem;
+    margin-top: 15*@xem;
+  }
+  .fail, .register {
+    padding: 30*@xem 0 30*@xem;
+    background-color: @white;
+    h4 {
+      margin: 30*@xem 0 0;
+    }
+  }
+  .register {
+    img {
+      width: (156/2)*@xem;
+    }
+    h4 + p {
+      margin: 15*@xem 0 12*@xem;
+    }
+    p {
+      margin-bottom: 25*@xem;
+    }
+  }
+  .fail img {
+    width: 105*@xem;
+  }
+  .fail {
+    p {
+      margin: 15*@xem 0 48*@xem;
+    }
+  }
+
+}
+
+.pageb {
+  background: #f5f5f5;
+  .pageb-main {
+    background: url("include/css-new-pageb-bg.png") rgb(248,138,164) no-repeat top center;
+    background-size: 100% auto;
+    padding: 175*@xem 0 0;
+    .main {
+      height: 234*@xem;
+      background: url("include/css-new-pageb-main.png") no-repeat top center;
+      background-size: 100% 234*@xem;
+      padding: 20*@xem 0 0;
+      p {
+        color: #fff;
+      }
+      .infor {
+        * {
+          vertical-align: middle;
+        }
+        img {
+          width: 30*@xem;
+          height: 30*@xem;
+          border-radius: 50%;
+          margin-right: 10*@xem;
+        }
+        span {
+          color: #fff;
+          font-size: 14*@xem;
+        }
+      }
+      h1 {
+        font-size: 32*@xem;
+        color: #fff;
+        margin: 10*@xem 0;
+      }
+      .s{
+        margin-top: 40*@xem;
+      }
+      .coupon {
+
+      }
+    }
+    .btn-box {
+      padding: 25*@xem 0;
+    }
+  }
+  .middle-title {
+    font-size: 0;
+    height: 60*@xem;
+    padding: 0 10*@xem;
+    &:after, &:before {
+      content: "";
+      display: inline-block;
+      width: 30%;
+      height: 100%;
+      background-size: 85%;
+      background-repeat: no-repeat;
+      vertical-align: top;
+    }
+    &:after {
+      background-image: url('include/css-app-fgr.png');
+      background-position: right center;
+    }
+    &:before {
+      background-image: url('include/css-app-fgl.png');
+      background-position: left center;
+    }
+    span {
+      vertical-align: middle;
+      display: inline-block;
+      font-size: 16*@xem;
+      color: @title;
+      height: 100%;
+      width: 40%;
+      text-align: center;
+      line-height: 60*@xem;
+    }
+  }
+  .bottom-btn {
+    padding: 20*@xem;
+  }
+  .bottom-img {
+    padding: 15*@xem 28*@xem 45*@xem;
+    background: @gray-e;
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mask-bg {
+  background-color: rgba(0, 0, 0, .3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.show-rule {
+  position: relative;
+  z-index: 5;
+  border-radius: 2*@xem;
+  width: 300*@xem;
+  background-color: @white;
+  margin: 130*@xem auto 0;
+}
+
+.rule-title {
+  position: relative;
+  h4 {
+    font-size: 16*@xem;
+    color: @title;
+    background-color: #f7f5f5;
+    text-align: center;
+    line-height: 40*@xem;
+    height: 40*@xem;
+    border-top-left-radius: 2*@xem;
+    border-top-right-radius: 2*@xem;
+  }
+  span {
+    position: absolute;
+    width: 48*@xem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: url("include/css-app-close.png") no-repeat center center;
+    background-size: 16*@xem;
+  }
+}
+
+.text {
+  padding: 15*@xem 15*@xem 20*@xem;
+  p {
+    margin-bottom: 25*@xem;
+    font-size: 14*@xem;
+  }
+}
+
+.show-coupon {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  //border-radius: 0;
+  //height: 100*@xem;
+  //width: 200*@xem;
+  //display: block;
+  //background-color: rgba(0, 0, 0, 0.7);
+  //position: fixed;
+  //display: block;
+  //top:80*@xem;
+  //left: 50%;
+  margin-left: -(650/4)*@xem;
+  //position: relative;
+  z-index: 5;
+  width: (650/2)*@xem;
+  height: auto;
+  border-radius: 5*@xem;
+  background-color: @white;
+  //margin: 30% auto 0;
+
+  p {
+    font-size: 16*@xem;
+  }
+  a {
+    height: 50*@xem;
+    line-height: 50*@xem;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 25*@xem;
+    vertical-align: bottom;
+  }
+}
+
+.close-coupon {
+  position: relative;
+  height: 45*@xem;
+  span {
+    position: absolute;
+    width: 48*@xem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: url("include/css-app-close.png") no-repeat center center;
+    background-size: 16*@xem;
+  }
+
+}
+
+.coupon-form {
+  position: relative;
+  padding: 0 15*@xem;
+  form {
+    margin-top: 20*@xem;
+  }
+  .button {
+    position: absolute;
+    right: 15*@xem;
+    bottom: 20*@xem;
+    height: 30*@xem;
+    width: 90*@xem;
+    line-height: 30*@xem;
+    font-size: 14*@xem;
+    border-left: 1*@xem solid @gray-c;
+    color: @mainColor;
+  }
+  .time {
+    color: @gray-c;
+  }
+}
+
+.ui-loader {
+  h1 {
+    color: @white;
+  }
+}
+
+.ui-loader{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -50*@xem -100*@xem;
+  border-radius: 0;
+  height: 100*@xem;
+  width: 200*@xem;
+  display: block;
+  background-color: rgba(0, 0, 0, .7);
+  div {
+    margin-top: 20*@xem;
+    font-size: 14*@xem;
+    color: @white;
+  }
+}
+

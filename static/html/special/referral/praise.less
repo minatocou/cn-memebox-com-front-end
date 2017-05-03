@@ -1,0 +1,384 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+@white: #fff;
+@gray-e: #eee;
+@gray-f1: #f1f1f1;
+@orange: #fe9b27;
+@yellow: #fbca47;
+@boxBg: linear-gradient(#fb9eb1, #fc6684);
+body {
+  background: #f5f5f5;
+}
+
+p {
+  font-size: 15*@xem;
+}
+
+a {
+  display: inline-block;
+  border-radius: 5*@xem;
+  background-color: @mainColor;
+  font-size: 15*@xem;
+  width: (630/2)*@xem;
+  line-height: 44*@xem;
+  color: @white;
+}
+
+h1 {
+  color: @white;
+  font-size: 36*@xem;
+  margin-bottom: 15*@xem;
+}
+
+h4 {
+  font-weight: normal;
+  color: #ff9294;
+  font-size: 18*@xem;
+}
+
+.top-dow+.pagea,.top-dow+.pageb{
+  padding-top: 60*@xem;
+}
+
+.pagea.contanier {
+  overflow: hidden;
+
+  padding-bottom: 20*@xem;
+  color: #fff;
+  .main-img {
+    width: 100%;
+    margin-top: 10*@xem;
+  }
+  .box {
+    padding: 0 15*@xem;
+  }
+  .main {
+    //background-color: @white;
+    background: url("include/box-bg.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .coupon {
+
+  }
+  .sawtooth {
+    width: 100%;
+    //position: relative;
+    //top:-1*@xem;
+  }
+  .title {
+    padding: 50*@xem 0 8*@xem;
+    background: url("include/box-logo.png") no-repeat center 15*@xem;
+    background-size: (264/2)*@xem;
+    span {
+      position: relative;
+      font-size: 12*@xem;
+      color: @white;
+      &:before, &:after {
+        content: "";
+        display: inline-block;
+        width: 35*@xem;
+        height: 1*@xem;
+        background-color: @white;
+        vertical-align: middle;
+        margin: 0 5*@xem;
+      }
+    }
+  }
+  .desc{
+    margin: 10*@xem 0 20*@xem;
+    font-size: 16*@xem;
+    color: #fff;
+  }
+  .middle-img {
+    position: relative;
+    //top:-1*@xem;
+    width: 100%;
+    //height: 100%;
+    //@height:2*@xem;
+    //height: calc(~"100% + @{height}");
+  }
+  .middle {
+    //height: 35*@xem;
+  }
+  .bottom {
+    overflow: hidden;
+    padding: 20*@xem 38*@xem 30*@xem;
+    color: #fff;
+    a + span {
+      float: right;
+      margin-top: 10*@xem;
+      color: #fff;
+      font-size: 14*@xem;
+    }
+    a{
+      background: #fff;
+      color: @mainColor;
+      width: 100%;
+    }
+  }
+  .phone-number {
+    font-size: 14*@xem;
+  }
+  .phone-number + p {
+    font-size: 18*@xem;
+    color: #fff;
+    margin: 10*@xem 0 25*@xem;
+  }
+  .bottom-img {
+    padding: 45*@xem 28*@xem;
+  }
+  .fail, .register {
+    padding: 30*@xem 0 30*@xem;
+    background-color: @white;
+    h4 {
+      margin: 30*@xem 0 0;
+    }
+  }
+  .register {
+    img {
+      width: (156/2)*@xem;
+    }
+    h4 + p {
+      margin: 15*@xem 0 12*@xem;
+    }
+    p {
+      margin-bottom: 25*@xem;
+    }
+  }
+  .fail img {
+    width: 105*@xem;
+  }
+  .fail {
+    p {
+      margin: 15*@xem 0 48*@xem;
+    }
+  }
+
+}
+.comment-box{
+  margin: 15*@xem;
+  background: #fff;
+  border-radius: 4*@xem;
+  height:140*@xem;
+  position: relative;
+  .pro-img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    bottom: 0;
+    height: 100%;
+    width: 140*@xem;
+  }
+  .comment-info{
+    margin-left: 150*@xem;
+    font-size: 14*@xem;
+    color: #333333;
+
+    .text{
+      position: relative;
+      padding: 25*@xem 10*@xem 0 20*@xem;
+      line-height: 18*@xem;
+      span{
+        .ov-n(3);
+        min-height: 50*@xem;
+      }
+      &:before,&:after{
+        font-family: "Arial Black";
+        font-size: 30*@xem;
+        position: absolute;
+        color: #999999;
+      }
+      &:before{
+        content: "“";
+        left: 0;
+        top: 15*@xem;
+      }
+      &:after{
+        content: "”";
+        right: 15*@xem;
+        bottom: -25*@xem;
+      }
+    }
+    .star{
+      padding: 5*@xem 10*@xem 5*@xem 20*@xem;
+      .xx{
+        width: 12*@xem;
+      }
+    }
+    .user{
+      padding-left: 20*@xem;
+      .head{
+        display: inline-block;
+        vertical-align: middle;
+        width: 25*@xem;
+        height: 25*@xem;
+        border-radius: 50%;
+      }
+      .name{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 12*@xem;
+        color: #999999;
+        margin-left: 5*@xem;
+      }
+    }
+  }
+}
+
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mask-bg {
+  background-color: rgba(0, 0, 0, .3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.show-rule {
+  position: relative;
+  z-index: 5;
+  border-radius: 2*@xem;
+  width: 300*@xem;
+  background-color: @white;
+  margin: 130*@xem auto 0;
+}
+
+.rule-title {
+  position: relative;
+  h4 {
+    font-size: 16*@xem;
+    color: @title;
+    background-color: #f7f5f5;
+    text-align: center;
+    line-height: 40*@xem;
+    height: 40*@xem;
+    border-top-left-radius: 2*@xem;
+    border-top-right-radius: 2*@xem;
+  }
+  span {
+    position: absolute;
+    width: 48*@xem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: url("include/css-app-close.png") no-repeat center center;
+    background-size: 16*@xem;
+  }
+}
+
+.text {
+  padding: 15*@xem 15*@xem 20*@xem;
+  p {
+    margin-bottom: 25*@xem;
+    font-size: 14*@xem;
+  }
+}
+
+.show-coupon {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  //border-radius: 0;
+  //height: 100*@xem;
+  //width: 200*@xem;
+  //display: block;
+  //background-color: rgba(0, 0, 0, 0.7);
+  //position: fixed;
+  //display: block;
+  //top:80*@xem;
+  //left: 50%;
+  margin-left: -(650/4)*@xem;
+  //position: relative;
+  z-index: 5;
+  width: (650/2)*@xem;
+  height: auto;
+  border-radius: 5*@xem;
+  background-color: @white;
+  //margin: 30% auto 0;
+
+  p {
+    font-size: 16*@xem;
+  }
+  a {
+    height: 50*@xem;
+    line-height: 50*@xem;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 25*@xem;
+    vertical-align: bottom;
+  }
+}
+
+.close-coupon {
+  position: relative;
+  height: 45*@xem;
+  span {
+    position: absolute;
+    width: 48*@xem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: url("include/css-app-close.png") no-repeat center center;
+    background-size: 16*@xem;
+  }
+
+}
+
+.coupon-form {
+  position: relative;
+  padding: 0 15*@xem;
+  form {
+    margin-top: 20*@xem;
+  }
+  .button {
+    position: absolute;
+    right: 15*@xem;
+    bottom: 20*@xem;
+    height: 30*@xem;
+    width: 90*@xem;
+    line-height: 30*@xem;
+    font-size: 14*@xem;
+    border-left: 1*@xem solid @gray-c;
+    color: @mainColor;
+  }
+  .time {
+    color: @gray-c;
+  }
+}
+
+.ui-loader {
+  h1 {
+    color: @white;
+  }
+}
+
+.ui-loader{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -50*@xem -100*@xem;
+  border-radius: 0;
+  height: 100*@xem;
+  width: 200*@xem;
+  display: block;
+  background-color: rgba(0, 0, 0, .7);
+  div {
+    margin-top: 20*@xem;
+    font-size: 14*@xem;
+    color: @white;
+  }
+}
+

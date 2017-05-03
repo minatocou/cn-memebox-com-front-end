@@ -1,0 +1,9 @@
+<div class="special">
+    <ul class="spacial-list">
+        <li v-for="(index,special) in specialData.items" :class="getClass(index)">
+            <a :href="toH5Url(special.item_action_url)">
+                <img :src="special.special_img">
+            </a>
+        </li>
+    </ul>
+</div>

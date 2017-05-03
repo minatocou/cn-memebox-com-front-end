@@ -1,0 +1,62 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+.productClassify-page{
+  .mui-content{
+    #pullrefresh{
+      top:79*@xem;
+    }
+    .mui-table-view{
+      margin-top: 0;
+    }
+  }
+  .mui-action-back {
+    width: 35*@xem;
+    height: 100%;
+    &:before{
+      position: absolute;
+      top:50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+  //购物车图标
+  .shopping-cart {
+    position: fixed;
+    right: 14*@xem;
+    bottom:15*@xem;
+    width: 45*@xem;
+    height: 45*@xem;
+    z-index: 100;
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: url("include/css-shoppingCart.png") center no-repeat;
+      background-size: contain;
+    }
+    .number {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 24*@xem;
+      height: 24*@xem;
+      border-radius: 50%;
+      background-color: #fff;
+      text-align: center;
+      color: @mainColor;
+      border: 1*@xem solid @mainColor;
+      font-size: 16*@xem;
+      line-height: 24*@xem;
+      -webkit-transform: scale(.5);
+      -moz-transform: scale(.5);
+      -ms-transform: scale(.5);
+      -o-transform: scale(.5);
+      transform: scale(.5);
+    }
+  }
+}

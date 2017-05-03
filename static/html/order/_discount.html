@@ -1,0 +1,75 @@
+<div id="discount" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">优惠券选择</h1>
+        <!--<a class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">保存</a>-->
+    </div>
+    <div class="mui-page-content">
+        <div id="couponMore" class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div class="coupon-chk">
+                    <div class="coupon-left">不使用优惠</div>
+                    <div class="coupon-right">
+                        <div class="mui-input-row mui-checkbox">
+                            <input id="chk" name="coupon" @tap="useCoupon(warehouType, null)" type="checkbox" disabled="{{chkStatus}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mui-input-coupon" :class="couponType==2? 'select' : ''">
+                    <input type="text" class="useInput"  v-model="couponCode" placeholder="请输入优惠码">
+                    <span @tap="useCouponCode(warehouType, couponCode)">兑 换</span>
+                </div>
+                <ul class="discount-box" v-show="coupon.length">
+                    <li v-for="(k,v) in coupon" @tap.stop="useCoupon(warehouType, v.id)">
+                        <img :src="'/images/app/order/include/'+priceChangesClass(v.warehouse, v.valid)" alt="" width="100%" class="price-img">
+                        <div class="price-box">
+                            <div class="price">
+                                <span class="coupon" :class="changeTxtColor(v.warehouse)">
+                                    <span class="h">{{changePrice(v.discount_type, v.discount)[0]}}</span>
+                                    <span>{{changePrice(v.discount_type, v.discount)[1]}}</span>
+                                    <span>{{changePrice(v.discount_type, v.discount)[2]}}</span>
+                                </span>
+                                <div class="desc">
+                                    <p class="title">{{v.name}}</p>
+                                </div>
+                                <div class="time">有效期{{v.from_date | timestamp2Date}}至{{v.to_date | timestamp2Date}}</div>
+                                <img v-show="v.is_selected" src="include/coupn-select.png" class="coupon-icon" />
+                            </div>
+                            <div class="description">
+                                <p>
+                                    {{showCouponInfo(v.warehouse)}}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="discount-box disCoupon" v-show="disCoupon.length">
+                    <li v-for="(i,n) in disCoupon" @tap.stop="disUseCoupon">
+                        <img :src="'/images/app/order/include/'+priceChangesClass(n.warehouse, n.valid)" alt="" width="100%" class="price-img">
+                        <div class="price-box">
+                            <div class="price">
+                                <span class="coupon" :class="changeTxtColor(n.warehouse, n.valid)">
+                                    <span class="h">{{changePrice(n.discount_type, n.discount)[0]}}</span>
+                                    <span>{{changePrice(n.discount_type, n.discount)[1]}}</span>
+                                    <span>{{changePrice(n.discount_type, n.discount)[2]}}</span>
+                                </span>
+                                <div class="desc">
+                                    <p class="title">{{n.name}}</p>
+                                </div>
+                                <div class="time">有效期{{n.from_date | timestamp2Date}}至{{n.to_date | timestamp2Date}}</div>
+                                <img v-show="n.is_selected" src="include/coupn-select.png" class="coupon-icon" />
+                            </div>
+                            <div class="description">
+                                <p>
+                                    {{showCouponInfo(n.warehouse)}}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

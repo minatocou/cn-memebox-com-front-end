@@ -1,0 +1,8 @@
+<img width="100%" :src=productData.img[0] v-show="productData.img.length==1" style="vertical-align: top">
+<div id="slider" class="swiper-container" v-show="productData.img.length>1">
+    <swipe class="vue-swipe"  :auto=false :continuous=false>
+        <swipe-item v-for="img in productData.img">
+            <img :src=img>
+        </swipe-item>
+    </swipe>
+</div>

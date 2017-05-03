@@ -1,0 +1,23 @@
+<ul class="mui-table-view mui-table-view-chevron" id="sort">
+    <sort :position="position"
+          :position-sort="positionSort"
+          :price-sort="priceSort"
+          :price="price"></sort>
+</ul>
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div class="mui-scroll">
+        <ul class="mui-table-view mui-table-view-chevron">
+            <product-list v-for="productList in dataProductList['data']"
+                          v-show="showList==true"
+                          url="../productDetails/productDetails.html#"
+                          :product-id="productList['productId']"
+                          :description="productList['brandName']+productList['name']"
+                          :img="productList['imgUrl']"
+                          :price="productList['price']"
+                          :origin-price="productList['originPrice']"
+                          :icon="productList"
+                          :stock-status="productList['stockStatus']"
+            ></product-list>
+        </ul>
+    </div>
+</div>

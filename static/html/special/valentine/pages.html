@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>情人节</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="valentine.less">
+</head>
+<body>
+<div class="music" :class="{play: isActive}" @tap="setAudio"></div>
+<article class="page-loading current" @touchstart.prevent="scrollPage" @touchend.prevent="scrollPage">
+    <div class="page-logo">Pony Effect</div>
+    <div class="load-wrap" :class="{loadHide: showLoad}">
+        <img class="page-trans" src="include/loading_disc_red.png">
+        <img class="loading-disc" src="include/loading_disc_black.png">
+        <span class="loading-num">0%</span>
+    </div>
+</article>
+<div class="container" :class="{showContain: showLoad}" id="pageContain">
+    <article class="page page1" >
+        <div class="contain wrap">
+            <div>海报/介绍</div>
+        </div>
+    </article>
+    <article class="page page2">
+        <div class="contain wrap">
+            <ul class="bar-group">
+                <li value="1" @tap="chooseBar">酒吧一</li>
+                <li value="2" @tap="chooseBar">酒吧二</li>
+                <li value="3" @tap="chooseBar">酒吧三</li>
+                <li value="4" @tap="chooseBar">酒吧四</li>
+            </ul>
+        </div>
+    </article>
+    <article class="page page3">
+        <div class="contain">
+            <div class="bar-info bar1">
+                <div class="bar-infowrap">
+                    <h1>Pony Effect</h1>
+                    <h1>XXX派对</h1>
+                    <h2>2017.02.14</h2>
+                </div>
+                <div class="bar-infowrap">
+                    <h1>CHINA · SHANGHAI</h1>
+                    <h2>中国 · 上海</h2>
+                </div>
+                <div class="bar-infowrap">
+                    <h1>NO.570 Huaihai Road · RedTown</h1>
+                    <h2>淮海路570号 · 红坊</h2>
+                    <a class="bar-link" href="javascript:void(0);">选择其他地点</a>
+                </div>
+                <div class="bar-infofoot">
+                    <a class="bar-link" href="javascript:void(0);">立刻报名</a>
+                    <a class="bar-link" @tap="barInfo(1)" href="javascript:void(0);">酒店详情</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="scroll-down hidden" :class="{hidden: showDown}">
+    <img class="scroll-arrow" src="include/cover_arrow.png">
+</div>
+
+<!--报名信息-->
+<div class="bar-dialog" :class="{active: bar1}" id="bar1">
+    <div class="dlg-head"></div>
+    <div class="dlg-content">弹窗</div>
+    <div class="dlg-foot">
+        <span class="dlg-close" @tap="closeDlg"></span>
+    </div>
+</div>
+<!--报名表单-->
+
+<!--酒店详情-->
+
+</body>
+<script src="../../../js/vendor/fullPage.js"></script>
+<script>
+    require("special/valentine/valentine");
+</script>
+</html>

@@ -1,0 +1,34 @@
+<div class="cart-box"  v-show="cartData.disabled">
+    <ul class="cart-pro cart-invalid">
+        <li v-for="item in cartData.disabled" class="mui-table-view-cell mui-transitioning">
+            <div class="mui-slider-right mui-disabled">
+                <a @tap="remove(item.itemId)" class="mui-btn mui-btn-red"
+                   style="transform: translate(0px, 0px);">删除</a>
+            </div>
+            <div class="mui-slider-handle invalid" style="transform: translate(0px, 0px);">
+                <div class="mui-checkbox">
+                    <span class="loseEfe">失效</span>
+                </div>
+                <div class="mui-input-row mui-checkbox mini mui-left lose">
+                    <div class="cart-img">
+                        <img class="pro-img" :src="item.img"/>
+                    </div>
+                    <div class="cart-text">
+                        <div class="title-box">
+                            <div>
+                                <div class="title">
+                                    <span class="ov2">{{item.brand}}&nbsp;{{item.name}}</span>
+                                    <p class="gray ov">{{item.option}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="red">￥{{item.price}}<span class="cart-qty">&nbsp;x{{item.qty}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div align="center" class="clear-cart" v-show="cartData.disabled">
+    <button @tap="cleanUp()" class="mui-btn mui-btn-outlined mui-btn-mm">清空失效商品</button>
+</div>

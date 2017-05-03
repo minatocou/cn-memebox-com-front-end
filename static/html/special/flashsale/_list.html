@@ -1,0 +1,20 @@
+<div class="countdown " :class="durationInfo.class" align="center" v-show="showList" style="display: none;">
+    <span></span>
+    <span>{{secKillTime}}</span>
+</div>
+<ul class="flash-list" v-show="showList" style="display: none;">
+    <li v-for="pro in list" :class="durationInfo.class" @tap="goDetail(pro)">
+        <img :src=pro.imgUrl alt="">
+        <div class="right">
+            <p class="ov2">
+                {{pro.brandName}}{{pro.name}}
+            </p>
+            <div class="bottom">
+                <span class="price">{{pro.secKillPrice}}</span>
+                <del>{{pro.originPrice}}</del>
+                <p class="info">{{durationInfo.startTime}}</p>
+                <span class="button" :class="pro.seckillStock===false&&'disabled'"></span>
+            </div>
+        </div>
+    </li>
+</ul>

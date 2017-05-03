@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>签到规则</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <style type="text/css">
+        html,body {
+            height: 100%;
+        }
+        .sign-rule {
+            background-image: -webkit-linear-gradient(top,#ff9bb0,#fff);
+            background-image: -webkit-linear-gradient(to bottom,#ff9bb0;,#fff);
+            background-image: linear-gradient(to bottom,#ff9bb0,#fff);
+            height: 100%;
+            padding: 20px 16px;
+            line-height: 1.8;
+        }
+        .container {
+            border-radius: 20px;
+            background-color: #fff;
+            padding: 20px 12px;
+        }
+        .rule-list {
+            font-size: 14px;
+            list-style: none;
+            padding: 0;
+        }
+        .rule-title {
+            margin: 10px 0 20px;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        var appVer={
+            iosVer: function () {
+                var ver = navigator.appVersion.match(/MWProjectTemplate.*/);
+                return ver && ver[0].match(/[\d]/g) && ver[0].match(/[\d]/g).join('');
+            },
+            iosAlias: function () {
+                var ver = navigator.appVersion.match(/MemeboxAlias.*/);
+                return ver && ver[0].match(/[\d]/g) && ver[0].match(/[\d]/g).join('');
+            },
+            isApp: function () {
+                return this.iosVer() || this.androidVer() || this.iosAlias();
+            },
+            androidVer: function () {
+                var ver = navigator.appVersion.match(/MeMeAndroid.*/);
+                return ver && ver[0].match(/[\d]/g) && ver[0].match(/[\d]/g).join('');
+            },
+            isIos: function () {
+                return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+            },
+            isAndroid: function () {
+                return /android/.test(window.navigator.userAgent.toLowerCase());
+            },
+            isWeixin: function () {
+                return /MicroMessenger/.test(window.navigator.userAgent);
+            },
+        };
+        appVer.isApp() && (setTimeout(function () {
+            document.querySelector('body').style.paddingTop = '65px';
+            document.querySelector('.rule-title').style.display = 'none';
+        }));
+    </script>
+</head>
+<body class="sign-rule">
+
+    <main>
+        <section class="container">
+            <h4 class="rule-title">签到规则</h4>
+            <ul class="rule-list">
+                <li>1、连续签到能使豆荚的能量值不断提升，当能量值达到100%时拼满一个豆荚，豆荚成熟裂开将随机获得1-3颗的蜜豆奖励，每个月可以拼数个豆荚，获得很多的蜜豆噢；</li>
+                <li>2、豆荚的能量在未达到100％前终止连续签到，隔天签到不会累计该豆荚的能量值，将重新开始拼一个新豆荚；</li>
+                <li>3、以自然月为统计单位，月末如果连续签到未超过3天将不会获得该豆荚的蜜豆奖励；</li>
+                <li>4、奖励的蜜豆将自动发至账户，可在“个人中心－我的蜜豆”中查看，蜜豆可在下单结算时抵扣订单金额和使用；</li>
+                <li>5、在签到页面如果有任务，完成后将获得不等值的能量值；</li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+
+</html>

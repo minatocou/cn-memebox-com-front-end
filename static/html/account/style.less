@@ -1,0 +1,192 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+.link-area{
+
+  font-size: 14*@xem;
+  float: right;
+  a{
+    font-size: 12*@xem;
+    color: #ff5073;
+    letter-spacing: 0;
+    text-align: left;
+    &.pink{
+      color: @mainColor;
+    }
+  }
+}
+.link-area-reg p,.link-area-reg a{
+  font-size: 12*@xem;
+}
+body,.mui-content{
+  background:#ffffff;
+}
+
+.mui-title,.mui-btn-link.mui-pull-right{
+  font-family:PingFangSC-Regular;
+  font-size:16*@xem;
+  color:#ffffff;
+  letter-spacing:0;
+  text-align:center;
+}
+.mui-btn-link.mui-pull-right{
+  font-size: 14*@xem;
+}
+
+.mui-input-group .mui-btn-send{
+  padding: 0 10*@xem;
+  top: 5*@xem;
+  bottom: 5*@xem;
+  right: 5*@xem;
+  background: transparent;
+  color: @mainColor;
+  font-size: 12*@xem;
+  border-radius: 4*@xem;
+}
+.user-agreement{
+  .title{
+    color: #333;
+    font-weight: 700;
+    font-size: 16*@xem;
+    padding-bottom: 15*@xem;
+  }
+  .content{
+    color: #666;
+    font-size: 13*@xem;
+    line-height: 20*@xem;
+    padding-bottom: 15*@xem;
+  }
+}
+.other-login{
+  //position: fixed;
+  //bottom:0;
+  //left: 0;
+  margin-top:160*@xem;
+  height: 130*@xem;
+  width: 100%;
+  padding: 0 35*@xem;
+  p{
+    color:@gray-9;
+    font-size: 13*@xem;
+    text-align: center;
+    &:before,&:after{
+      display: inline-block;
+      content: "";
+      height: 1*@xem;
+      width: 30%;
+      background-color: @gray-9;
+      margin-top: 7*@xem;
+    }
+    &:before{
+      float: left;
+    }
+    &:after{
+      float: right;
+    }
+  }
+  ul{
+    margin-top: 15*@xem;
+    overflow: hidden;
+    li{
+      float: left;
+      width: 50%;
+      color:@gray-9;
+      font-size: 13*@xem;
+      text-align: center;
+      padding-top: 58*@xem;
+      background-repeat:no-repeat;
+      background-size:45*@xem;
+      background-position: center top;
+    }
+    .weixin{
+      background-image: url("include/css-weixin.jpg");
+    }
+    .weibo{
+      background-image: url("include/css-weibo.jpg");
+    }
+    .qq{
+      background-image: url("include/css-qq.jpg");
+    }
+  }
+}
+.mui-content-padded p{
+  text-align: center;
+  font-size: 12*@xem;
+}
+.mui-content-padded p a{
+  color:#ff5073;
+}
+.discount_mask{
+
+}
+.changeTab{
+    height: 44*@xem;
+    text-align: center;
+    line-height: 44*@xem;
+    .aplogin,.phlogin{
+      font-family: PingFangSC-Regular;
+      font-size: 13*@xem;
+      color: #8e8e8e;
+      letter-spacing: 0;
+      text-align: center;
+      padding: 11*@xem;
+    }
+    .aplogin{
+      margin-right: 73*@xem;
+    }
+    .aplogin.chosen,.phlogin.chosen{
+      color: #ff5073;
+      border-bottom: 2*@xem solid #ff5073;
+    }
+}
+.mui-input-group.new .mui-input-row.new{
+    height: 45*@xem;
+    line-height: 45*@xem;
+    input{
+      height: 45*@xem;
+      line-height: 45*@xem;
+      font-size: 13*@xem;
+      padding-bottom: 0;
+      width: 90%;
+      margin-left: 5%;
+      padding-left: 0;
+      border-bottom: 1*@xem solid #eeeeee;
+      padding-left: 10*@xem;
+    }
+    input.mui-btn-send{
+      background: #ffffff;
+      border: 1*@xem solid #ff5073;
+      border-radius: 4*@xem;
+      width: 96*@xem;
+      height: 26*@xem;
+      line-height: 26*@xem;
+      margin-top: 8*@xem;
+      margin-right: 10%;
+    }
+}
+.mui-input-group.new:after,.mui-input-group.new .mui-input-row.new:after{
+  height: 0*@xem;
+}
+.mui-content .mui-content-padded.new{
+    background: #dadada;
+    border-radius: 3*@xem;
+    width: 80%;
+    height: 34*@xem;
+    margin-left: 10%;
+    margin-top: 23*@xem;
+    button.mui-btn.mui-btn-mm{
+      height: 34*@xem;
+      line-height: 34*@xem;
+      padding: 0;
+      font-family: PingFangSC-Regular;
+      font-size: 13*@xem;
+      letter-spacing: 0;
+      text-align: center;
+      border: 0;
+    }
+}
+.mui-content .mui-input-row label,.mui-content .mui-input-row input{
+  font-size: 13*@xem;
+}
+
+@import "../../css/c/discount";

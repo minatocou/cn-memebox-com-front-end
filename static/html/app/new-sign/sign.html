@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title v-text="title"></title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link href="sign.less" rel="stylesheet"/>
+</head>
+<body>
+
+    <main>
+        <div class="sign" :class="{app480: appVersion}">
+                <div class="sign-top-block">
+                    <span class="flex-item relative" @touchend="showSignRules">
+                        <span class="v-middle">签到规则</span>
+                        <span class="sign-help-tag"><span class="tag">?</span></span>
+                    </span>
+                    <div class="sign-on-off flex-item" v-if="isApp()">
+                        <span class="v-middle">签到提醒</span>
+                        <div class="opt-checkbox-wrap" @touchend="togglePushStatus">
+                            <input class="opt-checkbox" type="checkbox" v-model="currentPushStatus">
+                        </div>
+                    </div>
+                </div>
+                <!--日历-->
+                <div class="sign-calendar-wrap">
+                    <div class="sign-calendar">
+                    <!-- <ul class="sign-calendar-date-list" :style="styleObject" @touchstart.prevent="scrollPage" @touchmove.prevent="scrollPage"> -->
+                        <ul class="sign-calendar-date-list running" :class="{running: running}" v-rotate="transform" :style="styleObject">
+                            <li v-for="(index,value) in daysList" :style="styleObj[index]" :class="{today: value === currentDate,active: index === active,signed: signinRecord.indexOf(value) !==-1,unsigned: unsigninRecord.indexOf(value) !==-1}">
+                                <div class="circle-item">
+                                    <span class="date-span" :class="value[1]" v-text="value"></span>
+                                    <i class="iconoo-checkCircle"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sign-power">
+                    <div class="sign-power-volume">
+                        <div class="sign-power-volume-water" :class="{animation: experience}" :style="stylePosition">
+                            <span class="sign-power-volume-text" v-text="experience | percentage"></span>
+                        </div>
+                        <div class="sign-power-bg"></div>
+                    </div>
+                </div>
+            <div class="sign-bottom-wrap">
+                <div class="sign-power-text">
+                    <div class="sign-power-title">连续签到为豆荚充能</div>
+                    <div>豆荚能量值充满将获得随机蜜豆奖励哦</div>
+                </div>
+
+                <div class="sign-memebean">
+                    <div class="sign-memebean-title" align="center">本月签到已获蜜豆</div>
+                    <div class="sign-memebean-container">
+                        <ul class="sign-memebean-list">
+                            <li class="hide" :class="{hide: !!beansList.length}">
+                                <div class="gray-bean">&nbsp;</div> 
+                                oops！小主您还未获得蜜豆哦~
+                            </li>
+                            <li class="sign-memebean-list-item bean hide" :class="{hide: !beansList.length}" v-for="(index,item) in beansList">&nbsp;</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="sign-task hide" :class="{scale: !taskList.length,hide: !created}" v-if="isApp()">
+                    <div class="sign-task-title" align="center">完成任务加能量</div>
+                    <div class="sign-task-container">
+                        <ul class="sign-task-list">
+                            <li class="sign-task-list-item" v-for="(index,item) in taskList" :class="{scale: taskList[index].scale}">
+                                <div class="sign-task-list-item-tag"></div>
+                                <span class="sign-task-list-item-btn" @tap="showTaskPage($event,index,item.type)" v-text="item.status == 1?'已完成':'去完成'">去完成</span>
+                                <div class="sign-task-list-item-text text-ellipsis">
+                                    <span v-text="item.text || '完善用户信息'"></span>
+                                    <span class="capsule-item">增加20%能量值</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sign-memebean-modal-backdrop hide opacity" @touchmove.prevent @touchend.prevent="cleanExperience" :class="{hide: experience < 100,opacity: backdropOpacity}">
+                <div class="sign-memebean-modal">
+                    <div class="sign-memebean-modal-bg" style="height: {{modalHeight}}">
+                        <div class="sign-memebean-modal-bling" :class="{in: beanIn}">
+                            <div class="sign-memebean-modal-bling-bg" :class="{animation: beanIn}"></div>
+                            <div class="boom-bean bean">
+                                <div class="qty">X&nbsp;<span v-text="getBeansQty"></span></div>
+                            
+                            </div>
+                        </div>
+                        <div class="sign-memebean-modal-bg-left not-rotate opacity" :class="{'not-rotate': notRotate,opacity: !modalHeight}"></div>
+                        <div class="sign-memebean-modal-bg-right not-rotate opacity" :class="{'not-rotate': notRotate,opacity: !modalHeight}"></div>
+                    </div>
+                    <div>恭喜获得<span class="bean-count" v-text="getBeansQty"></span>蜜豆</div>
+                    <i class="bling-star" :class="{animation: beanIn}"></i>
+                    <i class="bling-star" :class="{animation: beanIn}"></i>
+                    <i class="bling-star" :class="{animation: beanIn}"></i>
+                    <i class="bling-star" :class="{animation: beanIn}"></i>
+                </div>
+            </div>
+        </div>
+        <home-favor :favor-data="favorData"></home-favor>
+        <link rel="import" href="../../include/c.html?__inline">
+        <link rel="import" href="../../include/ga.html?__inline">
+        <script>
+            require('app/new-sign/sign');
+        </script>
+    </main>
+
+</body>
+
+</html>

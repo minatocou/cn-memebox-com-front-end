@@ -1,0 +1,16 @@
+<!--<div class="banner" v-if="bannerData.items.length==1&&bannerData.items[0]['banner_imganner_img']!=''" :style="{backgroundImage: 'url(' + bannerData.component_bg_url + ')'}">-->
+<div class="banner" v-if="bannerData.items.length==1&&bannerData.items[0]['banner_imganner_img']!=''">
+    <a :href="toH5Url(bannerData.items[0]['item_action_url'])">
+        <img :src=bannerData.items[0]["banner_img"] style="vertical-align: top;" width="100%">
+    </a>
+</div>
+<!--<div class="banner" v-if="bannerData.items.length>=2" :style="{backgroundImage: 'url(' + bannerData.component_bg_url + ')'}">-->
+<div class="banner" v-if="bannerData.items.length>=2">
+    <swipe class="vue-swipe">
+        <swipe-item v-for="banner in bannerData.items">
+            <a :href="toH5Url(banner['item_action_url'])">
+                <img :src=banner["banner_img"] style="vertical-align: top;">
+            </a>
+        </swipe-item>
+    </swipe>
+</div>

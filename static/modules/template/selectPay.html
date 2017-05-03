@@ -1,0 +1,45 @@
+<div id="select-pay" class="select-pay mui-popover mui-popover-action mui-popover-bottom">
+    <div class="mui-table-view" style="top:0;">
+        <form class="mui-input-group">
+            <div class="mui-table-view-cell pay-title">
+                <span>选择支付方式</span>
+                <div class="close-pay" @tap="closePay">
+                    <img src="../../img/close.png" alt="关闭">
+                </div>
+            </div>
+            <div class="show-price" align="center">
+                <p>
+                    <span v-show="pay.time" style="display: none">
+                        请在{{pay.time}}内完成支付,
+                    </span>
+                    订单金额:<span>¥{{parseFloat(pay.totalAmount).toFixed(2)}}</span>
+                </p>
+                <p v-if="pay.step=='1'" style="color:#ccc;font-size: 12px; line-height: 0">(预售商品定金和尾款的支付方式需保存一致,请谨慎选择)</p>
+            </div>
+            <div v-show="pay.ali" class="ali mui-input-row mui-radio">
+                <input type="radio" class="pay-radio" name="pay" v-model="payType" value="ali" :checked="pay.ali" >
+                <label>
+                    <img src="../../img/alipay.png" alt="支付宝支付">
+                    <span>支付宝支付</span>
+                </label>
+            </div>
+
+            <div v-show="pay.wx" class="wx mui-input-row mui-radio">
+                <input type="radio" class="pay-radio" name="pay" v-model="payType" value="wx" :checked="pay.wx" >
+                <label class="mui-table-view-cell">
+                    <img src="../../img/weixin.png" alt="微信支付">
+                    <span>微信支付</span>
+                </label>
+            </div>
+            <div class="pay-bottom">
+                <!--<input type="checkbox" class="deal" name="deal" @change="deal" checked>-->
+                <!--<label>-->
+                    <!--本人接受《进口个人委托申报》与《美美箱服务协议》-->
+                <!--</label>-->
+                <!--<a class="sure-btn" :data="orderId" href="{{href}}" >确认支付{{money}}</a>-->
+                <a class="sure-btn" style="background: #ccc" v-if="pay.time==false">已过期</a>
+                <a class="sure-btn" @tap="checkout" v-else >确认支付</a>
+            </div>
+        </form>
+    </div>
+</div>

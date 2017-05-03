@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要蜜豆</title>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="prize.less">
+</head>
+<body>
+    <div class="prize-page">
+    	<div class="prize-page-cell">
+    		<div class="prize-wrap">
+    			<div class="user-info">
+	                <a href="javascript:;" @tap="validateLogin">
+	                    <img class="user-info-avatar" src="/images/app/my/include/user-logo.png" :src="userData.avatar||'/images/app/my/include/user-logo.png'" alt="个人头像">
+	                    <div class="user-info-text" v-text="start?userData.nickname:'memeboxer'">&nbsp;</div>
+	                </a>
+	            </div>
+
+	            <div class="prize-card">
+	            	<i class="prize-card-title">我要蜜豆</i>
+
+	            	<div class="prize-card-content">
+	            		<div class="prize-tip-title">
+		            		<span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span><span v-text="prizeTip">&nbsp;</span><span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span>
+	            		</div>
+	            		<div class="prize-info-show" :class="{'not-start': !start}">
+		            		<ul class="animation-target" :class="{animation:animation,'animation-once':animationOnce}" :style="styleObject">&nbsp;
+		            			<li v-for="prizeDetail in prizeList" track-by="$index"> 
+		            				<em v-text="start?(prizeDetail || '&nbsp;'):'本活动尚未开始哦！'">&nbsp;</em>
+		            			</li>
+		            		</ul>
+	            		</div>
+	            		<!--<div class="prize-info-tag state-three">&nbsp;</div>-->
+	            	</div>
+
+	            	<img class="prize-card-brand" src="/images/app/special/prize/include/prizeBrand.png">
+	            </div>
+    		</div>
+    		<div class="prize-run-btn hide" v-if="start" :class="{hide: !start}"> 
+    			<button class="prize-run-text hide" :class="{hide:btnText===''}" v-text="btnText||'&nbsp;'" @touchstart.prevent="prizeActive"  @touchend.prevent="prizeActive"></button>
+	    		<div class="prize-cell-arrow hide animation" v-if="start" :class="{hide: !start}" @tap="togglePageCell"></div>
+    		</div>
+    	</div>
+    	<div class="prize-page-cell" v-if="start">
+    		<div class="prize-sub-panel">
+    			<div class="prize-tip-title">
+            		<span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span>活动中奖名单<span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span>
+        		</div>
+        		<div class="prize-info-list">
+        			<ul class="prize-user-list" @touchstart="listTouchStart" @touchend="listTouchEnd">
+        				<li v-for="userData in prizedUserList">
+        					<div>
+        						<img class="user-info-avatar" alt="个人头像">
+        						<div class="user-info-name text-ellipsis">&nbsp;<span v-text="userData.nickname || '&nbsp;'"></span></div>
+        						<div class="user-info-prize">&nbsp;<span v-text="userData.prize || '&nbsp;'"></span></div>
+        					</div>
+        				</li>
+        				
+        			</ul>
+        		</div>
+    		</div>
+    		<div class="prize-sub-panel">
+    			<div class="prize-tip-title">
+            		<span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span>活动详细规则<span class="prize-tip-decorate">◆&nbsp;◆&nbsp;◆</span>
+        		</div>
+        		<div class="prize-info-list">
+        			<ul class="prize-rules-list">
+        				<li v-html="description"></li>
+        			</ul>
+        		</div>
+    		</div>
+    		<img class="copyRight" src="/images/app/special/prize/include/copyRight.png">
+    	</div>
+    </div>
+
+	<i class="bling-star" :class="{animation: animation}"></i>
+	<i class="bling-star" :class="{animation: animation}"></i>
+	<i class="bling-star" :class="{animation: animation}"></i>
+	<i class="bling-star" :class="{animation: animation}"></i>
+	<i class="bling-star" :class="{animation: animation}"></i>
+
+
+	<link rel="import" href="_wxShareBackdrop.html?__inline">
+	
+ 	<script src="../../../js/appsdk/app.js"></script>
+    <script>
+        require('special/prize/prize');
+    </script>
+</body>
+</html>

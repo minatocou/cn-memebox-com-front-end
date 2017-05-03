@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+</head>
+<body>
+<div align="center">
+    <div @tap="appLogin()">登录123</div><br />
+    <div @tap="app_userinfo">获取用户信息</div><br />
+    <div @tap="appShare">分享</div><br /><br />
+    订单号: <input type="text" value="e18100463128" v-model="orderId"> <button @tap="pay" >支付</button><br />
+    跳抓产品详情: <input type="text" value="2921" v-model="pid"> <button @tap="toProduct" >跳转</button><br />
+    <br />
+    返回结果:{{appData | json}}<br /><br />
+    错误消息:{{errorMsg}}
+</div>
+<script src="../../js/appsdk/app.js"></script>
+<script >
+    require('gg/app');
+</script>
+</body>
+<!--<link rel="import" href="../../include/ga.html?__inline">-->
+</html>

@@ -1,0 +1,71 @@
+<div class="discount" v-if="discountData.detail.items&&discountData.detail.items.length!=0">
+    <div class="discount-header" >
+        <a :href="toH5Url(discountData.action_url)">
+            <span class="discount-title"></span>
+            <div class="show-time">
+                距离结束还有:
+                <span class="days" v-show="dd[0]!=0||dd[1]!=0">
+                    <span>
+                        {{dd[0]}}{{dd[1]}}
+                    </span>
+                    天
+                </span>
+                <span class="hours">
+                    <span>
+                        {{hh[0]}}{{hh[1]}}
+                    </span>
+                    时
+                </span>
+                <span class="minutes">
+                    <span>
+                        {{mm[0]}}{{mm[1]}}
+                    </span>
+                    分
+                </span>
+                <span class="seconds">
+                    <span>
+                        {{ss[0]}}{{ss[1]}}
+                    </span>
+                    秒
+                </span>
+            </div>
+        </a>
+
+    </div>
+    <div class="discount-container">
+        <ul class="discount-content">
+            <li class="discount-box"
+                v-for="(index,productList) in discountData.detail.items"
+                v-bind:class={"stockout":productList.stockStatus=="0"}
+                @tap="$parent.$parent.go('/m/productDetails/productDetails.html#'+productList.productId)" v-if="index<8">
+                <div class="show-discount-img">
+                    <div class="stockout-mark" v-show=productList.stockStatus=="0">
+                        <span>售&nbsp;&nbsp;罄</span>
+                    </div>
+                    <img :src=productList.imgUrl alt="美美箱">
+                </div>
+                <div class="discount-product-details">
+                    <h2 class="ov2">
+                        {{productList.brandName+productList.name}}
+                    </h2>
+                    <div class="discount-product-price">
+                        <div class="show-price">
+                            <p class="price-box"><span class="price">¥{{parseInt(productList.price)}}</span>.<span>{{getFloat2(productList.price)}}</span></p>
+                            <span class="cut-price" v-show="(productList.originPrice-productList.price)>0">
+                                直降{{(productList.originPrice-productList.price).toFixed(0)}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="discount-box see-all" v-if="discountData.action_url">
+                <a :href="toH5Url(discountData.action_url)">
+                    <div>
+                        <span>查看全部</span><br>
+                        See All
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

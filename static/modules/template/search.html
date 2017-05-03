@@ -1,0 +1,6 @@
+<li class="mui-table-view-cell " v-bind:class="{'mui-collapse':secondLevel}" >
+    <a :href='url+firstId' class="mui-navigate-right">{{firstLevelName}}</a>
+    <ul class="mui-table-view mui-table-view-chevron" v-if="secondLevel">
+        <li class="mui-table-view-cell" v-if="secondLevel" v-for="item in secondLevel"><a :href='url+$key'>{{item["name"]}}</a></li>
+    </ul>
+</li>

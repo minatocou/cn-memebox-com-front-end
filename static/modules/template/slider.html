@@ -1,0 +1,54 @@
+<div id="slider" class="mui-slider" v-if="data.length!=0">
+    <div class="mui-slider-group"  v-if="data.length==1">
+        <div class="mui-slider-item">
+            <a v-if="data[0]['banner_type']=='0'" :href="classify+data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+            <a v-if="data[0]['banner_type']=='1'" :href="details+data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+            <a v-if="data[0]['banner_type']=='3'" :href="data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+        </div>
+    </div>
+    <div class="mui-slider-group mui-slider-loop"  v-if="data.length>=2">
+        <div class="mui-slider-item mui-slider-item-duplicate">
+            <a v-if="data[data.length-1]['banner_type']=='0'" :href="classify+data[data.length-1]['target_id']">
+                <img :src=data[data.length-1]["banner_image"] :alt=data[data.length-1]['banner_title']>
+            </a>
+            <a v-if="data[data.length-1]['banner_type']=='1'" :href="details+data[data.length-1]['target_id']">
+                <img :src=data[data.length-1]["banner_image"] :alt=data[data.length-1]['banner_title']>
+            </a>
+            <a v-if="data[data.length-1]['banner_type']=='3'" :href="data[data.length-1]['target_id']">
+                <img :src=data[data.length-1]["banner_image"] :alt=data[data.length-1]['banner_title']>
+            </a>
+        </div>
+        <div class="mui-slider-item" v-for="banner in data">
+            <a v-if="banner['banner_type']=='0'" :href="classify+banner['target_id']">
+                <img :src=banner["banner_image"]  :alt="banner['banner_title']">
+            </a>
+            <a v-if="banner['banner_type']=='1'" :href="details+banner['target_id']">
+                <img :src=banner["banner_image"]  :alt="banner['banner_title']">
+            </a>
+            <a v-if="banner['banner_type']=='3'" :href="banner['target_id']">
+                <img :src=banner["banner_image"]  :alt="banner['banner_title']">
+            </a>
+        </div>
+        <div class="mui-slider-item mui-slider-item-duplicate">
+            <a v-if="data[0]['banner_type']=='0'" :href="classify+data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+            <a v-if="data[0]['banner_type']=='1'" :href="details+data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+            <a v-if="data[0]['banner_type']=='3'" :href="data[0]['target_id']">
+                <img :src=data[0]["banner_image"]  :alt="data[0]['banner_title']">
+            </a>
+        </div>
+    </div>
+    <div class="mui-slider-indicator"  v-if="data.length>=2">
+        <div class="mui-indicator mui-active" v-if="$index=1"></div>
+        <div class="mui-indicator" v-if="$index!=1" v-for="(index,banner) in data"></div>
+    </div>
+</div>

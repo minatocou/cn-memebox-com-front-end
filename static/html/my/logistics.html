@@ -1,0 +1,39 @@
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+</head>
+<body id="app">
+<header class="mui-bar mui-bar-nav memebox-header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">物流信息</h1>
+</header>
+<div style="display: none" v-show="init" class="mui-content">
+    <div id="logistics">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                物流单号: <span class="no">{{outsid}}</span>
+                <!--<span class="fr">韵达快递</span>-->
+            </li>
+            <li class="mui-table-view-cell">
+                <ul class="log-box">
+                    <li v-for="(index,o) in outs">
+                        <i :class="index==0? 'cur':''"><span v-show="index==0"
+                                                             class="mui-icon mui-icon-checkmarkempty"></span>
+                        </i>
+                        {{o.context}}
+                        <div class="time">{{o.time}}</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<link rel="import" href="../include/c.html?__inline">
+<script>
+    require('my/logistics');
+</script>
+
+</body>
+<link rel="import" href="../include/ga.html?__inline">
+</html>

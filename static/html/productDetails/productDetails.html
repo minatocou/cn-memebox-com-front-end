@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="../include/head.html?__inline">
+    <link href="style.less" rel="stylesheet"/>
+    <link href="../../js/plugins/swiper/swiper-3.3.1.min.less" rel="stylesheet">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body class="productDetails-page mui-fullscreen" :class={'stop-scroll':showProduct==1}>
+<!--页面主结构开始-->
+
+<div id="app" class="mui-views">
+
+    <div class="mui-view">
+        <new-download  v-ref:tdl></new-download>
+        <div class="mui-navbar" >
+
+        </div>
+        <div class="mui-pages" :style={top:isApp()&&0}>
+
+        </div>
+    </div>
+</div>
+<!--页面主结构结束-->
+<!--正常商品-->
+<link rel="import" v-show="productData.activityType=='4'" href="_flashsale.html?__inline" >
+
+<link rel="import" v-show="productData.activityType=='0'" href="_details.html?__inline" >
+<link rel="import" v-show="productData.activityType=='1'" href="_group.html?__inline" >
+<link rel="import" v-show="productData.activityType=='2'" href="_presale.html?__inline" >
+
+<link rel="import" href="_service.html?__inline">
+<link rel="import" href="_newcomerdesc.html?__inline"  v-show="productData.activityType!='4'">
+<link rel="import" href="_comment.html?__inline">
+<div class="please-wait" v-if="wait==true">
+    <div class="center">
+        <span class="mui-spinner mui-spinner-white"></span>
+    </div>
+</div>
+<!--<select-option :product-data="productData" v-ref:productData style="display:none"></select-option>-->
+<promotion :promotion-info="productData.promotion" v-ref:promotion  style="display:none"></promotion>
+<select-option :product-data="productData" :option-img="optionImg" v-ref:productData style="display:none"></select-option>
+<script src="../../js/vendor/mui/mui.view.js"></script>
+<script src="../../js/plugins/swiper/swiper-3.3.1.min.js"></script>
+<link rel="import" href="../include/c.html?__inline">
+<link rel="import" href="../include/ga.html?__inline">
+</body>
+
+<script>
+    require('productDetails/productDetails');
+</script>
+
+</html>

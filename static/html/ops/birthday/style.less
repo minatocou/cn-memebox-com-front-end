@@ -1,0 +1,718 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+
+@y: #fbf95c;
+@main-bg: #f53463;
+html,body{
+  overflow-x: hidden;
+}
+body {
+  background: @main-bg;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+a {
+  display: block;
+  color: #666;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(255,255,255,0.8);
+
+  color: #424242;
+  height: 35*@xem;
+  line-height: 35*@xem;
+  z-index: 9999;
+  text-align: center;
+
+  ul {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  li {
+    font-size: 12*@xem;
+    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    position: relative;
+    &.cur {
+      color: @mainColor;
+      &:before {
+        width: 8*@xem;
+        height: 9*@xem;
+        background: url("include/icon-nav.png");
+        display: inline-block;
+        content: "";
+        background-size: contain;
+        position: relative;
+        top: 1*@xem;
+      }
+    }
+  }
+}
+
+nav ~ .banner {
+  padding-top: 15*@xem;
+}
+
+.banner {
+  position: relative;
+  z-index: 11;
+  color: #ffffff;
+  .b {
+    width: 100%;
+    text-align: center;
+    z-index: 20;
+    margin-top: -45*@xem;
+    position: relative;
+  }
+  .title {
+    font-size: 18*@xem;
+
+    span {
+      font-size: 24*@xem;
+      color: @y;
+    }
+  }
+  .timer {
+    margin-top: 15*@xem;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .t {
+      background: url("include/icon-timer.png") no-repeat center;
+      background-size: contain;
+      width: 50*@xem;
+      height: 48*@xem;
+      text-align: center;
+      line-height: 48*@xem;
+      font-size: 36*@xem;
+      font-family: @num-family;
+    }
+  }
+}
+
+.title-a {
+  margin: 25*@xem 0;
+}
+
+.date-tab {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0;
+  height: 50*@xem;
+  background: url("include/tab-a.png") no-repeat;
+  background-size: contain;
+  &.d6 {
+    background: url("include/tab-b.png") no-repeat;
+    background-size: contain;
+  }
+  li {
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+  }
+}
+
+.icon-1 {
+  height: 20*@xem;
+  display: block;
+  margin: 20*@xem auto;
+  &.pt0 {
+    margin-top: 0;
+  }
+}
+
+.no-tab-1 {
+  margin: 0 15*@xem;
+  font-size: 0;
+  color: #473535;
+  background: #ffffff;
+  text-align: center;
+  height: 40*@xem;
+  position: relative;
+  z-index: 10;
+  &.zero {
+    li {
+      width: 100%;
+      font-size: 14*@xem;
+    }
+  }
+  li {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 10*@xem;
+    height: 100%;
+    border-right: 0.5*@xem @gray solid;
+    width: 25%;
+    position: relative;
+    z-index: 11;
+    padding: 6*@xem;
+    line-height: 14*@xem;
+    > div {
+      position: relative;
+      z-index: 12;
+      width: 100%;
+    }
+    &.one {
+      > div {
+        line-height: 30*@xem;
+      }
+    }
+    &.cur {
+      background: url("include/bg-a.png") repeat #d9d9d9;
+      background-size: contain;
+      &.end {
+        background: url("include/icon-a.png") no-repeat center #d9d9d9;
+        background-size: auto 80%;
+      }
+      &.enb {
+        background-color: @y;
+        &:after {
+          border-top: 8*@xem solid @y;
+        }
+      }
+      &:after {
+        position: absolute;
+        z-index: 13;
+        bottom: -6*@xem;
+        left: 50%;
+        margin-left: -8*@xem;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 6*@xem solid transparent;
+        border-right: 6*@xem solid transparent;
+        border-top: 6*@xem solid #d9d9d9;
+      }
+    }
+  }
+}
+
+.dis {
+  &:before {
+    content: "已抢光";
+    width: 80*@xem;
+    height: 80*@xem;
+    line-height: 80*@xem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .6);
+    color: #ffffff;
+    position: absolute;
+    left: 50%;
+    margin-left: -40*@xem;
+    top: 40%;
+    margin-top: -35*@xem;
+    text-align: center;
+    z-index: 100;
+  }
+}
+
+.no1 {
+  position: relative;
+  overflow-x: scroll;
+  white-space: nowrap;
+  font-size: 0;
+  z-index: 9;
+  img {
+    min-height: 80*@xem;
+  }
+  &.zero {
+    margin-bottom: 15*@xem;
+  }
+  .dis {
+    .go {
+      background: @gray;
+      &:after {
+        display: none;
+      }
+    }
+    .price {
+      color: @gray;
+    }
+  }
+  li {
+    position: relative;
+    font-size: 12*@xem;
+    display: inline-block;
+    background: #ffffff;
+    margin: 2*@xem 2*@xem 0 0;
+    width: 120*@xem;
+    height: 180*@xem;
+    vertical-align: top;
+    img {
+      width: 100%;
+    }
+
+    .go {
+      background: @mainColor;
+      display: inline-block;
+      padding: 2*@xem 8*@xem;
+      color: #ffffff;
+      position: absolute;
+      bottom: 5*@xem;
+      right: 10%;
+
+      &:after {
+        content: "";
+        .check-right(6*@xem, 6*@xem, #ffffff);
+        top: -1*@xem;
+        position: relative;
+      }
+    }
+    .price {
+      position: absolute;
+      left: 5*@xem;
+      bottom: 5*@xem;
+    }
+    .pro-info {
+      padding: 5*@xem;
+      .title {
+        font-size: 10*@xem;
+        white-space: normal;
+        line-height: 14*@xem;
+        .ov2
+      }
+    }
+  }
+}
+
+.price {
+  font-size: 16*@xem;
+  color: @mainColor;
+  font-weight: bold;
+  b {
+    font-size: 18*@xem;
+  }
+}
+
+.pt {
+  position: relative;
+  font-size: 0;
+  margin-top: 10*@xem;
+  img {
+    min-height: 80*@xem;
+  }
+  .dis {
+    .go {
+      background: @gray;
+      &:after {
+        display: none;
+      }
+    }
+    .price {
+      color: @gray;
+    }
+  }
+  li {
+    &:before {
+      content: "";
+      width: 50*@xem;
+      height: 50*@xem;
+      background: url("include/tj.png") no-repeat;
+      background-size: contain;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    display: inline-block;
+    font-size: 14*@xem;
+    width: 48.5%;
+    margin-left: 1%;
+    margin-top: 4*@xem;
+    min-height: 100*@xem;
+    background: #ffffff;
+    position: relative;
+    vertical-align: top;
+    .tip {
+      background-color: #448af3;
+      font-size: 12*@xem;
+      padding: 2*@xem 5*@xem;
+      position: absolute;
+      left: 0;
+      top: 8*@xem;
+      color: #ffffff;
+    }
+    .pro-info {
+      padding: 10*@xem;
+      font-size: 12*@xem;
+      .price {
+        font-size: 12*@xem;
+        b {
+          font-size: 20*@xem;
+        }
+      }
+    }
+    .go {
+      background: @mainColor;
+      display: inline-block;
+      padding: 5*@xem 8*@xem;
+      color: #ffffff;
+      position: absolute;
+      bottom: 10*@xem;
+      right: 10%;
+      &:after {
+        content: "";
+        .check-right(6*@xem, 6*@xem, #ffffff);
+        top: -1*@xem;
+        position: relative;
+      }
+    }
+  }
+}
+
+.banner-d {
+  padding: 0 25*@xem;
+  width: 100%;
+  display: block;
+}
+
+.hb-text {
+  margin: 20*@xem 50*@xem;
+  word-wrap: break-word;
+  word-break: normal;
+  font-size: 14*@xem;
+  color: #ffffff;
+}
+
+.hid {
+  position: relative;
+  min-height: 500*@xem;
+  &.o {
+    height: 500*@xem;
+    overflow: hidden;
+  }
+  .hid-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: url("include/hid-bg.jpg") repeat;
+    background-size: cover;
+  }
+  .hid-btn {
+    position: absolute;
+    left: 25*@xem;
+    right: 25*@xem;
+    top: 50%;
+    margin-top: -50%;
+  }
+  .hid-img {
+    width: 100%;
+  }
+  .text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 18*@xem;
+    bottom: 100*@xem;
+  }
+  .hid-b {
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    bottom: 40*@xem;
+  }
+  .coupon {
+    position: relative;
+  }
+  .box {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 27%;
+    .desc {
+      font-size: 12*@xem;
+      margin-top: -5*@xem;
+    }
+    .price {
+      b {
+        font-size: 44*@xem;
+      }
+    }
+  }
+
+  .code {
+    position: absolute;
+    color: #ffffff;
+    width: 100%;
+    bottom: 20%;
+    text-align: center;
+    a {
+      color: @y;
+    }
+  }
+}
+
+.no2 {
+  position: relative;
+  padding: 0 15*@xem;
+  font-size: 0;
+  li {
+    font-size: 14*@xem;
+    background: #ffffff;
+    position: relative;
+    padding: 10*@xem 10*@xem 10*@xem 90*@xem;
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    height: 90*@xem;
+    margin-bottom: 5*@xem;
+    &:nth-of-type(2n) {
+      margin-left: 2%;
+    }
+    &.dis {
+      .go {
+        background: @gray;
+        &:after {
+          display: none;
+        }
+      }
+      .price {
+        color: @gray;
+      }
+    }
+    .pro-info {
+      text-align: right;
+    }
+    img {
+      position: absolute;
+      width: 80*@xem;
+      left: 5*@xem;
+      top: 5*@xem;
+      display: inline-block;
+    }
+    .title {
+      word-wrap: break-word;
+      word-break: normal;
+      font-size: 12*@xem;
+      line-height: 14*@xem;
+    }
+    .price {
+      position: absolute;
+      right: 10*@xem;
+      bottom: 5*@xem;
+    }
+  }
+}
+
+.ov3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.icon-text {
+  padding: 10*@xem 0;
+}
+
+.title-lh {
+  margin-top: 20*@xem;
+}
+
+.no-tab-2 {
+  margin: 0 15*@xem;
+  font-size: 0;
+  color: #473535;
+  background: #ffffff;
+  height: 40*@xem;
+  position: relative;
+  z-index: 10;
+  line-height: 40*@xem;
+  li {
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 10*@xem;
+    height: 100%;
+    border-right: 0.5*@xem @gray solid;
+    width: 20%;
+    position: relative;
+    z-index: 11;
+    > div {
+      position: relative;
+      z-index: 12;
+      width: 100%;
+    }
+    &.one {
+      > div {
+      }
+    }
+    &.cur {
+      background: url("include/bg-a.png") repeat #d9d9d9;
+      background-size: cover;
+      &.end {
+        background: url("include/icon-a.png") no-repeat center #d9d9d9;
+        background-size: auto 80%;
+      }
+      &.enb {
+        background-color: @y;
+        &:after {
+          border-top: 8*@xem solid @y;
+        }
+      }
+      &:after {
+        position: absolute;
+        z-index: 13;
+        bottom: -6*@xem;
+        left: 50%;
+        margin-left: -8*@xem;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 6*@xem solid transparent;
+        border-right: 6*@xem solid transparent;
+        border-top: 6*@xem solid #d9d9d9;
+      }
+    }
+  }
+}
+
+.d6 {
+  .no-tab-2 {
+    li {
+      width: 25%;
+    }
+  }
+}
+
+.bottom {
+  padding: 10*@xem;
+  text-align: center;
+  color: @mainColor;
+  font-size: 20*@xem;
+  background: #ffffff;
+  margin-top: 15*@xem;
+}
+
+.change {
+  color: #ffffff;
+  font-size: 10*@xem;
+  text-align: center;
+  padding: 15*@xem;
+  &.cur {
+    &:after {
+      .check-up(6*@xem, 6*@xem, #ffffff);
+      top: 0;
+    }
+  }
+  &:after {
+    content: "";
+    .check(6*@xem, 6*@xem, #ffffff);
+    top: -3*@xem;
+    position: relative;
+    margin-left: 5*@xem;
+  }
+}
+
+.change-text {
+  color: #ffffff;
+  margin: 0 20*@xem 0 40*@xem;
+  font-size: 10*@xem;
+  list-style: initial;
+  line-height: 16*@xem;
+}
+
+.change-b {
+  font-size: 12*@xem;
+  margin-left: 30*@xem;
+}
+
+.y {
+  color: @y;
+}
+
+.icon-title {
+  font-size: 20*@xem;
+  color: @y;
+  position: relative;
+  padding-left: 30*@xem;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  margin: 20*@xem auto;
+  &.mt0 {
+    margin-top: 0;
+  }
+  &.mb0 {
+    margin-bottom: 0;
+  }
+  &.m0 {
+    margin: 0;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.icon-01 {
+  &:before {
+    background: url("include/icon-01.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.icon-02 {
+  &:before {
+    background: url("include/icon-02.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.icon-03 {
+  &:before {
+    background: url("include/icon-03.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.icon-04 {
+  &:before {
+    background: url("include/icon-04.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.icon-05 {
+  &:before {
+    background: url("include/icon-05.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.icon-06 {
+  &:before {
+    background: url("include/icon-06.png") no-repeat 0 center;
+    background-size: auto 90%;
+  }
+}
+
+.z-text {
+  padding: 30*@xem 30*@xem 0 30*@xem;
+  font-size: 10*@xem;
+  color: #ffffff
+}

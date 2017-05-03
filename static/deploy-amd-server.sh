@@ -1,0 +1,1 @@
+fis release -f  ../fis/amd.js -d local,local1 -D --optimize --pack

@@ -1,0 +1,649 @@
+@import "../../../css/variables";
+@import "../../../css/mixin";
+@import "../../../css/common";
+@import "../../../css/view";
+@import "../../../js/vendor/mui/mui.picker.less";
+@import "../../../js/vendor/mui/mui.poppicker.less";
+html,body,.prize{
+  height:100%;
+  position: relative;
+}
+body{
+  background: #ffa0b2;
+}
+.prize {
+  overflow-x: hidden;
+  .gift-list {
+    position: relative;
+    .r, .l {
+      position: absolute;
+      bottom:4*@xem;
+      height: 130*@xem;
+      width: 10%;
+    }
+    .r {
+      right: 0;
+      border-top-left-radius: 10*@xem;
+      border-bottom-left-radius: 10*@xem;
+      background: url("./include/css-r.png") center center no-repeat;
+      background-size: cover;
+    }
+    .l {
+      left: 0;
+      border-top-right-radius: 10*@xem;
+      border-bottom-right-radius: 10*@xem;
+      background: url("./include/css-l.png") center center no-repeat;
+      background-size: cover;
+    }
+  }
+  .vue-swipe {
+    overflow:visible;
+    .swipe-item {
+      width: 270*@xem;
+      background: rgba(255, 204, 217, 1);
+      border-radius: 10*@xem;
+      margin: auto;
+      height: 130*@xem;
+      background: url("./include/css-card.png") center center no-repeat;
+      background-size: cover;
+      span {
+        position: absolute;
+        top: 50*@xem;
+        left: 12*@xem;
+        color: #fa6885;
+        font-size: 23*@xem;
+      }
+    }
+    .swipe-items-wrap {
+      overflow:visible;
+      &>div{
+        top:50%;
+        margin-top:-65*@xem;
+      }
+      .active {
+        margin-top:0;
+        height: 138*@xem;
+        box-shadow: 0 6*@xem  6*@xem  0 rgba(9, 9, 9, 0.14);
+
+      }
+    }
+  }
+  .floor {
+    margin-bottom: -80*@xem;
+  }
+  .add-address {
+    img {
+      width: 13*@xem;
+      margin-right: 7*@xem;
+    }
+    border: 1px solid @mainColor;
+    border-radius: 2*@xem;
+    font-size: 16*@xem;
+    color: @mainColor;
+    line-height: 35*@xem;
+    margin-top: 13*@xem;
+  }
+  ul {
+    overflow-y: scroll;
+    li {
+      position: relative;
+      border-bottom: 1px solid @border-color;
+      padding: 15*@xem 0;
+      p {
+        margin: 0;
+        font-size: 14*@xem;
+        color: @title;
+      }
+    }
+    li:last-child{
+      border:none;
+    }
+  }
+  .fr {
+    float: right;
+    font-size: 14*@xem;
+  }
+  .list {
+    background: #fff;
+    padding: 0 15*@xem 15*@xem;
+  }
+  .move-heart {
+    position: absolute;
+    width: 35*@xem;
+    height: 30*@xem;
+    background: url("./include/css-meme.png") no-repeat center center;
+    background-size: 35*@xem;
+    bottom: 70*@xem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+    &-active {
+      background-color: rgba(253, 47, 217, .2);
+      width: 75*@xem;
+      height: 75*@xem;
+      bottom: 50*@xem;
+      border-radius: 50%;
+      transform: scale(.3);
+      -webkit-transform: scale(.3);
+      animation: jumpHeart .5s linear infinite alternate ;
+      -webkit-animation: jumpHeart .5s linear infinite alternate ;
+    }
+  }
+  @keyframes jumpHeart {
+    form {
+      -webkit-transform: scale(.3);
+      -moz-transform: scale(.3);
+      -ms-transform: scale(.3);
+      -o-transform: scale(.3);
+      transform: scale(.3);
+    }
+    to {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+  @-webkit-keyframes jumpHeart {
+    form {
+      -webkit-transform: scale(.3);
+      -moz-transform: scale(.3);
+      -ms-transform: scale(.3);
+      -o-transform: scale(.3);
+      transform: scale(.3);
+    }
+    to {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+  .main {
+    position: relative;
+    height: 234*@xem;
+    padding: 0 15*@xem;
+    .star {
+      position: absolute;
+      z-index: 6;
+      &:first-child {
+        top: 30*@xem;
+        right: 40*@xem;
+        width: 25*@xem;
+        height: 25*@xem;
+      }
+      &:nth-child(2) {
+        top: 54*@xem;
+        left: 10*@xem;
+        width: 35*@xem;
+        height: 35*@xem;
+      }
+      &:nth-child(3) {
+        top: 30*@xem;
+        right: 10*@xem;
+        width: 40*@xem;
+        height: 40*@xem;
+      }
+
+      animation: jumpStar .8s linear infinite alternate;
+      -webkit-animation: jumpStar .8s linear infinite alternate ;
+    }
+    @keyframes jumpStar {
+      to {
+        -webkit-transform: scale(.5);
+        -moz-transform: scale(.5);
+        -ms-transform: scale(.5);
+        -o-transform: scale(.5);
+        transform: scale(.5);
+      }
+      from {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+    }
+    @-webkit-keyframes jumpStar {
+      to {
+        -webkit-transform: scale(.5);
+        -moz-transform: scale(.5);
+        -ms-transform: scale(.5);
+        -o-transform: scale(.5);
+        transform: scale(.5);
+      }
+      from {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+    }
+    &-top {
+      position: relative;
+      height: 90*@xem;
+      vertical-align: middle;
+    }
+    &-mid {
+      position: relative;
+      height: 145*@xem;
+      z-index: 5;
+      box-shadow: 6*@xem 6*@xem 6*@xem 0 rgba(9, 9, 9, 0.14);
+    }
+    .gift {
+      position: absolute;
+      top: 50*@xem;
+      left: 0;
+      right: 0;
+      color: #fff;
+      margin: auto;
+      width: 314*@xem;
+      height: 150*@xem;
+      background: @mainColor;
+      border-radius: 7*@xem;
+      z-index: 3;
+      //-webkit-transform: translateZ(0);
+      //-moz-transform: translateZ(0);
+      //-ms-transform: translateZ(0);
+      //-o-transform: translateZ(0);
+      //transform: translateZ(0);
+      .user {
+        position: relative;
+        margin: 10*@xem 0;
+        img {
+          width: 30*@xem;
+          height: 30*@xem;
+          border-radius: 50%;
+          vertical-align: middle;
+        }
+        span {
+          font-size: 14*@xem;
+          color: #fff;
+        }
+      }
+      h2 {
+        font-size: 27*@xem;
+        margin-bottom: 8*@xem;
+      }
+      p {
+        font-size: 12*@xem;
+        color: #fff;
+      }
+      &-active {
+        transition: all 1s;
+        top: 5*@xem;
+      }
+      &-jump {
+        -webkit-animation: jumpGift 1s ease-out infinite alternate;
+        animation: jumpGift 1s ease-out infinite alternate;
+      }
+      @keyframes jumpGift {
+        0%, 75% {
+          top: 50*@xem;
+        }
+        80% {
+          top: 50*@xem;
+        }
+        85% {
+          top: 55*@xem;
+        }
+        90% {
+          top: 50*@xem;
+        }
+        95% {
+          top: 55*@xem;
+        }
+        100% {
+          top: 50*@xem;
+        }
+      }
+      @-webkit-keyframes jumpGift {
+        0%, 75% {
+          top: 50*@xem;
+        }
+        80% {
+          top: 50*@xem;
+        }
+        85% {
+          top: 55*@xem;
+        }
+        90% {
+          top: 50*@xem;
+        }
+        95% {
+          top: 55*@xem;
+        }
+        100% {
+          top: 50*@xem;
+        }
+      }
+      &-content {
+        display: none;
+        opacity: 0;
+      }
+      &-content-active {
+        display: block;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        -o-transition: all 1s;
+        transition: all 1s;
+        & + p {
+          display: none;
+        }
+      }
+    }
+    &-btn {
+      position: absolute;
+      width: 140*@xem;
+      bottom: 15*@xem;
+      left: 50%;
+      margin-left: -70*@xem;
+      line-height: 30*@xem;
+      border: 1px solid @mainColor;
+      border-radius: 15*@xem;
+      color: @mainColor;
+      text-align: center;
+      z-index: 10;
+      font-size: 14*@xem;
+      &-read-only {
+        border-color: @gray-9;
+        color: @gray-9;
+      }
+    }
+  }
+  .title {
+    font-size: 18*@xem;
+    color: #fff;
+    text-align: center;
+    height: 60*@xem;
+    line-height: 60*@xem;
+    &:before, &:after {
+      content: " ";
+      background: url("./include/css-bg.png") no-repeat 0 -96*@xem;
+      background-size: 25*@xem;
+      display: inline-block;
+      width: 25*@xem;
+      height: 6*@xem;
+      vertical-align: middle;
+    }
+    &:before {
+      margin-right: 5*@xem;
+    }
+    &:after {
+      margin-left: 5*@xem;
+    }
+  }
+  .my-list {
+    padding: 0 15*@xem;
+    ul {
+      max-height: 130*@xem;
+    }
+    .fr {
+      color: @gray-6;
+    }
+  }
+  .other-list {
+    padding: 0 15*@xem;
+    .fr {
+      position: absolute;
+      color: @mainColor;
+      top: 50%;
+      right: 0;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    img {
+      width: 40*@xem;
+      height: 40*@xem;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 10*@xem;
+    }
+    ul {
+      max-height: 280*@xem;
+      overflow-y: scroll;
+      .ov{
+        display: inline-block;
+        width: 40%;
+        vertical-align: middle;
+      }
+    }
+  }
+  .prize-explain {
+    padding: 0 20*@xem;
+    .list {
+      color: @title;
+      line-height: 28*@xem;
+      font-size: 14*@xem;
+      //height: 250*@xem;
+      //overflow-y: scroll;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .bottom {
+    margin-top: 25*@xem;
+    height: 93*@xem;
+    background: #fff;
+    padding: 20*@xem 0 0 0;
+    font-size: 0;
+    .bg {
+      width: 21*@xem;
+      height: 23*@xem;
+      background: url("./include/css-bg.png") no-repeat;
+      background-size: 25*@xem;
+      margin: 0 auto 5*@xem;
+    }
+    .icon:nth-child(1) {
+      .bg {
+        background-position: center 0;
+      }
+    }
+    .icon:nth-child(2) {
+      .bg {
+        background-position: center -23*@xem;
+      }
+    }
+    .icon:nth-child(3) {
+      .bg {
+        background-position: center -46*@xem;
+      }
+    }
+    .icon:nth-child(4) {
+      .bg {
+        background-position: center -69*@xem;
+      }
+    }
+    .icon {
+      display: inline-block;
+      width: 25%;
+      text-align: center;
+    }
+    span {
+      color: #555;
+      font-size: 12*@xem;
+    }
+  }
+  .mask {
+    background: none;
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .3);
+    }
+    .frame {
+      position: absolute;
+      top: 20%;
+      left: 20*@xem;
+      right: 20*@xem;
+      background: #fff;
+    }
+    .login {
+
+    }
+    .top {
+      position: relative;
+      height: 45*@xem;
+      line-height: 45*@xem;
+      font-size: 16*@xem;
+      color: @title;
+      background: #f7f5f5;
+      text-align: center;
+    }
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 45*@xem;
+      height: 100%;
+      background: url("./include/css-close.png") center center no-repeat;
+      background-size: 16*@xem;
+    }
+    .login-main {
+      padding: 20*@xem 15*@xem;
+    }
+    .login-input {
+      position: relative;
+    }
+    input {
+      border: 1px solid @border-color;
+      border-radius: 2*@xem;
+      margin: 0;
+      padding: 13*@xem 20*@xem;
+    }
+    input:nth-child(2) {
+      margin-top: 13*@xem;
+    }
+    .get-btn {
+      position: absolute;
+      right: 0;
+      bottom: 5*@xem;
+      padding: 0 10*@xem;
+      line-height: 30*@xem;
+      text-align: center;
+      color: @mainColor;
+      border-left: 1px solid @border-color;
+    }
+    .btn {
+      display: inline-block;
+      background: @mainColor;
+      color: #fff;
+      font-size: 15*@xem;
+      line-height: 45*@xem;
+      width: 100%;
+      border-radius: 2*@xem;
+      text-align: center;
+      margin-top: 20*@xem;
+    }
+    .add-main {
+      padding: 0 15*@xem 20*@xem;
+      li {
+        padding: 0;
+        border-bottom: 1px solid @border-color;
+        label {
+          display: inline-block;
+          height: 100%;
+        }
+        span {
+          display: inline-block;
+          width: 65*@xem;
+          vertical-align: middle;
+        }
+      }
+      input {
+        padding: 10*@xem 0;
+        width: auto;
+        border: none;
+        margin: 0;
+      }
+
+    }
+  }
+}
+.wx-share-backdrop {
+  z-index: 100;
+  border: 20*@xem solid transparent;
+  background: rgba(0,0,0,.6) url(include/wxShareTip.png) no-repeat right top;
+  background-size: 33%;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 9em;
+  color: #fff;
+  line-height: 1.6;
+  & .wx-share-click {
+    font-size: 18*@xem;
+    padding: 8*@xem 0;
+  }
+  & .close-button {
+    font-size: 16*@xem;
+    padding: 8*@xem 45*@xem;
+    margin-top: 25*@xem;
+  }
+}
+.circle-icon {
+  border-radius: 50%;
+  background-color: #70d369;
+  display: inline-block;
+  padding: 1.2em;
+}
+.share-icon {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  color: #ddd;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  text-indent: -9999px;
+  direction: ltr;
+  box-sizing: border-box;
+  height: 0.45em;
+  width: 0.45em;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1em, 1.1em -0.5em 0 0, 1.1em 0.5em 0 0;
+  margin: 0.55em 1.15em 0.55em -0.05em;
+  &:before,&:after {
+    position: absolute;
+    width: 1.2em;
+    height: 0.1em;
+    box-shadow: inset 0 0 0 1em;
+    left: 0;
+    content: '';
+    pointer-events: none;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+  }
+  &:before {
+    -webkit-transform: translate(0.35em, 0.1em) rotate(-25deg);
+    transform: translate(0.35em, 0.1em) rotate(-25deg);
+  }
+  &:after {
+    -webkit-transform: translate(0.25em, 0.2em) rotate(25deg);
+    transform: translate(0.25em, 0.2em) rotate(25deg);
+  }
+}
+
+.mui-poppicker {
+  &.mui-active{
+    position: absolute;
+  }
+}
+::-webkit-scrollbar{
+  display: none;
+  -webkit-overflow-scrolling : touch;
+}

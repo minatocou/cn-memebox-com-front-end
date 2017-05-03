@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--领券活动-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="coupon.less?__inline">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d303aeebc00e96434b3bcf04b88d8666";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<div id="coupon">
+    <div id="mask" align="center" class="hide">
+        <div id="false" class="hide">
+            <p id="false-text"></p>
+            <a id="false-btn" href="">确&nbsp;定</a>
+        </div>
+        <div id="success" class="hide">
+            <p id="success-text">领取成功</p>
+            <a id="success-btn" href="http://cn.m.memebox.com/">去使用</a>
+        </div>
+    </div>
+    <div align="center" id="container">
+        <div id="phone-div">
+            <span id="phone-icon"></span>
+            <input type="text" id="phone-number" placeholder="请输入手机号码">
+        </div>
+        <button id="get-btn">免费领取</button>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var port = 'http://cn.memebox.com';
+        var numberInput = $('#phone-number');
+        var getBtn = $('#get-btn');
+        var successBtn = $('#success-btn');
+        var t, jumpUrl;
+        var r = /^1[34578]{1}\d{9}$/;///^(13|14|15|17|18)[0-9]{9}/;
+        $('#mask').on('touchend', function (e) {
+            e.preventDefault();
+            $('#mask').removeClass('show');
+            $('#false').removeClass('show');
+            $('#success').removeClass('show');
+            clearTimeout(t);
+        });
+        function getSearch(name, search) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = search ? search.substr(1).match(reg) : decodeURIComponent(window.location.search).substr(1).match(reg);
+            if (r != null) return (r[2]);
+            return null;
+        }
+        var source = getSearch('source');
+
+        function submitNumber() {
+            $('#mask').addClass('show');
+            var param = 'phone=' + numberInput.val() + (source ? '&channel=' + source : '');
+            if (numberInput.val().search(r) == 0 && numberInput.val().length == 11) {
+                $.ajax({
+                    url: port + '/h5/customer/getCouponByPhone',
+                    data: param,
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        if (data.msg == '绑定优惠券成功') {
+                            var B = location.href.split('?')[0].split('/').pop();
+                            console.log(B);
+                            _hmt.push(['_trackEvent', '领券页面', B]);
+                            $('#success').addClass('show');
+                            jumpUrl = data.jumpUrl;
+                            t = setTimeout(function () {
+                                $('#mask').removeClass('show');
+                                $('#success').removeClass('show');
+                                console.log('ok');
+                            }, 5000);
+                        } else {
+                            $('#false').addClass('show');
+                            $('#false-text').text(data.msg);
+                            t = setTimeout(function () {
+                                $('#mask').removeClass('show');
+                                $('#false').removeClass('show');
+                                console.log('no ok');
+                            }, 5000);
+                        }
+                    },
+                    error: function (error) {
+                        $('#mask').addClass('show');
+                        $('#false').addClass('show');
+                        $('#false-text').text('网络不好,请重试~');
+                        t = setTimeout(function () {
+                            $('#mask').removeClass('show');
+                            $('#false').removeClass('show');
+                            console.log('no ok');
+                        }, 5000);
+                    }
+                });
+            } else {
+                $('#mask').addClass('show');
+                $('#false').addClass('show');
+                $('#false-text').text('您输入的手机号有误');
+                t = setTimeout(function () {
+                    $('#mask').removeClass('show');
+                    $('#false').removeClass('show');
+                    console.log('no ok');
+                }, 5000);
+            }
+        }
+
+        getBtn.on('touchend', function (e) {
+            e.preventDefault();
+            submitNumber();
+        });
+        successBtn.on('touchend', function (e) {
+            e.preventDefault();
+            location.href = jumpUrl;
+        })
+        numberInput.on('keyup', function (e) {
+            if (e.keyCode == 13) {
+                submitNumber();
+            }
+        });
+    });
+</script>
+</body>
+</html>

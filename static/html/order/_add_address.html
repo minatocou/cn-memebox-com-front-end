@@ -1,0 +1,50 @@
+<div id="add" class="mui-page">
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>
+        </button>
+        <h1 class="mui-center mui-title">新增地址</h1>
+        <a @tap="saveAddress()" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">保存</a>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <validator name="validation">
+                    <form novalidate class="mui-input-group">
+                        <div class="mui-input-row">
+                            <input id="name" v-model="param.name" name="name"
+                            v-validate:name="{required:{rule: true,message:'请输入收件人姓名'},maxlength: {rule:20 , message:'收件人姓名过长'}}"
+                                   type="text" placeholder="收件人姓名：（请填写真实姓名）">
+                        </div>
+                        <div class="mui-input-row">
+                            <input id="phone" v-model="param.phone" name="phone"
+                                   v-validate:phone="['phone']"
+                                   type="number" placeholder="手机：">
+                        </div>
+                        <div v-show="isShowID() || param.idcard" class="mui-input-row">
+                            <input type="text" id="idcard" name="idcard" v-model="param.idcard"
+                                   v-validate:idcard="['idcard']"
+                                   placeholder="身份证号：">
+                            <!--<span class="id-card" v-show="!param.idcard">如需购买跨境商品,海关要求必须填写.</span>-->
+                        </div>
+                        <div class="mui-input-row">
+                            <a class="mui-navigate-right">
+                                <input id="addressText" v-model="addressText" name="addressText"
+                                       v-validate:addressText="{required:{rule: true,message:'请选择您的省份'}}" readonly
+                                       @tap="selectCity" type="text" placeholder="选择地区：">
+                            </a>
+                        </div>
+                        <div class="mui-input-row">
+                            <input id="street" v-model="param.street" name="street"
+                                   v-validate:street="{required:{rule: true,message:'请输入您的详细地址'}}" type="text"
+                                   placeholder="详细地址">
+                        </div>
+                    </form>
+                </validator>
+                <div class="btn-logout" v-if="isApp()">
+                    <a @tap="saveAddress()" class="mui-btn mui-btn-block mui-btn-mm">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

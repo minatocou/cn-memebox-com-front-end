@@ -1,0 +1,121 @@
+<!--预售列表-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="list.less">
+    <style>
+        .mui-popup-text{
+            max-height:200px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <header v-if="!isApp()" v-show="!isApp()" style="display: none" class="mui-bar mui-bar-nav memebox-header">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 id="title" class="mui-title">活动详情</h1>
+        <a href="../../home/home.html" class="mui-icon-home mui-icon mui-icon-right-nav mui-pull-right"></a>
+    </header>
+    <div style="display: none" v-show="init" class="mui-content pre-container">
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div v-if="banner" class="banner">
+                    <img :src="banner">
+                </div>
+                <div class="time-con" v-bind:class="{'pre-over':startedFlag=='2'}">
+                    <div v-if="startedFlag!='2'" class="time-box">
+                        距离预售<span class="colorfff91a">{{countdownText}}</span>还有
+                        <div class="time">
+                            <span class="day">
+                                <template v-if="time.day<10">
+                                    <span>0</span>
+                                    <span>{{time.day}}</span>
+                                </template>
+                                <template v-else>
+                                    <span>{{time.day[0]}}</span>
+                                    <span>{{time.day[1]}}</span>
+                                </template>天
+                            </span>
+                            <span class="hour">
+                                <span>
+                                    {{time.hour[0]}}
+                                </span>
+                                <span>
+                                    {{time.hour[1]}}
+                                </span> 时
+                            </span>
+                            <span class="minute">
+                                <span>{{time.minute[0]}}</span>
+                                <span>{{time.minute[1]}}</span> 分
+                            </span>
+                            <span class="second">
+                                <span>{{time.second[0]}}</span>
+                                <span>{{time.second[1]}}</span> 秒
+                            </span>
+                        </div>
+                    </div>
+                    <div v-else class="preover">
+                        预售已结束
+                    </div>
+
+                    <a @tap="showPresaleRule()">查看预售须知 ></a>
+                </div>
+                <ul class="mui-table-view mui-table-view-chevron pre-list" v-bind:class="{'prelist-over':startedFlag=='2','prelist-nostart':startedFlag=='0'}">
+                    <template v-for="list in dataProductList">
+                        <li class=" pre-item" v-for="item in list"
+                            v-bind:class="{'over':item.stockStatus!=1 && startedFlag!='0'}">
+                            <a @tap="goDetail(item)"
+                               :href="getUrl(item)"
+                               >
+                                <div class="product-img">
+                                    <img :src="item.imgUrl">
+
+                                    <div v-if="startedFlag=='0'" class="nostart">未开始</div>
+                                    <template v-else>
+                                        <div v-if="item.stockStatus!=1" class="stock-out">已抢光</div>
+                                    </template>
+
+                                </div>
+                                <div class="product-info">
+                                    <h2 class="ov2">[{{item.brandName}}] {{item.name}}</h2>
+                                    <div class="product-priceBox">
+                                        <div class="double11-price">
+                                            <span class="double11-tag"><img :src="festivalImg"></span>
+                                            <span class="ls-double11-price">￥{{parseInt(item.specialPrice)}}</span>
+                                        </div>
+                                        <div class="pre-price">
+                                            <span class="pre-tag">预售价</span>
+                                            <div>
+                                                <span class="ls-current-price">￥{{parseInt(item.prePrice)}}</span>
+                                                <del class="ls-original-price">￥{{parseInt(item.originPrice)}}</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="product-foot">预付定金￥{{parseInt(item.deposit)}}</span>
+                                </div>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--老版本-->
+<div class="mui-popup-backdrop mui-active" style="display: none" v-show="isApp()&&(iosVer()&&iosVer()<400||androidVer()&&androidVer()<400)"></div>
+<div class="mui-popup mui-popup-in" style="display: none"  v-show="isApp()&&(iosVer()&&iosVer()<400||androidVer()&&androidVer()<400)">
+    <div class="mui-popup-inner">
+        <div class="mui-popup-title"></div>
+        <div class="mui-popup-text">抱歉，老版本用户不能参加我们的超优惠预售活动，赶紧去应用市场下载最新MEMEBOX吧！</div>
+    </div>
+    <div class="mui-popup-buttons" @tap="app_back"><span class="mui-popup-button mui-popup-button-bold">知道啦</span></div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<script>
+    require('special/presale/list');
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+@import "../../css/variables";
+@import "../../css/mixin";
+@import "../../css/common";
+@import "../../css/view";
+
+.mui-table-view-chevron .mui-table-view-cell{
+  position: relative;
+  padding:15*@xem 13*@xem;
+  color:@title;
+  font-size: 15*@xem;
+  img{
+    width: 50*@xem;
+    height: 50*@xem;
+    border-radius: 50%;
+  }
+  .fail{
+    position: absolute;
+    width: 50*@xem;
+    height: 50*@xem;
+    top:15*@xem;
+    left: 13*@xem;
+    border-radius: 50%;
+    color:#fff;
+    border:2*@xem solid #fff;
+    background-color: rgba(0,0,0,.6);
+    text-align: center;
+    padding: 10*@xem;
+    font-size: 20*@xem;
+  }
+}
+.s{
+  margin-top: 18*@xem;
+}
+.fr{
+  float: right;
+  font-size: 15*@xem;
+  color:@gray-9;
+  .mui-icon{
+    font-size: 15*@xem;
+  }
+}
+.mui-popup-buttons{
+  .mui-popup-button{
+    color:@gray-9;
+    font-weight: normal;
+  }
+  .mui-popup-button-bold{
+    color: @mainColor;
+  }
+}
+.text{
+  color:@mainColor;
+  font-size: 13*@xem;
+  padding: 13*@xem;
+  line-height: 18*@xem;
+}

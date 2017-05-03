@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../../include/head.html?__inline">
+    <link rel="stylesheet" href="style.less">
+    <link href="../../../js/plugins/swiper/swiper-3.3.1.min.less" rel="stylesheet"/>
+</head>
+<body>
+<link rel="import" href="_tab.html?__inline">
+<link rel="import" href="_list.html?__inline">
+<!--老版本-->
+<div class="mui-popup-backdrop mui-active" style="display: none" v-show="isApp()&&(iosVer()&&iosVer()<460||androidVer()&&androidVer()<460)"></div>
+<div class="mui-popup mui-popup-in" style="display: none"  v-show="isApp()&&(iosVer()&&iosVer()<460||androidVer()&&androidVer()<460)">
+    <div class="mui-popup-inner">
+        <div class="mui-popup-title"></div>
+        <div class="mui-popup-text">抱歉，老版本用户不能参加此次活动，赶紧去应用市场下载最新MEMEBOX吧！</div>
+    </div>
+    <div class="mui-popup-buttons" @tap="app_back"><span class="mui-popup-button mui-popup-button-bold">知道啦</span></div>
+</div>
+<link rel="import" href="../../include/c.html?__inline">
+<script src="../../../js/plugins/swiper/swiper-3.3.1.min.js"></script>
+<script>
+    require("special/flashsale/index")
+</script>
+</body>
+</html>

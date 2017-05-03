@@ -1,0 +1,161 @@
+@import "../variables";
+.discount-box{
+  padding: 15*@xem;
+  p{
+    margin: 0;
+  }
+  .price-img{
+    vertical-align: top;
+  }
+  .price-box{
+    padding: 0 15*@xem 10*@xem 20*@xem;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    border-bottom: 0;
+    border-top-left-radius: 7*@xem;
+    border-top-right-radius: 7*@xem;
+    background: #fff;
+  }
+  li{
+
+    margin-bottom: 15*@xem;
+    min-height: 90*@xem;
+    position: relative;
+    border-radius: 7*@xem;
+    font-size:0;
+    .coupon-icon{
+      position: absolute;
+      top:13*@xem;
+      right: 15*@xem;
+      width: 87*@xem;
+      height:87*@xem;
+      z-index: 10;
+    }
+    .price{
+      float: left;
+      font-size: 34*@xem;
+      padding-top: 15*@xem;
+      .coupon{
+        font-size: 0;
+        span:nth-of-type(1),span:nth-of-type(3){
+          font-size: 25*@xem;
+        }
+        span:nth-of-type(2){
+          font-size: 50*@xem;
+          margin: 0 10*@xem;
+        }
+      }
+      .info{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 18*@xem;
+      }
+    }
+    .desc{
+      position: relative;
+      float: right;
+      color: @gray-9;
+      font-size: 12*@xem;
+      &:before{
+        position: absolute;
+        top:18*@xem;
+        content: "";
+        left: -20*@xem;
+        width: 1*@xem;
+        bottom:0;
+        background: #e0e0e0;
+      }
+      .title{
+        padding-top: 18*@xem;
+        font-size: 15*@xem;
+        color: @title;
+        margin-bottom: 8*@xem;
+        //white-space:nowrap;
+        //overflow:hidden;
+        //text-overflow:ellipsis;
+        width: 150*@xem;
+      }
+      .time{
+        color:#999;
+        font-size: 13*@xem;
+      }
+      p{
+        text-align: right;
+      }
+    }
+    .description{
+      position: relative;
+      padding: 5*@xem 40*@xem 5*@xem 20*@xem;
+      min-height: 30*@xem;
+      margin: 0;
+      border-bottom-left-radius: 7*@xem;
+      border-bottom-right-radius: 7*@xem;
+      background: url(../../img/css-memebox.png) no-repeat 97% 40%;
+      background-size: 17*@xem 15*@xem;
+      p{
+        color:#fff;
+        font-size: 12*@xem;
+        //white-space:nowrap;
+        //overflow:hidden;
+        //text-overflow:ellipsis;
+      }
+    }
+  }
+  li.out-of-time{
+    .price{
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+  }
+  .red{
+    .price{
+      .coupon{
+        color:#ff5073;
+      }
+    }
+    .description{
+      background-color: #ff5073;
+    }
+  }
+  .blue{
+    .price{
+      .coupon{
+        color:#5995db;
+      }
+    }
+    .description{
+      background-color: #5995db;
+    }
+  }
+  .purple{
+    .price{
+      .coupon{
+        color:#9a78e8;
+      }
+    }
+    .description{
+      background-color: #9a78e8;
+    }
+  }
+  .coupon-box-discount{
+    .price{
+      .coupon{
+        color:#214c6e;
+      }
+    }
+    .description{
+      background-color: #214c6e;
+    }
+  }
+  .coupon-box-overtime{
+    .price{
+      .coupon{
+        color:#ccc;
+      }
+    }
+    .description{
+      background-color: #ccc;
+    }
+  }
+}
